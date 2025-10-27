@@ -1,0 +1,402 @@
+[
+  {
+    "rank": 1,
+    "lemma": "hacer",
+    "part_of_speech": "Verb",
+    "korean_meaning": "하다, 만들다",
+    "frequency_count": 58,
+    "inflected_forms_found": ["hacer", "hago", "hace", "hacen", "hizo", "hicieron", "haciendo"],
+    "example_sentence_source": "¿Qué vas a hacer este fin de semana?",
+    "example_sentence_translation": "이번 주말에 무엇을 할 거니?"
+  },
+  {
+    "rank": 2,
+    "lemma": "ir",
+    "part_of_speech": "Verb",
+    "korean_meaning": "가다",
+    "frequency_count": 55,
+    "inflected_forms_found": ["ir", "voy", "vas", "va", "vamos", "van", "fue", "fueron"],
+    "example_sentence_source": "Mañana voy a la biblioteca para estudiar.",
+    "example_sentence_translation": "나는 내일 공부하러 도서관에 갈 것이다."
+  },
+  {
+    "rank": 3,
+    "lemma": "ser",
+    "part_of_speech": "Verb",
+    "korean_meaning": "~이다 (본질)",
+    "frequency_count": 52,
+    "inflected_forms_found": ["ser", "soy", "es", "somos", "son", "era", "fue"],
+    "example_sentence_source": "La cultura española es muy rica y variada.",
+    "example_sentence_translation": "스페인 문화는 매우 풍부하고 다채롭다."
+  },
+  {
+    "rank": 4,
+    "lemma": "estar",
+    "part_of_speech": "Verb",
+    "korean_meaning": "~이다, 있다 (상태, 위치)",
+    "frequency_count": 49,
+    "inflected_forms_found": ["estar", "estoy", "está", "estamos", "están", "estaba"],
+    "example_sentence_source": "El museo está cerca del centro de la ciudad.",
+    "example_sentence_translation": "그 박물관은 도시 중심부 근처에 있다."
+  },
+  {
+    "rank": 5,
+    "lemma": "tener",
+    "part_of_speech": "Verb",
+    "korean_meaning": "가지다",
+    "frequency_count": 45,
+    "inflected_forms_found": ["tener", "tengo", "tiene", "tenemos", "tienen", "tuvo"],
+    "example_sentence_source": "Tengo que comprar un regalo para mi amigo.",
+    "example_sentence_translation": "나는 내 친구를 위한 선물을 사야 한다."
+  },
+  {
+    "rank": 6,
+    "lemma": "día",
+    "part_of_speech": "Noun",
+    "korean_meaning": "날, 하루",
+    "frequency_count": 41,
+    "inflected_forms_found": ["día", "días"],
+    "example_sentence_source": "Todos los días aprendo algo nuevo en la clase.",
+    "example_sentence_translation": "매일 나는 수업에서 새로운 것을 배운다."
+  },
+  {
+    "rank": 7,
+    "lemma": "poder",
+    "part_of_speech": "Verb",
+    "korean_meaning": "할 수 있다",
+    "frequency_count": 38,
+    "inflected_forms_found": ["poder", "puedo", "puede", "podemos", "pueden", "podía"],
+    "example_sentence_source": "¿Puedes ayudarme con este problema?",
+    "example_sentence_translation": "이 문제 좀 도와줄 수 있니?"
+  },
+  {
+    "rank": 8,
+    "lemma": "amigo",
+    "part_of_speech": "Noun",
+    "korean_meaning": "친구",
+    "frequency_count": 35,
+    "inflected_forms_found": ["amigo", "amiga", "amigos", "amigas"],
+    "example_sentence_source": "Voy al cine con mis amigos esta tarde.",
+    "example_sentence_translation": "나는 오늘 오후에 친구들과 영화 보러 간다."
+  },
+  {
+    "rank": 9,
+    "lemma": "casa",
+    "part_of_speech": "Noun",
+    "korean_meaning": "집",
+    "frequency_count": 33,
+    "inflected_forms_found": ["casa", "casas"],
+    "example_sentence_source": "Después de la escuela, vuelvo a casa.",
+    "example_sentence_translation": "방과 후에, 나는 집으로 돌아온다."
+  },
+  {
+    "rank": 10,
+    "lemma": "vida",
+    "part_of_speech": "Noun",
+    "korean_meaning": "삶, 인생",
+    "frequency_count": 31,
+    "inflected_forms_found": ["vida", "vidas"],
+    "example_sentence_source": "La vida en el campo es más tranquila.",
+    "example_sentence_translation": "시골에서의 삶은 더 평온하다."
+  },
+  {
+    "rank": 11,
+    "lemma": "querer",
+    "part_of_speech": "Verb",
+    "korean_meaning": "원하다, 사랑하다",
+    "frequency_count": 29,
+    "inflected_forms_found": ["querer", "quiero", "quiere", "queremos", "quieren"],
+    "example_sentence_source": "Quiero viajar a México el próximo año.",
+    "example_sentence_translation": "나는 내년에 멕시코로 여행 가고 싶다."
+  },
+  {
+    "rank": 12,
+    "lemma": "año",
+    "part_of_speech": "Noun",
+    "korean_meaning": "년, 해",
+    "frequency_count": 28,
+    "inflected_forms_found": ["año", "años"],
+    "example_sentence_source": "El festival se celebra una vez al año.",
+    "example_sentence_translation": "그 축제는 일 년에 한 번 열린다."
+  },
+  {
+    "rank": 13,
+    "lemma": "ver",
+    "part_of_speech": "Verb",
+    "korean_meaning": "보다",
+    "frequency_count": 27,
+    "inflected_forms_found": ["ver", "veo", "ve", "ven", "vio"],
+    "example_sentence_source": "Desde la ventana puedo ver las montañas.",
+    "example_sentence_translation": "창문에서 나는 산들을 볼 수 있다."
+  },
+  {
+    "rank": 14,
+    "lemma": "cultura",
+    "part_of_speech": "Noun",
+    "korean_meaning": "문화",
+    "frequency_count": 26,
+    "inflected_forms_found": ["cultura", "culturas"],
+    "example_sentence_source": "Me interesa mucho la cultura de América Latina.",
+    "example_sentence_translation": "나는 라틴 아메리카의 문화에 매우 관심이 많다."
+  },
+  {
+    "rank": 15,
+    "lemma": "mucho",
+    "part_of_speech": "Adjective",
+    "korean_meaning": "많은",
+    "frequency_count": 25,
+    "inflected_forms_found": ["mucho", "mucha", "muchos", "muchas"],
+    "example_sentence_source": "Hay muchos turistas en la playa durante el verano.",
+    "example_sentence_translation": "여름 동안 해변에는 많은 관광객들이 있다."
+  },
+  {
+    "rank": 16,
+    "lemma": "saber",
+    "part_of_speech": "Verb",
+    "korean_meaning": "알다 (정보, 사실)",
+    "frequency_count": 24,
+    "inflected_forms_found": ["saber", "sé", "sabe", "sabemos", "saben"],
+    "example_sentence_source": "No sé dónde está la estación de tren.",
+    "example_sentence_translation": "나는 기차역이 어디에 있는지 모른다."
+  },
+  {
+    "rank": 17,
+    "lemma": "estudiante",
+    "part_of_speech": "Noun",
+    "korean_meaning": "학생",
+    "frequency_count": 23,
+    "inflected_forms_found": ["estudiante", "estudiantes"],
+    "example_sentence_source": "Mi hermana es estudiante de medicina.",
+    "example_sentence_translation": "내 여동생은 의대생이다."
+  },
+  {
+    "rank": 18,
+    "lemma": "ciudad",
+    "part_of_speech": "Noun",
+    "korean_meaning": "도시",
+    "frequency_count": 22,
+    "inflected_forms_found": ["ciudad", "ciudades"],
+    "example_sentence_source": "Madrid es la capital y la ciudad más grande de España.",
+    "example_sentence_translation": "마드리드는 스페인의 수도이자 가장 큰 도시이다."
+  },
+  {
+    "rank": 19,
+    "lemma": "viaje",
+    "part_of_speech": "Noun",
+    "korean_meaning": "여행",
+    "frequency_count": 21,
+    "inflected_forms_found": ["viaje", "viajes"],
+    "example_sentence_source": "El viaje en tren duró tres horas.",
+    "example_sentence_translation": "기차 여행은 세 시간이 걸렸다."
+  },
+  {
+    "rank": 20,
+    "lemma": "importante",
+    "part_of_speech": "Adjective",
+    "korean_meaning": "중요한",
+    "frequency_count": 20,
+    "inflected_forms_found": ["importante", "importantes"],
+    "example_sentence_source": "Es importante estudiar para el examen.",
+    "example_sentence_translation": "시험을 위해 공부하는 것은 중요하다."
+  },
+  {
+    "rank": 21,
+    "lemma": "comida",
+    "part_of_speech": "Noun",
+    "korean_meaning": "음식",
+    "frequency_count": 19,
+    "inflected_forms_found": ["comida", "comidas"],
+    "example_sentence_source": "La paella es una comida típica de Valencia.",
+    "example_sentence_translation": "파에야는 발렌시아의 대표적인 음식이다."
+  },
+  {
+    "rank": 22,
+    "lemma": "dar",
+    "part_of_speech": "Verb",
+    "korean_meaning": "주다",
+    "frequency_count": 19,
+    "inflected_forms_found": ["dar", "doy", "da", "dan", "dio"],
+    "example_sentence_source": "El profesor nos da mucha tarea.",
+    "example_sentence_translation": "선생님은 우리에게 숙제를 많이 내주신다."
+  },
+  {
+    "rank": 23,
+    "lemma": "familia",
+    "part_of_speech": "Noun",
+    "korean_meaning": "가족",
+    "frequency_count": 18,
+    "inflected_forms_found": ["familia", "familias"],
+    "example_sentence_source": "Paso mucho tiempo con mi familia los fines de semana.",
+    "example_sentence_translation": "나는 주말에 가족과 많은 시간을 보낸다."
+  },
+  {
+    "rank": 24,
+    "lemma": "libro",
+    "part_of_speech": "Noun",
+    "korean_meaning": "책",
+    "frequency_count": 18,
+    "inflected_forms_found": ["libro", "libros"],
+    "example_sentence_source": "Estoy leyendo un libro sobre la historia de España.",
+    "example_sentence_translation": "나는 스페인 역사에 관한 책을 읽고 있다."
+  },
+  {
+    "rank": 25,
+    "lemma": "decir",
+    "part_of_speech": "Verb",
+    "korean_meaning": "말하다",
+    "frequency_count": 17,
+    "inflected_forms_found": ["decir", "digo", "dice", "dicen", "dijo"],
+    "example_sentence_source": "Mi madre siempre dice la verdad.",
+    "example_sentence_translation": "나의 어머니는 항상 진실을 말씀하신다."
+  },
+  {
+    "rank": 26,
+    "lemma": "país",
+    "part_of_speech": "Noun",
+    "korean_meaning": "나라, 국가",
+    "frequency_count": 17,
+    "inflected_forms_found": ["país", "países"],
+    "example_sentence_source": "Perú es un país con una geografía muy diversa.",
+    "example_sentence_translation": "페루는 매우 다양한 지형을 가진 나라이다."
+  },
+  {
+    "rank": 27,
+    "lemma": "trabajar",
+    "part_of_speech": "Verb",
+    "korean_meaning": "일하다",
+    "frequency_count": 16,
+    "inflected_forms_found": ["trabajar", "trabajo", "trabaja", "trabajan"],
+    "example_sentence_source": "Mi padre trabaja en una oficina en el centro.",
+    "example_sentence_translation": "나의 아버지는 시내에 있는 사무실에서 일하신다."
+  },
+  {
+    "rank": 28,
+    "lemma": "fiesta",
+    "part_of_speech": "Noun",
+    "korean_meaning": "축제, 파티",
+    "frequency_count": 16,
+    "inflected_forms_found": ["fiesta", "fiestas"],
+    "example_sentence_source": "La Tomatina es una fiesta muy famosa en Buñol.",
+    "example_sentence_translation": "토마티나는 부뇰에서 매우 유명한 축제이다."
+  },
+  {
+    "rank": 29,
+    "lemma": "nuevo",
+    "part_of_speech": "Adjective",
+    "korean_meaning": "새로운",
+    "frequency_count": 15,
+    "inflected_forms_found": ["nuevo", "nueva", "nuevos", "nuevas"],
+    "example_sentence_source": "He comprado un coche nuevo.",
+    "example_sentence_translation": "나는 새 차를 샀다."
+  },
+  {
+    "rank": 30,
+    "lemma": "venir",
+    "part_of_speech": "Verb",
+    "korean_meaning": "오다",
+    "frequency_count": 15,
+    "inflected_forms_found": ["venir", "vengo", "viene", "vienen", "vino"],
+    "example_sentence_source": "¿A qué hora vienes a la fiesta?",
+    "example_sentence_translation": "너는 파티에 몇 시에 오니?"
+  },
+  {
+    "rank": 31,
+    "lemma": "agua",
+    "part_of_speech": "Noun",
+    "korean_meaning": "물",
+    "frequency_count": 14,
+    "inflected_forms_found": ["agua", "aguas"],
+    "example_sentence_source": "Es importante beber mucha agua cada día.",
+    "example_sentence_translation": "매일 많은 물을 마시는 것은 중요하다."
+  },
+  {
+    "rank": 32,
+    "lemma": "gustar",
+    "part_of_speech": "Verb",
+    "korean_meaning": "좋아하다",
+    "frequency_count": 14,
+    "inflected_forms_found": ["gusta", "gustan"],
+    "example_sentence_source": "Me gusta la música clásica.",
+    "example_sentence_translation": "나는 클래식 음악을 좋아한다."
+  },
+  {
+    "rank": 33,
+    "lemma": "bueno",
+    "part_of_speech": "Adjective",
+    "korean_meaning": "좋은",
+    "frequency_count": 13,
+    "inflected_forms_found": ["bueno", "buena", "buenos", "buenas", "buen"],
+    "example_sentence_source": "Este restaurante tiene muy buena comida.",
+    "example_sentence_translation": "이 식당은 음식이 매우 좋다."
+  },
+  {
+    "rank": 34,
+    "lemma": "gente",
+    "part_of_speech": "Noun",
+    "korean_meaning": "사람들",
+    "frequency_count": 13,
+    "inflected_forms_found": ["gente"],
+    "example_sentence_source": "Hay mucha gente en el mercado por la mañana.",
+    "example_sentence_translation": "아침에는 시장에 사람들이 많다."
+  },
+  {
+    "rank": 35,
+    "lemma": "tiempo",
+    "part_of_speech": "Noun",
+    "korean_meaning": "시간, 날씨",
+    "frequency_count": 12,
+    "inflected_forms_found": ["tiempo"],
+    "example_sentence_source": "¿Qué tiempo hace hoy en Seúl?",
+    "example_sentence_translation": "오늘 서울 날씨는 어때?"
+  },
+  {
+    "rank": 36,
+    "lemma": "grande",
+    "part_of_speech": "Adjective",
+    "korean_meaning": "큰",
+    "frequency_count": 12,
+    "inflected_forms_found": ["grande", "grandes", "gran"],
+    "example_sentence_source": "El Parque del Retiro es un parque muy grande en Madrid.",
+    "example_sentence_translation": "레티로 공원은 마드리드에 있는 매우 큰 공원이다."
+  },
+  {
+    "rank": 37,
+    "lemma": "vivir",
+    "part_of_speech": "Verb",
+    "korean_meaning": "살다",
+    "frequency_count": 11,
+    "inflected_forms_found": ["vivir", "vivo", "vive", "viven"],
+    "example_sentence_source": "Mis abuelos viven en un pueblo pequeño.",
+    "example_sentence_translation": "나의 조부모님은 작은 마을에 사신다."
+  },
+  {
+    "rank": 38,
+    "lemma": "hora",
+    "part_of_speech": "Noun",
+    "korean_meaning": "시간, 시",
+    "frequency_count": 11,
+    "inflected_forms_found": ["hora", "horas"],
+    "example_sentence_source": "La clase de español empieza en una hora.",
+    "example_sentence_translation": "스페인어 수업은 한 시간 뒤에 시작한다."
+  },
+  {
+    "rank": 39,
+    "lemma": "lugar",
+    "part_of_speech": "Noun",
+    "korean_meaning": "장소",
+    "frequency_count": 10,
+    "inflected_forms_found": ["lugar", "lugares"],
+    "example_sentence_source": "Machu Picchu es un lugar histórico impresionante.",
+    "example_sentence_translation": "마추픽추는 인상적인 역사적 장소이다."
+  },
+  {
+    "rank": 40,
+    "lemma": "pasar",
+    "part_of_speech": "Verb",
+    "korean_meaning": "지나가다, 보내다, 일어나다",
+    "frequency_count": 10,
+    "inflected_forms_found": ["pasar", "pasa", "pasó", "pasado"],
+    "example_sentence_source": "¿Qué pasó aquí ayer?",
+    "example_sentence_translation": "어제 여기서 무슨 일이 있었니?"
+  }
+]
