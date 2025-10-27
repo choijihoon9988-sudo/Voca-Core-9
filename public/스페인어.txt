@@ -19,7 +19,8 @@
     ],
     "example_sentence_source": "Es una novela muy larga, ¿no?",
     "example_sentence_translation": "그것은 매우 긴 소설이야, 그렇지 않니?",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 2,
@@ -38,7 +39,8 @@
     ],
     "example_sentence_source": "¿Sabes dónde está Jaime?",
     "example_sentence_translation": "Jaime가 어디 있는지 아니?",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 3,
@@ -58,7 +60,8 @@
     ],
     "example_sentence_source": "Voy a ir a Barcelona.",
     "example_sentence_translation": "나는 바르셀로나에 갈 거야.",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 4,
@@ -78,7 +81,8 @@
     ],
     "example_sentence_source": "¡Qué frío! ¿Qué temperatura hace hoy?",
     "example_sentence_translation": "정말 춥다! 오늘 기온이 어때?",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 5,
@@ -98,7 +102,8 @@
     ],
     "example_sentence_source": "¿Tienes algún plan?",
     "example_sentence_translation": "무슨 계획이라도 있니?",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 6,
@@ -111,7 +116,8 @@
     ],
     "example_sentence_source": "Muy bien, gracias.",
     "example_sentence_translation": "아주 잘 지내, 고마워.",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
   },
   {
     "rank": 7,
@@ -128,7 +134,8 @@
     ],
     "example_sentence_source": "¿Quieres venir conmigo de compras?",
     "example_sentence_translation": "나랑 쇼핑하러 가지 않을래?",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 8,
@@ -147,7 +154,8 @@
     ],
     "example_sentence_source": "Señor, ¿me puede traer el azúcar, por favor?",
     "example_sentence_translation": "선생님, 설탕 좀 가져다주시겠어요?",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 9,
@@ -160,7 +168,8 @@
     ],
     "example_sentence_source": "¿Qué vas a hacer esta tarde?",
     "example_sentence_translation": "너 오늘 오후에 뭐 할 거야?",
-    "category": "의문사/감탄사"
+    "category": "의문사/감탄사",
+    "stage": 1
   },
   {
     "rank": 10,
@@ -177,7 +186,8 @@
     ],
     "example_sentence_source": "Hoy hace buen tiempo.",
     "example_sentence_translation": "오늘 날씨가 좋다.",
-    "category": "기본 형용사"
+    "category": "기본 형용사",
+    "stage": 1
   },
   {
     "rank": 11,
@@ -195,7 +205,8 @@
     ],
     "example_sentence_source": "¿Sabes dónde está Jaime?",
     "example_sentence_translation": "Jaime가 어디 있는지 아니?",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 12,
@@ -213,7 +224,8 @@
     ],
     "example_sentence_source": "Porque estos días tenemos mucho trabajo y él no hace nada.",
     "example_sentence_translation": "왜냐하면 요즘 우리는 일이 아주 많은데 그는 아무것도 하지 않기 때문이야.",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 13,
@@ -228,7 +240,8 @@
     ],
     "example_sentence_source": "Mucho gusto.",
     "example_sentence_translation": "만나서 반갑습니다.",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 14,
@@ -241,7 +254,8 @@
     ],
     "example_sentence_source": "Claro que sí.",
     "example_sentence_translation": "물론이지.",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
   },
   {
     "rank": 15,
@@ -259,7 +273,8 @@
     ],
     "example_sentence_source": "¡Qué gusto verte!",
     "example_sentence_translation": "너를 보니 정말 기쁘다!",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 16,
@@ -275,7 +290,8 @@
     ],
     "example_sentence_source": "Es una novela muy larga, ¿no?",
     "example_sentence_translation": "그것은 매우 긴 소설이야, 그렇지 않니?",
-    "category": "기본 형용사/부사"
+    "category": "기본 형용사/부사",
+    "stage": 1
   },
   {
     "rank": 17,
@@ -289,7 +305,8 @@
     ],
     "example_sentence_source": "¿A qué hora sale el tren?",
     "example_sentence_translation": "기차가 몇 시에 출발하나요?",
-    "category": "시간/날짜"
+    "category": "시간/날짜",
+    "stage": 1
   },
   {
     "rank": 18,
@@ -302,7 +319,8 @@
     ],
     "example_sentence_source": "Muy bien, gracias.",
     "example_sentence_translation": "아주 잘 지내, 고마워.",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
   },
   {
     "rank": 19,
@@ -316,7 +334,8 @@
     ],
     "example_sentence_source": "Buenos días, ¿qué desea?",
     "example_sentence_translation": "좋은 아침입니다, 무엇을 원하세요?",
-    "category": "시간/날짜"
+    "category": "시간/날짜",
+    "stage": 1
   },
   {
     "rank": 20,
@@ -330,7 +349,8 @@
     ],
     "example_sentence_source": "Le deseo un feliz año nuevo 2025!",
     "example_sentence_translation": "당신에게 2025년 새해 복 많이 받기를 바랍니다!",
-    "category": "시간/날짜"
+    "category": "시간/날짜",
+    "stage": 1
   },
   {
     "rank": 21,
@@ -346,7 +366,8 @@
     ],
     "example_sentence_source": "No pasa nada.",
     "example_sentence_translation": "괜찮아. (아무 일도 없어.)",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 22,
@@ -360,7 +381,8 @@
     ],
     "example_sentence_source": "Estás en tu casa.",
     "example_sentence_translation": "여기는 네 집이야. (편하게 있어.)",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
   },
   {
     "rank": 23,
@@ -375,7 +397,8 @@
     ],
     "example_sentence_source": "Te presento a mi amiga Sandra.",
     "example_sentence_translation": "내 친구 Sandra를 너에게 소개할게.",
-    "category": "사람/관계"
+    "category": "사람/관계",
+    "stage": 1
   },
   {
     "rank": 24,
@@ -388,7 +411,8 @@
     ],
     "example_sentence_source": "¿Cuánto tiempo hace que estás aquí en Lima?",
     "example_sentence_translation": "여기 리마에 온 지 얼마나 됐어?",
-    "category": "시간/날짜"
+    "category": "시간/날짜",
+    "stage": 1
   },
   {
     "rank": 25,
@@ -401,7 +425,8 @@
     ],
     "example_sentence_source": "Hasta luego.",
     "example_sentence_translation": "나중에 봐. (안녕)",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
   },
   {
     "rank": 26,
@@ -415,7 +440,8 @@
     ],
     "example_sentence_source": "Vale. ¿A qué hora quedamos?",
     "example_sentence_translation": "좋아. 몇 시에 만날까?",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
   },
   {
     "rank": 27,
@@ -428,7 +454,8 @@
     ],
     "example_sentence_source": "Señor, ¿me puede traer el azúcar, por favor?",
     "example_sentence_translation": "선생님, 설탕 좀 가져다주시겠어요?",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
   },
   {
     "rank": 28,
@@ -441,7 +468,8 @@
     ],
     "example_sentence_source": "¿Cómo te va?",
     "example_sentence_translation": "어떻게 지내?",
-    "category": "의문사/감탄사"
+    "category": "의문사/감탄사",
+    "stage": 1
   },
   {
     "rank": 29,
@@ -458,7 +486,8 @@
     ],
     "example_sentence_source": "Yo también acabo de llegar.",
     "example_sentence_translation": "나도 방금 도착했어.",
-    "category": "핵심 동사"
+    "category": "핵심 동사",
+    "stage": 1
   },
   {
     "rank": 30,
@@ -471,7 +500,8 @@
     ],
     "example_sentence_source": "¿Dónde hay una farmacia por aquí?",
     "example_sentence_translation": "이 근처에 약국이 어디 있나요?",
-    "category": "장소/방향"
+    "category": "장소/방향",
+    "stage": 1
   },
   {
     "rank": 31,
@@ -484,7 +514,8 @@
     ],
     "example_sentence_source": "¡Buena suerte en el examen!",
     "example_sentence_translation": "시험 잘 봐!",
-    "category": "학교/학습"
+    "category": "학교/학습",
+    "stage": 1
   },
   {
     "rank": 32,
@@ -498,7 +529,8 @@
     ],
     "example_sentence_source": "¿Dónde hay una farmacia por aquí?",
     "example_sentence_translation": "이 근처에 약국이 어디 있나요?",
-    "category": "의문사/감탄사"
+    "category": "의문사/감탄사",
+    "stage": 1
   },
   {
     "rank": 33,
@@ -514,7 +546,8 @@
     ],
     "example_sentence_source": "Pues, a comer.",
     "example_sentence_translation": "자, 먹자.",
-    "category": "음식/식사"
+    "category": "음식/식사",
+    "stage": 1
   },
   {
     "rank": 34,
@@ -529,7 +562,8 @@
     ],
     "example_sentence_source": "¿Cuánto tiempo hace que te duelen?",
     "example_sentence_translation": "아픈 지 얼마나 됐어?",
-    "category": "의문사/감탄사"
+    "category": "의문사/감탄사",
+    "stage": 1
   },
   {
     "rank": 35,
@@ -542,7 +576,8 @@
     ],
     "example_sentence_source": "¡Qué pena!",
     "example_sentence_translation": "정말 유감이다! (안됐다!)",
-    "category": "감정/상태"
+    "category": "감정/상태",
+    "stage": 1
   },
   {
     "rank": 36,
@@ -556,7 +591,8 @@
     ],
     "example_sentence_source": "Este país se encuentra en América Central.",
     "example_sentence_translation": "이 나라는 중앙아메리카에 위치해 있습니다.",
-    "category": "여행 및 문화"
+    "category": "여행 및 문화",
+    "stage": 1
   },
   {
     "rank": 37,
@@ -569,7 +605,8 @@
     ],
     "example_sentence_source": "Gracias, igualmente.",
     "example_sentence_translation": "고마워, 너도. (식사 맛있게 해.)",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
   },
   {
     "rank": 38,
@@ -582,7 +619,8 @@
     ],
     "example_sentence_source": "¡Hola! Te presento a mi amiga Sandra.",
     "example_sentence_translation": "안녕! 내 친구 Sandra를 너에게 소개할게.",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
   },
   {
     "rank": 39,
@@ -595,7 +633,8 @@
     ],
     "example_sentence_source": "¡Buen provecho!",
     "example_sentence_translation": "맛있게 드세요!",
-    "category": "음식/식사"
+    "category": "음식/식사",
+    "stage": 1
   },
   {
     "rank": 40,
@@ -609,7 +648,8 @@
     ],
     "example_sentence_source": "¿Sabes dónde está la ciudad de Tegucigalpa?",
     "example_sentence_translation": "테구시갈파 시가 어디 있는지 아니?",
-    "category": "장소/방향"
+    "category": "장소/방향",
+    "stage": 1
   },
   {
     "rank": 41,
@@ -623,7 +663,8 @@
     ],
     "example_sentence_source": "A veces. Voy cuando ponen películas divertidas.",
     "example_sentence_translation": "가끔. 재미있는 영화를 상영할 때 가.",
-    "category": "시간/날짜"
+    "category": "시간/날짜",
+    "stage": 1
   },
   {
     "rank": 42,
@@ -636,7 +677,8 @@
     ],
     "example_sentence_source": "¡Quedan dos semanas para las vacaciones!",
     "example_sentence_translation": "방학까지 2주 남았어!",
-    "category": "숫자"
+    "category": "숫자",
+    "stage": 1
   },
   {
     "rank": 43,
@@ -649,7 +691,8 @@
     ],
     "example_sentence_source": "De acuerdo. Nos vemos.",
     "example_sentence_translation": "알겠어. (동의해.) 그럼 보자.",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
   },
   {
     "rank": 44,
@@ -662,7 +705,8 @@
     ],
     "example_sentence_source": "¿Qué tal estás?",
     "example_sentence_translation": "어떻게 지내?",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
   },
   {
     "rank": 45,
@@ -679,6 +723,1168 @@
     ],
     "example_sentence_source": "¿Cómo te llamas?",
     "example_sentence_translation": "네 이름이 뭐니?",
-    "category": "일상생활"
+    "category": "일상생활",
+    "stage": 1
+  }
+]
+[
+  {
+    "rank": 46,
+    "lemma": "por",
+    "part_of_speech": "preposición",
+    "korean_meaning": "~을 위해, ~ 때문에, ~로",
+    "frequency_count": 38,
+    "inflected_forms_found": [
+      "por"
+    ],
+    "example_sentence_source": "Perdón por llegar tarde.",
+    "example_sentence_translation": "늦어서 미안해.",
+    "category": "핵심 전치사",
+    "stage": 2
+  },
+  {
+    "rank": 47,
+    "lemma": "nada",
+    "part_of_speech": "pronombre",
+    "korean_meaning": "아무것도 (~아니다)",
+    "frequency_count": 28,
+    "inflected_forms_found": [
+      "nada"
+    ],
+    "example_sentence_source": "No pasa nada.",
+    "example_sentence_translation": "괜찮아. (아무 일도 없어.)",
+    "category": "일상생활",
+    "stage": 2
+  },
+  {
+    "rank": 48,
+    "lemma": "conocer",
+    "part_of_speech": "verbo",
+    "korean_meaning": "알다 (know person/place)",
+    "frequency_count": 18,
+    "inflected_forms_found": [
+      "conozco",
+      "conoces",
+      "conoce",
+      "conocido"
+    ],
+    "example_sentence_source": "Es un pintor colombiano muy conocido.",
+    "example_sentence_translation": "그는 매우 유명한 콜롬비아 화가이다.",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 49,
+    "lemma": "si",
+    "part_of_speech": "conjunción",
+    "korean_meaning": "만약 ~라면 (if)",
+    "frequency_count": 18,
+    "inflected_forms_found": [
+      "si"
+    ],
+    "example_sentence_source": "Si leo unas páginas todos los días, podré acabarla en este año.",
+    "example_sentence_translation": "만약 매일 몇 페이지씩 읽는다면, 올해 안에 그것을 끝낼 수 있을 거야.",
+    "category": "접속사/관사",
+    "stage": 2
+  },
+  {
+    "rank": 50,
+    "lemma": "ahora",
+    "part_of_speech": "adverbio",
+    "korean_meaning": "지금, 이제",
+    "frequency_count": 18,
+    "inflected_forms_found": [
+      "ahora"
+    ],
+    "example_sentence_source": "Ahora son las siete menos diez.",
+    "example_sentence_translation": "지금은 7시 10분 전이야.",
+    "category": "시간/날짜",
+    "stage": 2
+  },
+  {
+    "rank": 51,
+    "lemma": "así",
+    "part_of_speech": "adverbio",
+    "korean_meaning": "그렇게, 이처럼",
+    "frequency_count": 18,
+    "inflected_forms_found": [
+      "así"
+    ],
+    "example_sentence_source": "Así es. Ya casi estamos en verano.",
+    "example_sentence_translation": "맞아. 이제 거의 여름이네.",
+    "category": "일상생활",
+    "stage": 2
+  },
+  {
+    "rank": 52,
+    "lemma": "todo",
+    "part_of_speech": "adjetivo / pronombre",
+    "korean_meaning": "모든, 모두",
+    "frequency_count": 17,
+    "inflected_forms_found": [
+      "todo",
+      "toda",
+      "todos",
+      "todas"
+    ],
+    "example_sentence_source": "Todos los días puedo ver la salida del sol.",
+    "example_sentence_translation": "매일 나는 해가 뜨는 것을 볼 수 있어.",
+    "category": "기본 형용사/부사",
+    "stage": 2
+  },
+  {
+    "rank": 53,
+    "lemma": "persona",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "사람",
+    "frequency_count": 17,
+    "inflected_forms_found": [
+      "persona",
+      "personas"
+    ],
+    "example_sentence_source": "¿Para cuántas personas?",
+    "example_sentence_translation": "몇 명인가요?",
+    "category": "사람/관계",
+    "stage": 2
+  },
+  {
+    "rank": 54,
+    "lemma": "otro",
+    "part_of_speech": "adjetivo / pronombre",
+    "korean_meaning": "다른, 또 하나의",
+    "frequency_count": 16,
+    "inflected_forms_found": [
+      "otro",
+      "otra",
+      "otros",
+      "otras"
+    ],
+    "example_sentence_source": "Los jugadores tratan de meter un gol en la puerta del otro lado.",
+    "example_sentence_translation": "선수들은 반대편 골문에 골을 넣으려고 노력한다.",
+    "category": "기본 형용사/부사",
+    "stage": 2
+  },
+  {
+    "rank": 55,
+    "lemma": "vida",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "삶, 인생",
+    "frequency_count": 16,
+    "inflected_forms_found": [
+      "vida"
+    ],
+    "example_sentence_source": "«Pura vida» tiene mucho que ver con el modo de vivir de los costarricenses.",
+    "example_sentence_translation": "«Pura vida»는 코스타리카 사람들의 삶의 방식과 많은 관련이 있다.",
+    "category": "여행 및 문화",
+    "stage": 2
+  },
+  {
+    "rank": 56,
+    "lemma": "nunca",
+    "part_of_speech": "adverbio",
+    "korean_meaning": "결코 ~않다 (never)",
+    "frequency_count": 15,
+    "inflected_forms_found": [
+      "nunca"
+    ],
+    "example_sentence_source": "En mi familia nunca se le pone cebolla.",
+    "example_sentence_translation": "우리 가족은 그것에 양파를 절대 넣지 않아.",
+    "category": "기본 형용사/부사",
+    "stage": 2
+  },
+  {
+    "rank": 57,
+    "lemma": "tomar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "마시다, 먹다, 타다, 잡다",
+    "frequency_count": 15,
+    "inflected_forms_found": [
+      "tomar",
+      "tomo",
+      "toma",
+      "toman"
+    ],
+    "example_sentence_source": "¿Quieres tomar un café?",
+    "example_sentence_translation": "커피 한 잔 할래?",
+    "category": "음식/식사",
+    "stage": 2
+  },
+  {
+    "rank": 58,
+    "lemma": "ya",
+    "part_of_speech": "adverbio",
+    "korean_meaning": "이미, 벌써",
+    "frequency_count": 15,
+    "inflected_forms_found": [
+      "ya"
+    ],
+    "example_sentence_source": "Ya sabes, «muchos pocos hacen un mucho».",
+    "example_sentence_translation": "너도 알잖아, «티끌 모아 태산»이라는 거.",
+    "category": "일상생활",
+    "stage": 2
+  },
+  {
+    "rank": 59,
+    "lemma": "venir",
+    "part_of_speech": "verbo",
+    "korean_meaning": "오다",
+    "frequency_count": 14,
+    "inflected_forms_found": [
+      "vengo",
+      "vienes",
+      "viene",
+      "venimos",
+      "vienen",
+      "venir"
+    ],
+    "example_sentence_source": "¿Quieres venir conmigo de compras?",
+    "example_sentence_translation": "나랑 쇼핑하러 가지 않을래?",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 60,
+    "lemma": "encontrar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "찾다, 만나다",
+    "frequency_count": 14,
+    "inflected_forms_found": [
+      "encuentro",
+      "encuentra",
+      "encuentran",
+      "encontrar",
+      "encontrado"
+    ],
+    "example_sentence_source": "No las encuentro.",
+    "example_sentence_translation": "그것들을 못 찾겠어.",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 61,
+    "lemma": "creer",
+    "part_of_speech": "verbo",
+    "korean_meaning": "믿다, 생각하다",
+    "frequency_count": 14,
+    "inflected_forms_found": [
+      "creo",
+      "crees",
+      "cree",
+      "creen"
+    ],
+    "example_sentence_source": "Creo que tengo gripe.",
+    "example_sentence_translation": "나 감기 걸린 것 같아.",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 62,
+    "lemma": "salir",
+    "part_of_speech": "verbo",
+    "korean_meaning": "나가다, 출발하다",
+    "frequency_count": 14,
+    "inflected_forms_found": [
+      "salir",
+      "sale",
+      "sales",
+      "salimos",
+      "salgo"
+    ],
+    "example_sentence_source": "¿A qué hora sale el tren?",
+    "example_sentence_translation": "기차가 몇 시에 출발하나요?",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 63,
+    "lemma": "nombre",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "이름",
+    "frequency_count": 14,
+    "inflected_forms_found": [
+      "nombre"
+    ],
+    "example_sentence_source": "¿A nombre de quién quiere la reserva?",
+    "example_sentence_translation": "누구의 이름으로 예약하시겠습니까?",
+    "category": "일상생활",
+    "stage": 2
+  },
+  {
+    "rank": 64,
+    "lemma": "dar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "주다",
+    "frequency_count": 13,
+    "inflected_forms_found": [
+      "da",
+      "doy",
+      "dar",
+      "dado"
+    ],
+    "example_sentence_source": "¿Me da dos billetes, por favor?",
+    "example_sentence_translation": "표 두 장 주시겠어요?",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 65,
+    "lemma": "por qué",
+    "part_of_speech": "adverbio",
+    "korean_meaning": "왜 (why)",
+    "frequency_count": 13,
+    "inflected_forms_found": [
+      "por qué"
+    ],
+    "example_sentence_source": "¿Por qué dices eso?",
+    "example_sentence_translation": "너 왜 그런 말을 하니?",
+    "category": "의문사/감탄사",
+    "stage": 2
+  },
+  {
+    "rank": 66,
+    "lemma": "dejar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "남겨두다, (~하게) 두다, 빌려주다",
+    "frequency_count": 13,
+    "inflected_forms_found": [
+      "dejar",
+      "deja",
+      "dejas",
+      "dejo"
+    ],
+    "example_sentence_source": "¿Me dejas la bicicleta?",
+    "example_sentence_translation": "나에게 자전거 빌려줄래?",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 67,
+    "lemma": "cuándo",
+    "part_of_speech": "adverbio",
+    "korean_meaning": "언제 (when)",
+    "frequency_count": 13,
+    "inflected_forms_found": [
+      "cuándo"
+    ],
+    "example_sentence_source": "¿Para cuándo la quiere?",
+    "example_sentence_translation": "언제로 원하십니까?",
+    "category": "의문사/감탄사",
+    "stage": 2
+  },
+  {
+    "rank": 68,
+    "lemma": "nuevo",
+    "part_of_speech": "adjetivo",
+    "korean_meaning": "새로운",
+    "frequency_count": 13,
+    "inflected_forms_found": [
+      "nuevo",
+      "nueva",
+      "nuevos"
+    ],
+    "example_sentence_source": "¡Le deseo un feliz año nuevo 2025!",
+    "example_sentence_translation": "당신에게 2025년 새해 복 많이 받기를 바랍니다!",
+    "category": "기본 형용사/부사",
+    "stage": 2
+  },
+  {
+    "rank": 69,
+    "lemma": "entender",
+    "part_of_speech": "verbo",
+    "korean_meaning": "이해하다",
+    "frequency_count": 12,
+    "inflected_forms_found": [
+      "entiendo",
+      "entender",
+      "entenderla"
+    ],
+    "example_sentence_source": "¡Ay! No entiendo estos ejercicios de matemáticas.",
+    "example_sentence_translation": "아! 이 수학 문제들을 이해 못 하겠어.",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 70,
+    "lemma": "hermano",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "형제, 자매",
+    "frequency_count": 12,
+    "inflected_forms_found": [
+      "hermano",
+      "hermana",
+      "hermanos"
+    ],
+    "example_sentence_source": "Esta es mi hermana Margarita.",
+    "example_sentence_translation": "이 사람은 내 여동생 마르가리타야.",
+    "category": "사람/관계",
+    "stage": 2
+  },
+  {
+    "rank": 71,
+    "lemma": "trabajo",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "일, 직업",
+    "frequency_count": 12,
+    "inflected_forms_found": [
+      "trabajo"
+    ],
+    "example_sentence_source": "Buen ambiente de trabajo.",
+    "example_sentence_translation": "좋은 근무 환경.",
+    "category": "직업/활동",
+    "stage": 2
+  },
+  {
+    "rank": 72,
+    "lemma": "semana",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "주 (week)",
+    "frequency_count": 12,
+    "inflected_forms_found": [
+      "semana",
+      "semanas"
+    ],
+    "example_sentence_source": "Dos días libres seguidos por semana.",
+    "example_sentence_translation": "주당 연속 이틀 휴무.",
+    "category": "시간/날짜",
+    "stage": 2
+  },
+  {
+    "rank": 73,
+    "lemma": "seguir",
+    "part_of_speech": "verbo",
+    "korean_meaning": "계속하다, 따라가다",
+    "frequency_count": 11,
+    "inflected_forms_found": [
+      "sigue",
+      "siga",
+      "sigo",
+      "sigues",
+      "siguen",
+      "seguir"
+    ],
+    "example_sentence_source": "Siga todo recto y gire a la derecha.",
+    "example_sentence_translation": "계속 직진하다가 오른쪽으로 도세요.",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 74,
+    "lemma": "ayudar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "돕다",
+    "frequency_count": 11,
+    "inflected_forms_found": [
+      "ayudar",
+      "ayudarle",
+      "ayudas",
+      "ayudo",
+      "ayuda"
+    ],
+    "example_sentence_source": "¿Me puede ayudar a bajarla, por favor?",
+    "example_sentence_translation": "그것을 내리는 것을 도와주실 수 있나요?",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 75,
+    "lemma": "padre",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "아버지",
+    "frequency_count": 11,
+    "inflected_forms_found": [
+      "padre",
+      "padres"
+    ],
+    "example_sentence_source": "Mis padres han organizado una fiesta.",
+    "example_sentence_translation": "나의 부모님께서 파티를 준비하셨어.",
+    "category": "사람/관계",
+    "stage": 2
+  },
+  {
+    "rank": 76,
+    "lemma": "lugar",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "장소",
+    "frequency_count": 11,
+    "inflected_forms_found": [
+      "lugar",
+      "lugares"
+    ],
+    "example_sentence_source": "Es el lugar más visitado de Barcelona.",
+    "example_sentence_translation": "그곳은 바르셀로나에서 가장 많이 방문되는 장소이다.",
+    "category": "장소/방향",
+    "stage": 2
+  },
+  {
+    "rank": 77,
+    "lemma": "calle",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "거리, 길",
+    "frequency_count": 11,
+    "inflected_forms_found": [
+      "calle",
+      "calles"
+    ],
+    "example_sentence_source": "Gire a la izquierda al final de la calle.",
+    "example_sentence_translation": "길 끝에서 왼쪽으로 도세요.",
+    "category": "장소/방향",
+    "stage": 2
+  },
+  {
+    "rank": 78,
+    "lemma": "agua",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "물",
+    "frequency_count": 10,
+    "inflected_forms_found": [
+      "agua"
+    ],
+    "example_sentence_source": "Disculpe, ¿me puede traer un vaso de agua?",
+    "example_sentence_translation": "실례합니다, 물 한 잔 가져다주시겠어요?",
+    "category": "음식/식사",
+    "stage": 2
+  },
+  {
+    "rank": 79,
+    "lemma": "comprar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "사다",
+    "frequency_count": 10,
+    "inflected_forms_found": [
+      "comprar",
+      "compramos",
+      "compro"
+    ],
+    "example_sentence_source": "Cosas para comprar: 12 huevos.",
+    "example_sentence_translation": "사야 할 것들: 달걀 12개.",
+    "category": "경제/쇼핑",
+    "stage": 2
+  },
+  {
+    "rank": 80,
+    "lemma": "leer",
+    "part_of_speech": "verbo",
+    "korean_meaning": "읽다",
+    "frequency_count": 10,
+    "inflected_forms_found": [
+      "leer",
+      "leyendo",
+      "leo"
+    ],
+    "example_sentence_source": "A mí me gusta leer libros.",
+    "example_sentence_translation": "나는 책 읽는 것을 좋아해.",
+    "category": "학교/학습",
+    "stage": 2
+  },
+  {
+    "rank": 81,
+    "lemma": "pagar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "지불하다",
+    "frequency_count": 10,
+    "inflected_forms_found": [
+      "pagar",
+      "paga",
+      "pagan"
+    ],
+    "example_sentence_source": "¿Va a pagar con tarjeta?",
+    "example_sentence_translation": "카드로 지불하시겠습니까?",
+    "category": "경제/쇼핑",
+    "stage": 2
+  },
+  {
+    "rank": 82,
+    "lemma": "quedar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "남다, (약속을) 정하다, ~에 위치하다",
+    "frequency_count": 10,
+    "inflected_forms_found": [
+      "quedamos",
+      "queda",
+      "quedan",
+      "quedo"
+    ],
+    "example_sentence_source": "¿A qué hora quedamos?",
+    "example_sentence_translation": "우리 몇 시에 만날까?",
+    "category": "일상생활",
+    "stage": 2
+  },
+  {
+    "rank": 83,
+    "lemma": "cerca",
+    "part_of_speech": "adverbio",
+    "korean_meaning": "가까이",
+    "frequency_count": 10,
+    "inflected_forms_found": [
+      "cerca"
+    ],
+    "example_sentence_source": "La estación queda muy cerca.",
+    "example_sentence_translation": "역은 매우 가까이에 있어.",
+    "category": "장소/방향",
+    "stage": 2
+  },
+  {
+    "rank": 84,
+    "lemma": "mañana",
+    "part_of_speech": "sustantivo / adverbio",
+    "korean_meaning": "아침, 내일",
+    "frequency_count": 10,
+    "inflected_forms_found": [
+      "mañana"
+    ],
+    "example_sentence_source": "¿Qué piensas hacer hoy?",
+    "example_sentence_translation": "오늘 뭐 할 생각이니?",
+    "category": "시간/날짜",
+    "stage": 2
+  },
+  {
+    "rank": 85,
+    "lemma": "fin",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "끝",
+    "frequency_count": 10,
+    "inflected_forms_found": [
+      "fin"
+    ],
+    "example_sentence_source": "Este fin de semana.",
+    "example_sentence_translation": "이번 주말.",
+    "category": "시간/날짜",
+    "stage": 2
+  },
+  {
+    "rank": 86,
+    "lemma": "contar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "말하다, 세다",
+    "frequency_count": 9,
+    "inflected_forms_found": [
+      "cuéntame",
+      "cuenta",
+      "cuentan"
+    ],
+    "example_sentence_source": "Cuéntame, ¿qué haces los sábados?",
+    "example_sentence_translation": "말해봐, 토요일에 뭐 해?",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 87,
+    "lemma": "vivir",
+    "part_of_speech": "verbo",
+    "korean_meaning": "살다",
+    "frequency_count": 9,
+    "inflected_forms_found": [
+      "vivir",
+      "vive",
+      "vives",
+      "vivo"
+    ],
+    "example_sentence_source": "Vivir en la ciudad de Sevilla.",
+    "example_sentence_translation": "세비야 시에 거주할 것.",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 88,
+    "lemma": "cabeza",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "머리",
+    "frequency_count": 9,
+    "inflected_forms_found": [
+      "cabeza"
+    ],
+    "example_sentence_source": "Me duele la cabeza.",
+    "example_sentence_translation": "나는 머리가 아프다.",
+    "category": "신체",
+    "stage": 2
+  },
+  {
+    "rank": 89,
+    "lemma": "difícil",
+    "part_of_speech": "adjetivo",
+    "korean_meaning": "어려운",
+    "frequency_count": 9,
+    "inflected_forms_found": [
+      "difícil"
+    ],
+    "example_sentence_source": "No es nada difícil prepararlo.",
+    "example_sentence_translation": "그것을 준비하는 것은 전혀 어렵지 않아.",
+    "category": "기본 형용사/부사",
+    "stage": 2
+  },
+  {
+    "rank": 90,
+    "lemma": "interesar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "흥미를 갖게 하다",
+    "frequency_count": 9,
+    "inflected_forms_found": [
+      "interesa",
+      "interesan",
+      "interesante",
+      "interesó"
+    ],
+    "example_sentence_source": "¡Qué interesante!",
+    "example_sentence_translation": "정말 흥미롭다!",
+    "category": "감정/상태",
+    "stage": 2
+  },
+  {
+    "rank": 91,
+    "lemma": "sentir",
+    "part_of_speech": "verbo",
+    "korean_meaning": "느끼다, 유감이다",
+    "frequency_count": 9,
+    "inflected_forms_found": [
+      "siento",
+      "siente"
+    ],
+    "example_sentence_source": "Lo siento mucho.",
+    "example_sentence_translation": "정말 미안해. (유감이야.)",
+    "category": "감정/상태",
+    "stage": 2
+  },
+  {
+    "rank": 92,
+    "lemma": "derecha",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "오른쪽",
+    "frequency_count": 9,
+    "inflected_forms_found": [
+      "derecha"
+    ],
+    "example_sentence_source": "Está al fondo a la derecha.",
+    "example_sentence_translation": "오른쪽 안쪽에 있습니다.",
+    "category": "장소/방향",
+    "stage": 2
+  },
+  {
+    "rank": 93,
+    "lemma": "quién",
+    "part_of_speech": "pronombre",
+    "korean_meaning": "누구 (who)",
+    "frequency_count": 9,
+    "inflected_forms_found": [
+      "quién",
+      "quiénes",
+      "quien"
+    ],
+    "example_sentence_source": "¿Quién es ella?",
+    "example_sentence_translation": "그녀는 누구니?",
+    "category": "의문사/감탄사",
+    "stage": 2
+  },
+  {
+    "rank": 94,
+    "lemma": "lluvia",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "비",
+    "frequency_count": 9,
+    "inflected_forms_found": [
+      "llueve",
+      "llover"
+    ],
+    "example_sentence_source": "No, dicen que va a llover mucho.",
+    "example_sentence_translation": "아니, 비가 많이 올 거라고 해.",
+    "category": "날씨",
+    "stage": 2
+  },
+  {
+    "rank": 95,
+    "lemma": "mes",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "달 (month)",
+    "frequency_count": 9,
+    "inflected_forms_found": [
+      "mes",
+      "meses"
+    ],
+    "example_sentence_source": "Este servicio cuesta solo 100 pesos por mes.",
+    "example_sentence_translation": "이 서비스는 월 100페소입니다.",
+    "category": "시간/날짜",
+    "stage": 2
+  },
+  {
+    "rank": 96,
+    "lemma": "tres",
+    "part_of_speech": "número",
+    "korean_meaning": "셋 (3)",
+    "frequency_count": 9,
+    "inflected_forms_found": [
+      "tres"
+    ],
+    "example_sentence_source": "Somos tres.",
+    "example_sentence_translation": "우리는 세 명입니다.",
+    "category": "숫자",
+    "stage": 2
+  },
+  {
+    "rank": 97,
+    "lemma": "preparar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "준비하다",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "preparar",
+      "preparado",
+      "preparada",
+      "prepararlo"
+    ],
+    "example_sentence_source": "He preparado tu plato favorito.",
+    "example_sentence_translation": "네가 가장 좋아하는 요리를 준비했어.",
+    "category": "음식/식사",
+    "stage": 2
+  },
+  {
+    "rank": 98,
+    "lemma": "llevar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "가져가다, 입다, (시간을) 보내다",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "llevar",
+      "llevo",
+      "lleva",
+      "llevan"
+    ],
+    "example_sentence_source": "Te llevo un año.",
+    "example_sentence_translation": "내가 너보다 한 살 많아.",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 99,
+    "lemma": "hablar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "말하다",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "hablar",
+      "hablo",
+      "habla",
+      "hablan",
+      "hablando"
+    ],
+    "example_sentence_source": "Hablar español e inglés.",
+    "example_sentence_translation": "스페인어와 영어 가능.",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 100,
+    "lemma": "madre",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "어머니",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "madre",
+      "mamá"
+    ],
+    "example_sentence_source": "¡Mamá! ¿Puedo salir a jugar?",
+    "example_sentence_translation": "엄마! 나가서 놀아도 돼요?",
+    "category": "사람/관계",
+    "stage": 2
+  },
+  {
+    "rank": 101,
+    "lemma": "hijo",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "아들, 자식",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "hijo",
+      "hija",
+      "hijos"
+    ],
+    "example_sentence_source": "Ana, hija, tengo que salir ahora.",
+    "example_sentence_translation": "딸, 아나야, 나 지금 나가야 해.",
+    "category": "사람/관계",
+    "stage": 2
+  },
+  {
+    "rank": 102,
+    "lemma": "feliz",
+    "part_of_speech": "adjetivo",
+    "korean_meaning": "행복한",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "feliz",
+      "felices"
+    ],
+    "example_sentence_source": "¡Le deseo un feliz año nuevo 2025!",
+    "example_sentence_translation": "당신에게 2025년 새해 복 많이 받기를 바랍니다!",
+    "category": "감정/상태",
+    "stage": 2
+  },
+  {
+    "rank": 103,
+    "lemma": "dolor",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "고통, 아픔",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "doler",
+      "duele",
+      "duelen",
+      "dolor"
+    ],
+    "example_sentence_source": "Me duelen los dientes.",
+    "example_sentence_translation": "나는 이가 아프다.",
+    "category": "신체",
+    "stage": 2
+  },
+  {
+    "rank": 104,
+    "lemma": "sol",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "태양, 해",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "sol"
+    ],
+    "example_sentence_source": "Como hace mucho sol, voy a ir a la playa.",
+    "example_sentence_translation": "해가 많이 나서, 해변에 갈 거야.",
+    "category": "날씨",
+    "stage": 2
+  },
+  {
+    "rank": 105,
+    "lemma": "idea",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "생각, 아이디어",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "idea"
+    ],
+    "example_sentence_source": "Buena idea.",
+    "example_sentence_translation": "좋은 생각이야.",
+    "category": "일상생활",
+    "stage": 2
+  },
+  {
+    "rank": 106,
+    "lemma": "verdad",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "진실, 사실",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "verdad"
+    ],
+    "example_sentence_source": "Si, es verdad.",
+    "example_sentence_translation": "응, 사실이야.",
+    "category": "일상생활",
+    "stage": 2
+  },
+  {
+    "rank": 107,
+    "lemma": "mal",
+    "part_of_speech": "adverbio / adjetivo",
+    "korean_meaning": "나쁘게, 나쁜",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "mal",
+      "mala",
+      "malos"
+    ],
+    "example_sentence_source": "Es que me encuentro un poco mal.",
+    "example_sentence_translation": "있잖아, 나 몸이 좀 안 좋아.",
+    "category": "감정/상태",
+    "stage": 2
+  },
+  {
+    "rank": 108,
+    "lemma": "playa",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "해변",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "playa",
+      "playas"
+    ],
+    "example_sentence_source": "Como hace mucho sol, voy a ir a la playa.",
+    "example_sentence_translation": "해가 많이 나서, 해변에 갈 거야.",
+    "category": "장소/방향",
+    "stage": 2
+  },
+  {
+    "rank": 109,
+    "lemma": "tren",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "기차",
+    "frequency_count": 8,
+    "inflected_forms_found": [
+      "tren"
+    ],
+    "example_sentence_source": "¿A qué hora sale el tren?",
+    "example_sentence_translation": "기차가 몇 시에 출발하나요?",
+    "category": "교통",
+    "stage": 2
+  },
+  {
+    "rank": 110,
+    "lemma": "jugar",
+    "part_of_speech": "verbo",
+    "korean_meaning": "놀다, (게임을) 하다",
+    "frequency_count": 7,
+    "inflected_forms_found": [
+      "jugar",
+      "juego",
+      "juega",
+      "jugamos",
+      "jugando"
+    ],
+    "example_sentence_source": "El chico que está jugando con la pelota.",
+    "example_sentence_translation": "공을 가지고 놀고 있는 저 아이.",
+    "category": "여가/취미",
+    "stage": 2
+  },
+  {
+    "rank": 111,
+    "lemma": "parecer",
+    "part_of_speech": "verbo",
+    "korean_meaning": "~처럼 보이다, ~인 것 같다",
+    "frequency_count": 7,
+    "inflected_forms_found": [
+      "parece",
+      "parecen",
+      "parecer"
+    ],
+    "example_sentence_source": "Parece muy rico.",
+    "example_sentence_translation": "매우 맛있어 보여.",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 112,
+    "lemma": "poner",
+    "part_of_speech": "verbo",
+    "korean_meaning": "놓다, 입다",
+    "frequency_count": 7,
+    "inflected_forms_found": [
+      "pone",
+      "ponen",
+      "pongo",
+      "ponte"
+    ],
+    "example_sentence_source": "Ponte el abrigo y los guantes.",
+    "example_sentence_translation": "외투랑 장갑을 껴라.",
+    "category": "핵심 동사",
+    "stage": 2
+  },
+  {
+    "rank": 113,
+    "lemma": "primero",
+    "part_of_speech": "adjetivo / adverbio",
+    "korean_meaning": "첫 번째의, 먼저",
+    "frequency_count": 7,
+    "inflected_forms_found": [
+      "primero",
+      "primera",
+      "primeros"
+    ],
+    "example_sentence_source": "Siga todo recto y gire a la derecha en la primera calle.",
+    "example_sentence_translation": "계속 직진하다가 첫 번째 길에서 오른쪽으로 도세요.",
+    "category": "기본 형용사/부사",
+    "stage": 2
+  },
+  {
+    "rank": 114,
+    "lemma": "contento",
+    "part_of_speech": "adjetivo",
+    "korean_meaning": "기쁜, 만족한",
+    "frequency_count": 7,
+    "inflected_forms_found": [
+      "contento"
+    ],
+    "example_sentence_source": "Pero estoy contento.",
+    "example_sentence_translation": "하지만 나는 만족해.",
+    "category": "감정/상태",
+    "stage": 2
+  },
+  {
+    "rank": 115,
+    "lemma": "calor",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "더위",
+    "frequency_count": 7,
+    "inflected_forms_found": [
+      "calor"
+    ],
+    "example_sentence_source": "¡Qué calor hace!",
+    "example_sentence_translation": "날씨 정말 덥다!",
+    "category": "날씨",
+    "stage": 2
+  },
+  {
+    "rank": 116,
+    "lemma": "frío",
+    "part_of_speech": "adjetivo / sustantivo",
+    "korean_meaning": "추운, 추위",
+    "frequency_count": 7,
+    "inflected_forms_found": [
+      "frío",
+      "fría"
+    ],
+    "example_sentence_source": "¡Qué frío!",
+    "example_sentence_translation": "정말 춥다!",
+    "category": "날씨",
+    "stage": 2
+  },
+  {
+    "rank": 117,
+    "lemma": "tarde",
+    "part_of_speech": "sustantivo / adverbio",
+    "korean_meaning": "오후, 늦게",
+    "frequency_count": 7,
+    "inflected_forms_found": [
+      "tarde"
+    ],
+    "example_sentence_source": "Son las cuatro y diez de la tarde.",
+    "example_sentence_translation": "오후 4시 10분이야.",
+    "category": "시간/날짜",
+    "stage": 2
+  },
+  {
+    "rank": 118,
+    "lemma": "rato",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "잠깐, 잠시",
+    "frequency_count": 7,
+    "inflected_forms_found": [
+      "rato"
+    ],
+    "example_sentence_source": "Solo voy a descansar un rato.",
+    "example_sentence_translation": "그냥 잠시 쉴 거야.",
+    "category": "시간/날짜",
+    "stage": 2
+  },
+  {
+    "rank": 119,
+    "lemma": "cuatro",
+    "part_of_speech": "número",
+    "korean_meaning": "넷 (4)",
+    "frequency_count": 7,
+    "inflected_forms_found": [
+      "cuatro"
+    ],
+    "example_sentence_source": "Son las cuatro y diez de la tarde.",
+    "example_sentence_translation": "오후 4시 10분이야.",
+    "category": "숫자",
+    "stage": 2
+  },
+  {
+    "rank": 120,
+    "lemma": "noche",
+    "part_of_speech": "sustantivo",
+    "korean_meaning": "밤",
+    "frequency_count": 7,
+    "inflected_forms_found": [
+      "noche",
+      "noches"
+    ],
+    "example_sentence_source": "El 19 de marzo por la noche, el último día de las fiestas, se queman los ninots.",
+    "example_sentence_translation": "축제의 마지막 날인 3월 19일 밤에, 그 조형물들(ninots)을 태웁니다.",
+    "category": "시간/날짜",
+    "stage": 2
   }
 ]

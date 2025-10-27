@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voca-Core 9 (v3.0): 수능 스페인어</title>
+    <title>Voca-Core 9 (v3.1): 수능 스페인어</title>
     <style>
         /* --- CSS 변수 및 기본 스타일 --- */
         :root {
@@ -109,13 +109,18 @@
             transition: width 0.3s ease-in-out;
         }
 
-        /* --- (v3.0) 탭 공통 스타일 --- */
+        /* --- (v3.0 -> v3.1) 탭 공통 스타일 (스테이지 탭 추가) --- */
        .tabs-container {
             width: 100%;
             background-color: #e9ecef;
             border-radius: var(--border-radius);
             padding: 5px;
         }
+        /* (v3.1) 스테이지 탭 */
+       .tabs-container.stage-tabs {
+            background-color: var(--dark-color);
+            /* margin-bottom: 1rem; (app-container gap으로 대체) */
+       }
        .tabs-container.category-filter {
             background-color: #E0E7FF; /* 주제 필터는 다른 색상 */
        }
@@ -150,6 +155,24 @@
        .category-filter .tabs-grid button.active {
             color: #3730A3; /* 주제 필터 활성 색상 */
        }
+
+        /* (v3.1) 스테이지 탭 활성/비활성 스타일 */
+       .stage-tabs .tabs-grid button {
+           color: #adb5bd; /* 비활성 텍스트 */
+       }
+       .stage-tabs .tabs-grid button:hover:not(.active):not(:disabled) {
+           background-color: #495057;
+       }
+       .stage-tabs .tabs-grid button.active {
+           color: var(--success-color); /* 활성 스테이지 */
+           font-weight: bold;
+       }
+       .stage-tabs .tabs-grid button:disabled {
+           color: #6c757d;
+           cursor: not-allowed;
+           opacity: 0.7;
+       }
+
 
        /* (v3.0) 현재 학습 현황 텍스트 */
        .context-text {
@@ -515,7 +538,7 @@
 
     <div class="app-container">
         <header>
-            <h1>Voca-Core 9 (v3.0)</h1>
+            <h1>Voca-Core 9 (v3.1)</h1>
         </header>
         <div class="navigation-links">
             <a href="wordlist.html" class="nav-link">&larr; 전체 단어 목록</a>
@@ -528,6 +551,15 @@
                 <div class="progress-bar-inner" id="progress-bar-inner"></div>
             </div>
         </section>
+        
+        <nav class="tabs-container stage-tabs">
+            <div class="tabs-grid" id="stage-filter-grid">
+                <button class="stage-btn active" data-stage="1">Stage 1 (3등급)</button>
+                <button class="stage-btn" data-stage="2" disabled>Stage 2 (2등급) 🔒</button>
+                <button class="stage-btn" data-stage="3" disabled>Stage 3 (1등급) 🔒</button>
+            </div>
+        </nav>
+
 
         <nav class="tabs-container mode-tabs">
             <div class="tabs-grid">
@@ -570,17 +602,24 @@
     </div>
 
     <script>
-        // --- 기존 index.html의 JavaScript 코드는 동일하게 유지 ---
         document.addEventListener('DOMContentLoaded', () => {
 
             // --- 상태 관리 변수 ---
-            let allWords = [];
+            let allWordsData = []; // (v3.1) 스페인어.txt의 모든 스테이지 단어 원본
+            let allWords = []; // (v3.1) 현재 스테이지의 단어 목록
             let filteredWords = []; // 현재 필터(모드+주제)가 적용된 단어 목록
             let currentIndex = 0;
             let progress = {};
             let currentMode = 'card';
-            let currentCategory = 'all'; // (v3.0)
+            let currentCategory = 'all';
+
+            // --- (v3.1) 스테이지 관리 변수 ---
+            let currentStageView = 1;
+            let maxUnlockedStage = 1;
             const LOCAL_STORAGE_KEY = 'vocaCore9Progress';
+            const LOCAL_STORAGE_STAGE_KEY = 'vocaCoreCurrentStage'; // (v3.1)
+            const LOCAL_STORAGE_MAX_STAGE_KEY = 'vocaCoreMaxStage'; // (v3.1)
+
 
             let lastQuizMode = 'grammar-quiz';
             let quizReturnIndex = 0;
@@ -591,6 +630,12 @@
                 'review': "'몰라요' 복습",
                 'grammar-quiz': '문법 퀴즈',
                 'cloze-quiz': '예문 퀴즈'
+            };
+            // (v3.1) 스테이지 이름 매핑
+            const STAGE_NAMES = {
+                1: '3등급 Core',
+                2: '2등급 Core',
+                3: '1등급 Core'
             };
              // (v4.0 데이터 기준 카테고리 이름 확장)
              const CATEGORY_NAMES = {
@@ -624,9 +669,10 @@
             const btnKnown = document.getElementById('btn-known');
             const btnUnknown = document.getElementById('btn-unknown');
             const modeButtons = document.querySelectorAll('.mode-btn');
-            const categoryButtons = document.querySelectorAll('.category-btn'); // (v3.0)
+            // const categoryButtons = document.querySelectorAll('.category-btn'); // (v3.0) -> 동적 생성
             const btnBackToQuiz = document.getElementById('btn-back-to-quiz');
-            const categoryFilterGrid = document.getElementById('category-filter-grid'); // 카테고리 버튼 동적 생성을 위해 추가
+            const categoryFilterGrid = document.getElementById('category-filter-grid');
+            const stageFilterGrid = document.getElementById('stage-filter-grid'); // (v3.1)
 
 
             // --- (F-09) TTS 음성 출력 함수 ---
@@ -654,14 +700,34 @@
              // --- 데이터 로딩 및 초기화 ---
              async function initializeApp() {
                  try {
+                     // (v3.1) 스테이지 상태 로드
+                     loadStageState();
+
                      const response = await fetch('스페인어.txt');
                      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                     allWords = await response.json();
+                     allWordsData = await response.json(); // (v3.1) 전체 데이터 로드
 
-                     // 카테고리 버튼 동적 생성 및 업데이트
+                     // (v3.1) 현재 스테이지에 맞는 단어만 필터링
+                     allWords = allWordsData.filter(w => w.stage === currentStageView);
+                     
+                     if (allWords.length === 0) {
+                         console.warn(`Stage ${currentStageView}에 해당하는 단어가 없습니다.`);
+                         // (임시) Stage 1로 강제 복귀
+                         if (currentStageView !== 1) {
+                             alert(`Stage ${currentStageView} 데이터를 찾을 수 없어 Stage 1로 돌아갑니다.`);
+                             currentStageView = 1;
+                             localStorage.setItem(LOCAL_STORAGE_STAGE_KEY, 1);
+                             allWords = allWordsData.filter(w => w.stage === currentStageView);
+                         }
+                     }
+
+                     // (v3.1) 스테이지 탭 UI 초기화
+                     initializeStageTabs();
+
+                     // 카테고리 버튼 동적 생성 및 업데이트 (현재 스테이지 단어 기준)
                      updateCategoryButtonsAndCounts();
 
-                     loadProgress();
+                     loadProgress(); // (v3.1) 진행률 로드 (전체 progress 객체)
 
                      // --- (수정) wordlist.html에서 점프했는지 확인 ---
                      const jumpToRank = localStorage.getItem('vocaCore9JumpToRank');
@@ -669,17 +735,38 @@
                      
                      if (jumpToRank) {
                          const rank = parseInt(jumpToRank, 10);
-                         // allWords (rank는 1부터 시작)
-                         const jumpIndex = allWords.findIndex(w => w.rank === rank);
+                         // (v3.1) allWords (현재 스테이지 단어)가 아닌 allWordsData (전체)에서 탐색
+                         const jumpWord = allWordsData.find(w => w.rank === rank);
+                         
+                         if (jumpWord) {
+                             const jumpStage = jumpWord.stage;
+                             // 점프하려는 단어가 현재 스테이지에 없으면, 해당 스테이지로 이동
+                             if (jumpStage !== currentStageView) {
+                                 // (v3.1) 잠금 해제 여부 확인
+                                 if (jumpStage > maxUnlockedStage) {
+                                     alert("아직 잠금 해제되지 않은 스테이지의 단어입니다.");
+                                     localStorage.removeItem('vocaCore9JumpToRank');
+                                     setMode(startMode); // 기본 모드로 시작
+                                     return;
+                                 }
+                                 // (v3.1) 해당 스테이지로 전환
+                                 currentStageView = jumpStage;
+                                 localStorage.setItem(LOCAL_STORAGE_STAGE_KEY, currentStageView);
+                                 // (v3.1) 스테이지 전환 후 앱 다시 시작 (새로고침이 더 간단할 수 있음)
+                                 initializeApp(); // *** 재귀 호출 (주의) ***
+                                 return; // 중요: 재시작 후 현재 로직 중단
+                             }
 
-                         if (jumpIndex !== -1) {
-                             currentIndex = jumpIndex; // 시작 인덱스 설정
-                             startMode = 'card'; // 모드를 카드로 강제
-                             // '전체' 카테고리가 기본 활성화되어 있어야 함
-                             currentCategory = 'all';
-                             document.querySelectorAll('.category-btn').forEach(btn => {
-                                 btn.classList.toggle('active', btn.dataset.category === 'all');
-                             });
+                             // (v3.1) 점프할 단어가 현재 스테이지에 있음
+                             const jumpIndex = allWords.findIndex(w => w.rank === rank);
+                             if (jumpIndex !== -1) {
+                                 currentIndex = jumpIndex; // 시작 인덱스 설정
+                                 startMode = 'card'; // 모드를 카드로 강제
+                                 currentCategory = 'all'; // '전체' 카테고리로 강제
+                                 document.querySelectorAll('.category-btn').forEach(btn => {
+                                     btn.classList.toggle('active', btn.dataset.category === 'all');
+                                 });
+                             }
                          }
                          
                          // 확인 후 즉시 localStorage에서 제거
@@ -696,7 +783,54 @@
                  }
              }
 
-             // 카테고리 버튼 동적 생성 및 카운트 업데이트 함수
+             // (v3.1) 스테이지 상태 로드 함수
+             function loadStageState() {
+                 maxUnlockedStage = parseInt(localStorage.getItem(LOCAL_STORAGE_MAX_STAGE_KEY) || '1');
+                 currentStageView = parseInt(localStorage.getItem(LOCAL_STORAGE_STAGE_KEY) || '1');
+                 // 현재 보려는 스테이지가 잠금 해제된 스테이지보다 높으면, 최대 스테이지로 강제 조정
+                 if (currentStageView > maxUnlockedStage) {
+                     currentStageView = maxUnlockedStage;
+                     localStorage.setItem(LOCAL_STORAGE_STAGE_KEY, currentStageView);
+                 }
+             }
+             
+             // (v3.1) 스테이지 탭 초기화 함수
+             function initializeStageTabs() {
+                 stageFilterGrid.innerHTML = ''; // 버튼 초기화
+                 
+                 // 데이터에 있는 모든 스테이지를 기반으로 버튼 생성 (예: 1, 2, 3)
+                 const allStages = [...new Set(allWordsData.map(w => w.stage))].sort((a,b) => a - b);
+                 
+                 allStages.forEach(stageNum => {
+                     const button = document.createElement('button');
+                     button.classList.add('stage-btn');
+                     button.dataset.stage = stageNum;
+                     
+                     const stageName = STAGE_NAMES[stageNum] || `Stage ${stageNum}`;
+                     
+                     if (stageNum <= maxUnlockedStage) {
+                         // 잠금 해제된 스테이지
+                         button.textContent = `${stageName}`;
+                         button.disabled = false;
+                         button.classList.toggle('active', stageNum === currentStageView);
+                         button.addEventListener('click', () => {
+                             if (stageNum !== currentStageView) {
+                                 localStorage.setItem(LOCAL_STORAGE_STAGE_KEY, stageNum);
+                                 // 스테이지 변경은 앱 상태 전체를 바꿔야 하므로 새로고침
+                                 location.reload(); 
+                             }
+                         });
+                     } else {
+                         // 잠금된 스테이지
+                         button.textContent = `${stageName} 🔒`;
+                         button.disabled = true;
+                     }
+                     stageFilterGrid.appendChild(button);
+                 });
+             }
+
+
+             // 카테고리 버튼 동적 생성 및 카운트 업데이트 함수 (v3.1: allWords 기준)
              function updateCategoryButtonsAndCounts() {
                  const categoryCounts = allWords.reduce((acc, word) => {
                      const category = word.category || '기타';
@@ -744,18 +878,17 @@
             // --- (v3.0) 핵심 필터 로직 ---
             function updateFilters() {
                 
-                // 1. 카테고리 필터
+                // 1. 카테고리 필터 (v3.1: allWords는 이미 스테이지 필터링됨)
                 let tempWords = [...allWords];
                 if (currentCategory !== 'all') {
-                    // (수정) 점프는 '전체' 카테고리에서만 유효함.
-                    // (setCategory에서 currentIndex=0으로 리셋하므로 이 로직은 괜찮음)
                     tempWords = tempWords.filter(w => w.category === currentCategory);
                 }
                 const categoryTotal = tempWords.length;
 
                 // 2. 모드 필터 (리뷰 모드)
                 if (currentMode === 'review') {
-                    tempWords = tempWords.filter(w => !progress[w.lemma]);
+                    // (v3.1) progress에 true가 아닌 단어만 (false 또는 undefined)
+                    tempWords = tempWords.filter(w => progress[w.lemma] !== true);
                 }
 
                 // 3. 퀴즈 모드일 경우 섞기
@@ -770,8 +903,7 @@
 
                 // (수정) 점프 후 카테고리 필터링 시 currentIndex가 범위를 벗어날 수 있음
                 if (currentIndex >= filteredWords.length) {
-                    // (e.g. 10번 단어로 점프했는데, '핵심 동사' 필터를 누르면 filteredWords가 5개가 되어버림)
-                    // setCategory에서 currentIndex=0으로 리셋하므로 괜찮음.
+                    // (setCategory에서 currentIndex=0으로 리셋하므로 괜찮음)
                 }
 
 
@@ -782,7 +914,7 @@
                 } else {
                     renderQuiz();
                 }
-                updateGlobalProgressUI();
+                updateGlobalProgressUI(); // (v3.1) 스테이지 기준 진행률 업데이트
             }
 
             // --- 모드 및 카테고리 설정 ---
@@ -838,7 +970,7 @@
                          // (e.g. 마지막 단어에서 '알아요' 누른 경우)
                      }
 
-
+                     // (v3.1) 'allWords.length > 0'로 수정 (filteredWords가 0이어도 allWords는 있을 수 있음)
                      const message = (currentMode === 'review')
                          ? '복습할 단어가 없습니다! 🎉'
                          : (allWords.length > 0 ? '모든 단어를 학습했습니다.' : '로딩 중...');
@@ -931,15 +1063,14 @@
                      }
                  }
 
-                 // navigationControls.classList.remove('hidden'); // 퀴즈 중에는 숨김 처리 유지
-
                 const word = filteredWords[currentIndex];
                 let quizHTML = '';
 
+                // (v3.1) 퀴즈 오답 옵션 생성을 위해 allWords (현재 스테이지 단어) 전달
                 if (currentMode === 'grammar-quiz') {
-                    quizHTML = generateGrammarQuiz(word);
+                    quizHTML = generateGrammarQuiz(word, allWords); 
                 } else { // cloze-quiz
-                    quizHTML = generateClozeQuiz(word);
+                    quizHTML = generateClozeQuiz(word, allWords);
                 }
 
                 mainContent.innerHTML = quizHTML;
@@ -949,53 +1080,46 @@
                         handleQuizAnswer(e.target.dataset.option, e.target.dataset.answer, e.target);
                     });
                 });
-
-                 // updateNavigation(); // 퀴즈 중에는 숨김 처리 유지
             }
 
 
-            // --- 문법 퀴즈(F-05) 생성기 ---
-            function generateGrammarQuiz(word) {
-                 // 예문 또는 변형 형태 없으면 퀴즈 생성 불가
+            // --- 문법 퀴즈(F-05) 생성기 --- (v3.1: wordPool 파라미터 추가)
+            function generateGrammarQuiz(word, wordPool) {
                  if (!word.example_sentence_source || !word.inflected_forms_found || word.inflected_forms_found.length === 0) {
                      return `<div class="message-container"><p>이 단어에 대한 문법 퀴즈를 생성할 수 없습니다.</p><button onclick="handleNavigation(1)" class="btn-next-quiz" style="margin-top: 1rem;">다음 문제로 ▶</button></div>`;
                  }
 
                 const sortedForms = [...word.inflected_forms_found].sort((a, b) => b.length - a.length);
-                 let correctForm = sortedForms.find(form => word.example_sentence_source.toLowerCase().includes(form.toLowerCase())); // 대소문자 무시
-                if (!correctForm) correctForm = word.inflected_forms_found[0]; // 예문에서 못 찾으면 첫번째 변형 형태 사용 (임시)
+                 let correctForm = sortedForms.find(form => word.example_sentence_source.toLowerCase().includes(form.toLowerCase()));
+                if (!correctForm) correctForm = word.inflected_forms_found[0];
 
-                 // 정답 단어를 포함하는 예문 부분만 잘라서 보여주기 (더 명확하게)
                  const sentence = word.example_sentence_source;
                  let questionSentence = sentence;
                  try {
-                    // 정규 표현식으로 단어 경계(\b)를 사용하여 정확한 단어만 치환
                     const regex = new RegExp(`\\b${correctForm}\\b`, 'gi');
                      if (regex.test(sentence)) {
                         questionSentence = sentence.replace(regex, "<strong>_____</strong>");
                     } else {
-                         // 정규식으로 못찾으면 단순 포함으로 다시 시도 (대소문자 무시)
                          const index = sentence.toLowerCase().indexOf(correctForm.toLowerCase());
                          if(index !== -1) {
                              questionSentence = sentence.substring(0, index) + "<strong>_____</strong>" + sentence.substring(index + correctForm.length);
                          } else {
-                              // 그래도 못찾으면 그냥 원본 문장 사용 (최후의 수단)
                              console.warn(`Cannot find correctForm '${correctForm}' in sentence: ${sentence}`);
-                              questionSentence = sentence + " (Choose form for: " + word.lemma + ")"; // 힌트 추가
+                              questionSentence = sentence + " (Choose form for: " + word.lemma + ")";
                          }
                     }
                  } catch(e) {
                       console.error("Error creating question sentence:", e);
-                      questionSentence = sentence.replace(correctForm, "<strong>_____</strong>"); // 원래 로직으로 복귀
+                      questionSentence = sentence.replace(correctForm, "<strong>_____</strong>");
                  }
 
 
-                let options = [...new Set(word.inflected_forms_found)]; // 중복 제거
-                // 오답 옵션 추가 (다른 단어의 변형 형태)
+                let options = [...new Set(word.inflected_forms_found)];
+                // (v3.1) 오답 옵션을 wordPool (현재 스테이지 단어)에서 가져옴
                 let attempts = 0;
-                while (options.length < 4 && allWords.length > options.length && attempts < 50) {
-                    const randomWordIndex = Math.floor(Math.random() * allWords.length);
-                    const randomWord = allWords[randomWordIndex];
+                while (options.length < 4 && wordPool.length > options.length && attempts < 50) {
+                    const randomWordIndex = Math.floor(Math.random() * wordPool.length);
+                    const randomWord = wordPool[randomWordIndex];
                      if (randomWord.lemma !== word.lemma && randomWord.inflected_forms_found && randomWord.inflected_forms_found.length > 0) {
                         const randomForm = randomWord.inflected_forms_found[Math.floor(Math.random() * randomWord.inflected_forms_found.length)];
                         if (!options.includes(randomForm)) {
@@ -1005,13 +1129,11 @@
                     attempts++;
                 }
 
-                 // 옵션이 4개 넘으면 정답 포함해서 4개로 줄이기
                  if (options.length > 4) {
                      let wrongOptions = options.filter(opt => opt !== correctForm);
                      wrongOptions = shuffleArray(wrongOptions);
                      options = [correctForm, ...wrongOptions.slice(0, 3)];
                  } else if (!options.includes(correctForm)) {
-                      // 옵션이 4개 미만인데 정답이 빠진 경우, 하나 빼고 정답 추가
                       if(options.length > 0) options.pop();
                       options.push(correctForm);
                  }
@@ -1040,9 +1162,8 @@
                     </div>`;
             }
 
-            // --- 예문 퀴즈(F-06) 생성기 ---
-            function generateClozeQuiz(word) {
-                 // 예문 없으면 퀴즈 생성 불가
+            // --- 예문 퀴즈(F-06) 생성기 --- (v3.1: wordPool 파라미터 추가)
+            function generateClozeQuiz(word, wordPool) {
                  if (!word.example_sentence_source) {
                       return `<div class="message-container"><p>이 단어에 대한 예문 퀴즈를 생성할 수 없습니다.</p><button onclick="handleNavigation(1)" class="btn-next-quiz" style="margin-top: 1rem;">다음 문제로 ▶</button></div>`;
                  }
@@ -1050,20 +1171,17 @@
                  let questionSentence = word.example_sentence_source;
                  let correctLemma = word.lemma;
                   try {
-                       // 정규 표현식으로 단어 경계(\b)를 사용하여 정확한 단어만 치환 (대소문자 무시)
                        const regex = new RegExp(`\\b${word.lemma}\\b`, 'gi');
                        if (regex.test(questionSentence)) {
                            questionSentence = questionSentence.replace(regex, "<strong>_____</strong>");
                        } else {
-                           // 정규식으로 못찾으면 단순 포함으로 다시 시도 (대소문자 무시)
                             const index = questionSentence.toLowerCase().indexOf(word.lemma.toLowerCase());
                             if(index !== -1) {
                                 questionSentence = questionSentence.substring(0, index) + "<strong>_____</strong>" + questionSentence.substring(index + word.lemma.length);
                             } else {
-                                // 그래도 못찾으면 변형태 중 하나로 시도
                                  const formsInSentence = word.inflected_forms_found?.filter(f => questionSentence.toLowerCase().includes(f.toLowerCase())) || [];
                                  if (formsInSentence.length > 0) {
-                                      const formToReplace = formsInSentence.sort((a,b)=> b.length - a.length)[0]; // 가장 긴 형태부터
+                                      const formToReplace = formsInSentence.sort((a,b)=> b.length - a.length)[0];
                                       const formRegex = new RegExp(`\\b${formToReplace}\\b`, 'gi');
                                        if(formRegex.test(questionSentence)) {
                                            questionSentence = questionSentence.replace(formRegex, "<strong>_____</strong>");
@@ -1073,10 +1191,8 @@
                                                  questionSentence = questionSentence.substring(0, formIndex) + "<strong>_____</strong>" + questionSentence.substring(formIndex + formToReplace.length);
                                              }
                                        }
-                                       // correctLemma = formToReplace; // 정답을 lemma로 유지할지, 찾은 형태로 할지? 일단 lemma 유지
                                  } else {
                                      console.warn(`Cannot find lemma '${word.lemma}' or its forms in sentence: ${questionSentence}`);
-                                     // 정말 못찾겠으면 그냥 원본 문장 사용
                                       questionSentence = questionSentence + " (Choose lemma: " + word.lemma + ")";
                                  }
                             }
@@ -1090,10 +1206,10 @@
                 const hint = `힌트: ${word.korean_meaning}`;
 
                 let options = [correctLemma]; // 정답은 표제어(lemma)
-                // 오답 옵션 추가 (다른 단어의 표제어)
+                // (v3.1) 오답 옵션을 wordPool (현재 스테이지 단어)에서 가져옴
                 let attempts = 0;
-                while (options.length < 4 && allWords.length > options.length && attempts < 50) {
-                    const randomWord = allWords[Math.floor(Math.random() * allWords.length)];
+                while (options.length < 4 && wordPool.length > options.length && attempts < 50) {
+                    const randomWord = wordPool[Math.floor(Math.random() * wordPool.length)];
                     if (randomWord.lemma !== correctLemma && !options.includes(randomWord.lemma)) {
                         options.push(randomWord.lemma);
                     }
@@ -1153,9 +1269,7 @@
 
                     feedbackMessage.textContent = "아쉽네요. 다시 확인해볼까요?";
                     feedbackMessage.className = 'incorrect';
-
-                    // 복습할 단어 결정 (문법퀴즈는 현재 단어 lemma, 예문퀴즈는 틀린 옵션 lemma?)
-                     // -> 일관성을 위해 무조건 현재 문제의 lemma로 복습하도록 수정
+                     
                      let wordToReviewLemma = currentWord.lemma;
 
                     btnReviewMistake.textContent = `❔ '${wordToReviewLemma}' 복습하기`;
@@ -1167,19 +1281,37 @@
                 }
 
                 saveProgress();
-                updateGlobalProgressUI(); // 전체 진행률 업데이트
+                updateGlobalProgressUI(); // (v3.1) 스테이지 진행률 및 잠금 해제 체크
             }
 
             // --- '즉시 복습' 점프 기능 (v2.1 수정) ---
              function jumpToReview(lemmaToReview) {
                  quizReturnIndex = currentIndex; // 현재 퀴즈 위치 저장
 
-                 // allWords에서 lemmaToReview에 해당하는 단어의 인덱스 찾기
-                 const reviewIndex = allWords.findIndex(w => w.lemma === lemmaToReview);
-                 if (reviewIndex === -1) {
+                 // (v3.1) allWords (현재 스테이지)가 아닌 allWordsData (전체)에서 단어 탐색
+                 const reviewWord = allWordsData.find(w => w.lemma === lemmaToReview);
+                 if (!reviewWord) {
                      console.error(`Cannot find word with lemma: ${lemmaToReview}`);
                      return; // 단어를 찾지 못하면 복습 불가
                  }
+                 const reviewStage = reviewWord.stage;
+
+                 // (v3.1) 복습할 단어가 현재 스테이지에 있는지 확인
+                 if (reviewStage !== currentStageView) {
+                     // 다른 스테이지 단어 복습 (e.g. 퀴즈 오답 옵션)
+                     // (v3.1) 해당 스테이지로 강제 전환 (점프와 유사)
+                     currentStageView = reviewStage;
+                     localStorage.setItem(LOCAL_STORAGE_STAGE_KEY, currentStageView);
+                     // (v3.1) 복습할 단어의 rank를 저장하여 점프
+                     localStorage.setItem('vocaCore9JumpToRank', reviewWord.rank);
+                     location.reload(); // 스테이지 변경 및 점프 적용
+                     return;
+                 }
+                 
+                 // (v3.1) 복습할 단어가 현재 스테이지에 있음
+                 const reviewIndex = allWords.findIndex(w => w.lemma === lemmaToReview);
+                 if (reviewIndex === -1) return; // (이론상 발생 안 함)
+
 
                  // '플래시카드' 모드로 강제 전환 (카테고리 필터는 유지!)
                  currentMode = 'card';
@@ -1190,9 +1322,11 @@
                  document.querySelectorAll('.category-btn').forEach(btn => {
                      btn.classList.toggle('active', btn.dataset.category === 'all');
                  });
-                 // (수정) updateFilters를 호출하여 filteredWords를 '전체'로 맞춤
+                 
+                 // (v3.1) updateFilters를 호출하여 filteredWords를 '전체' (현재 스테이지)로 맞춤
                  updateFilters(); 
-                 // (수정) updateFilters 호출 후 currentIndex를 reviewIndex로 설정
+                 
+                 // (v3.1) updateFilters 호출 후 currentIndex를 reviewIndex로 설정
                  currentIndex = reviewIndex;
 
                  knowledgeControls.classList.add('hidden'); // 복습 중에는 알아요/몰라요 숨김
@@ -1203,31 +1337,49 @@
                  btnPrev.classList.add('hidden');
                  btnNext.classList.add('hidden');
 
-                 // **중요:** 복습할 단어를 표시하기 위해 filteredWords와 currentIndex를 *임시로* 변경
-                 const originalFilteredWords = [...filteredWords]; // (이미 allWords임)
-                 const originalIndex = currentIndex; // (reviewIndex임)
-
-                 // allWords를 기준으로 해당 단어 인덱스를 사용해 카드 렌더링
-                 // (수정) filteredWords는 이미 allWords임
-                 // currentIndex = reviewIndex; // (이미 설정됨)
                  renderCard(true); // 뒷면을 강제로 보여줌
-
-                 // **중요:** 렌더링 후, 원래 상태로 복원 (퀴즈로 돌아갈 때 대비)
-                 // (수정) 돌아가기 버튼 클릭 시 복원되므로, 여기서는 복원 불필요
-                 // filteredWords = originalFilteredWords; 
-                 // currentIndex = originalIndex; 
              }
 
 
              // --- UI 업데이트 ---
+             // (v3.1) 스테이지 기준 진행률 업데이트 및 잠금 해제
              function updateGlobalProgressUI() {
-                 const totalCount = allWords.length;
+                 const totalCount = allWords.length; // (v3.1) 현재 스테이지의 총 단어 수
                  if (totalCount === 0) return;
-                 // '알아요'로 표시된 단어 수 계산
-                 const knownCount = Object.keys(progress).filter(lemma => progress[lemma] === true).length;
+                 
+                 // (v3.1) '알아요'로 표시된 단어 수 계산 (현재 스테이지 단어 기준)
+                 const knownCount = allWords.filter(w => progress[w.lemma] === true).length;
+                 
                  const percentage = (knownCount / totalCount) * 100;
-                 progressText.textContent = `총 ${totalCount}개 중 ${knownCount}개 학습 완료`;
+                 progressText.textContent = `Stage ${currentStageView} (${STAGE_NAMES[currentStageView] || ''}): ${knownCount} / ${totalCount}개 (${percentage.toFixed(0)}%)`;
                  progressBarInner.style.width = `${percentage}%`;
+
+                 // (v3.1) 잠금 해제 로직
+                 if (percentage === 100 && currentStageView === maxUnlockedStage) {
+                     const nextStage = maxUnlockedStage + 1;
+                     // (v3.1) 다음 스테이지 데이터가 있는지 확인
+                     const nextStageExists = allWordsData.some(w => w.stage === nextStage);
+                     
+                     if (nextStageExists) {
+                         localStorage.setItem(LOCAL_STORAGE_MAX_STAGE_KEY, nextStage);
+                         maxUnlockedStage = nextStage; // 상태 업데이트
+                         
+                         alert(`🎉 Stage ${currentStageView} 클리어! Stage ${nextStage}가 잠금 해제되었습니다!`);
+                         initializeStageTabs(); // 탭 UI 새로고침 (잠금 해제 표시)
+                     } else {
+                         // 모든 스테이지 완료
+                         if (!document.getElementById('all-stages-complete-message')) {
+                             alert("🎉 모든 스테이지를 완료했습니다! 1등급을 응원합니다!");
+                             const p = document.createElement('p');
+                             p.id = 'all-stages-complete-message';
+                             p.textContent = "모든 스테이지 완료! 🥳";
+                             p.style.textAlign = 'center';
+                             p.style.color = 'var(--success-color)';
+                             p.style.fontWeight = 'bold';
+                             stageFilterGrid.appendChild(p);
+                         }
+                     }
+                 }
              }
 
              function updateContextText(categoryTotal) {
@@ -1238,8 +1390,12 @@
                  if (currentMode === 'review') {
                      // 리뷰 모드일 때: 현재 카테고리 내에서 '몰라요' 단어 수 / 카테고리 전체 단어 수
                      const reviewCount = filteredWords.length; // 이미 필터링된 '몰라요' 단어 수
-                      // 카테고리 전체 단어 수는 categoryTotal 변수 사용
-                     text += ` (복습 ${reviewCount} / ${categoryTotal}개)`;
+                     // (v3.1) 카테고리 전체 단어 수 계산 수정
+                     let categoryTotalInStage = allWords.length;
+                     if (currentCategory !== 'all') {
+                         categoryTotalInStage = allWords.filter(w => w.category === currentCategory).length;
+                     }
+                     text += ` (복습 ${reviewCount} / ${categoryTotalInStage}개)`;
                  } else {
                      // 다른 모드일 때: 현재 카테고리 전체 단어 수
                      text += ` (${categoryTotal}개)`;
@@ -1259,12 +1415,10 @@
 
                  // 퀴즈 모드인 경우 (피드백 표시 전)
                  if (currentMode === 'grammar-quiz' || currentMode === 'cloze-quiz') {
-                      // 퀴즈 피드백이 표시되지 않았을 때만 네비게이션 숨김
                       const feedbackContainer = document.getElementById('quiz-feedback');
                       if (!feedbackContainer || feedbackContainer.classList.contains('hidden')) {
                            navigationControls.classList.add('hidden');
                       } else {
-                            // 피드백 표시 중에는 '다음 문제', '복습하기' 버튼이 있으므로 네비게이션 숨김 유지
                            navigationControls.classList.add('hidden');
                       }
                      return;
@@ -1274,29 +1428,23 @@
                  navigationControls.classList.remove('hidden');
                  btnPrev.disabled = currentIndex === 0;
                  btnNext.disabled = currentIndex >= filteredWords.length - 1 || filteredWords.length === 0;
-                  // '퀴즈로 돌아가기' 버튼은 숨김
                   btnBackToQuiz.classList.add('hidden');
              }
 
             // --- 이벤트 핸들러: 네비게이션 ---
             function handleNavigation(direction) {
-                 // 퀴즈 피드백 보이는 중이면 네비게이션 무시하고 퀴즈 다음 문제로
                  const feedbackContainer = document.getElementById('quiz-feedback');
                  if (feedbackContainer && !feedbackContainer.classList.contains('hidden') && (currentMode === 'grammar-quiz' || currentMode === 'cloze-quiz')) {
-                      // 피드백 영역 숨기고 다음 퀴즈 렌더링
                       feedbackContainer.classList.add('hidden');
                  }
 
                  const newIndex = currentIndex + direction;
 
-                 // 다음/이전 이동 가능 조건 확인
                  if (newIndex >= 0 && newIndex < filteredWords.length) {
                      currentIndex = newIndex;
                  } else if (newIndex >= filteredWords.length) {
-                     // 마지막 단어 이후 '다음' 누르면 완료 처리 또는 첫 단어로 (여기선 완료 처리)
-                     currentIndex = filteredWords.length; // 인덱스를 배열 끝으로 설정
+                     currentIndex = filteredWords.length; 
                  } else {
-                     // 첫 단어에서 '이전' 누르면 아무것도 안 함 (이미 btnPrev.disabled로 처리됨)
                      return;
                  }
 
@@ -1306,7 +1454,6 @@
                 } else {
                     renderQuiz();
                 }
-                 // updateNavigation()은 각 render 함수 내에서 호출됨
             }
 
             // --- 이벤트 핸들러: 플래시카드 상태 저장 ---
@@ -1315,32 +1462,29 @@
                 const currentWord = filteredWords[currentIndex];
                 progress[currentWord.lemma] = isKnown;
                 saveProgress();
-                updateGlobalProgressUI();
+                updateGlobalProgressUI(); // (v3.1) 스테이지 진행률 및 잠금 해제 체크
 
                 // '몰라요' 복습 모드에서 '알아요' 누른 경우: 목록에서 제거하고 다음 카드 표시
                 if (currentMode === 'review' && isKnown) {
                      const wordLemmaToRemove = currentWord.lemma;
-                     // filteredWords에서 해당 단어 제거
                      filteredWords.splice(currentIndex, 1);
 
-                      // 제거 후 현재 인덱스가 배열 범위를 벗어나면 조정
                       if (currentIndex >= filteredWords.length) {
-                          currentIndex = Math.max(0, filteredWords.length - 1); // 마지막 인덱스 또는 0
+                          currentIndex = Math.max(0, filteredWords.length - 1);
                       }
 
-                     // UI 업데이트 (잠시 후 다음 카드 렌더링)
                      setTimeout(() => {
-                          // 카테고리 총 개수 다시 계산 (복습 대상이 줄었으므로)
-                           let categoryTotal = allWords.length;
+                          // (v3.1) 카테고리 총 개수 다시 계산
+                           let categoryTotalInStage = allWords.length;
                            if (currentCategory !== 'all') {
-                               categoryTotal = allWords.filter(w => w.category === currentCategory).length;
+                               categoryTotalInStage = allWords.filter(w => w.category === currentCategory).length;
                            }
-                          renderCard(); // 현재 인덱스 기준으로 다시 렌더링
-                          updateContextText(categoryTotal); // 컨텍스트 업데이트 (복습 개수 반영)
-                     }, 150); // 약간의 딜레이
+                          renderCard();
+                          updateContextText(categoryTotalInStage); // (v3.1) 컨텍스트 업데이트
+                     }, 150); 
                  } else {
                      // 일반 모드 또는 '몰라요' 누른 경우: 다음 카드로 이동
-                     setTimeout(() => { handleNavigation(1); }, 150); // 약간의 딜레이
+                     setTimeout(() => { handleNavigation(1); }, 150);
                  }
 
             }
@@ -1353,21 +1497,19 @@
 
             modeButtons.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    // (수정) 버튼 클릭으로 모드 변경 시 currentIndex 리셋
                     currentIndex = 0;
                     setMode(btn.dataset.mode);
                 });
             });
 
-             // 카테고리 버튼 리스너는 updateCategoryButtonsAndCounts 함수 내에서 동적으로 추가됨
-             // (해당 함수 내의 setCategory에서 currentIndex = 0을 처리함)
-
+             // (v3.1) 스테이지 버튼 리스너는 initializeStageTabs 함수 내에서 동적으로 추가됨
+             // (v3.0) 카테고리 버튼 리스너는 updateCategoryButtonsAndCounts 함수 내에서 동적으로 추가됨
+             
             btnBackToQuiz.addEventListener('click', () => {
-                 // (수정) 퀴즈 모드로 전환 (currentIndex=0은 setMode가 처리)
+                 // (v3.1) 퀴즈 모드로 전환 (현재 스테이지는 유지)
                  setMode(lastQuizMode);
-                 // (수정) 저장된 퀴즈 인덱스로 이동
                  currentIndex = quizReturnIndex; 
-                 renderQuiz(); // 해당 퀴즈 다시 렌더링
+                 renderQuiz();
              });
 
 
