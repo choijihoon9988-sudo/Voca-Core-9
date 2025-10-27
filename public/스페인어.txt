@@ -19,8 +19,7 @@
     ],
     "example_sentence_source": "Es una novela muy larga, ¿no?",
     "example_sentence_translation": "그것은 매우 긴 소설이야, 그렇지 않니?",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 2,
@@ -39,8 +38,7 @@
     ],
     "example_sentence_source": "¿Sabes dónde está Jaime?",
     "example_sentence_translation": "Jaime가 어디 있는지 아니?",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 3,
@@ -60,8 +58,7 @@
     ],
     "example_sentence_source": "Voy a ir a Barcelona.",
     "example_sentence_translation": "나는 바르셀로나에 갈 거야.",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 4,
@@ -81,8 +78,7 @@
     ],
     "example_sentence_source": "¡Qué frío! ¿Qué temperatura hace hoy?",
     "example_sentence_translation": "정말 춥다! 오늘 기온이 어때?",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 5,
@@ -102,8 +98,7 @@
     ],
     "example_sentence_source": "¿Tienes algún plan?",
     "example_sentence_translation": "무슨 계획이라도 있니?",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 6,
@@ -116,8 +111,7 @@
     ],
     "example_sentence_source": "Muy bien, gracias.",
     "example_sentence_translation": "아주 잘 지내, 고마워.",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 7,
@@ -134,8 +128,7 @@
     ],
     "example_sentence_source": "¿Quieres venir conmigo de compras?",
     "example_sentence_translation": "나랑 쇼핑하러 가지 않을래?",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 8,
@@ -154,8 +147,7 @@
     ],
     "example_sentence_source": "Señor, ¿me puede traer el azúcar, por favor?",
     "example_sentence_translation": "선생님, 설탕 좀 가져다주시겠어요?",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 9,
@@ -168,8 +160,7 @@
     ],
     "example_sentence_source": "¿Qué vas a hacer esta tarde?",
     "example_sentence_translation": "너 오늘 오후에 뭐 할 거야?",
-    "category": "의문사/감탄사",
-    "stage": 1
+    "category": "의문사/감탄사"
   },
   {
     "rank": 10,
@@ -186,8 +177,7 @@
     ],
     "example_sentence_source": "Hoy hace buen tiempo.",
     "example_sentence_translation": "오늘 날씨가 좋다.",
-    "category": "기본 형용사",
-    "stage": 1
+    "category": "기본 형용사/부사"
   },
   {
     "rank": 11,
@@ -205,8 +195,7 @@
     ],
     "example_sentence_source": "¿Sabes dónde está Jaime?",
     "example_sentence_translation": "Jaime가 어디 있는지 아니?",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 12,
@@ -224,8 +213,7 @@
     ],
     "example_sentence_source": "Porque estos días tenemos mucho trabajo y él no hace nada.",
     "example_sentence_translation": "왜냐하면 요즘 우리는 일이 아주 많은데 그는 아무것도 하지 않기 때문이야.",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 13,
@@ -240,8 +228,7 @@
     ],
     "example_sentence_source": "Mucho gusto.",
     "example_sentence_translation": "만나서 반갑습니다.",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 14,
@@ -254,8 +241,7 @@
     ],
     "example_sentence_source": "Claro que sí.",
     "example_sentence_translation": "물론이지.",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 15,
@@ -273,8 +259,7 @@
     ],
     "example_sentence_source": "¡Qué gusto verte!",
     "example_sentence_translation": "너를 보니 정말 기쁘다!",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 16,
@@ -290,8 +275,7 @@
     ],
     "example_sentence_source": "Es una novela muy larga, ¿no?",
     "example_sentence_translation": "그것은 매우 긴 소설이야, 그렇지 않니?",
-    "category": "기본 형용사/부사",
-    "stage": 1
+    "category": "기본 형용사/부사"
   },
   {
     "rank": 17,
@@ -305,8 +289,7 @@
     ],
     "example_sentence_source": "¿A qué hora sale el tren?",
     "example_sentence_translation": "기차가 몇 시에 출발하나요?",
-    "category": "시간/날짜",
-    "stage": 1
+    "category": "시간/날짜"
   },
   {
     "rank": 18,
@@ -319,8 +302,7 @@
     ],
     "example_sentence_source": "Muy bien, gracias.",
     "example_sentence_translation": "아주 잘 지내, 고마워.",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 19,
@@ -334,8 +316,7 @@
     ],
     "example_sentence_source": "Buenos días, ¿qué desea?",
     "example_sentence_translation": "좋은 아침입니다, 무엇을 원하세요?",
-    "category": "시간/날짜",
-    "stage": 1
+    "category": "시간/날짜"
   },
   {
     "rank": 20,
@@ -347,10 +328,9 @@
       "año",
       "años"
     ],
-    "example_sentence_source": "Le deseo un feliz año nuevo 2025!",
+    "example_sentence_source": "¡Le deseo un feliz año nuevo 2025!",
     "example_sentence_translation": "당신에게 2025년 새해 복 많이 받기를 바랍니다!",
-    "category": "시간/날짜",
-    "stage": 1
+    "category": "시간/날짜"
   },
   {
     "rank": 21,
@@ -366,8 +346,7 @@
     ],
     "example_sentence_source": "No pasa nada.",
     "example_sentence_translation": "괜찮아. (아무 일도 없어.)",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 22,
@@ -381,8 +360,7 @@
     ],
     "example_sentence_source": "Estás en tu casa.",
     "example_sentence_translation": "여기는 네 집이야. (편하게 있어.)",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 23,
@@ -397,8 +375,7 @@
     ],
     "example_sentence_source": "Te presento a mi amiga Sandra.",
     "example_sentence_translation": "내 친구 Sandra를 너에게 소개할게.",
-    "category": "사람/관계",
-    "stage": 1
+    "category": "사람/관계"
   },
   {
     "rank": 24,
@@ -411,8 +388,7 @@
     ],
     "example_sentence_source": "¿Cuánto tiempo hace que estás aquí en Lima?",
     "example_sentence_translation": "여기 리마에 온 지 얼마나 됐어?",
-    "category": "시간/날짜",
-    "stage": 1
+    "category": "시간/날짜"
   },
   {
     "rank": 25,
@@ -425,8 +401,7 @@
     ],
     "example_sentence_source": "Hasta luego.",
     "example_sentence_translation": "나중에 봐. (안녕)",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 26,
@@ -440,8 +415,7 @@
     ],
     "example_sentence_source": "Vale. ¿A qué hora quedamos?",
     "example_sentence_translation": "좋아. 몇 시에 만날까?",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 27,
@@ -454,8 +428,7 @@
     ],
     "example_sentence_source": "Señor, ¿me puede traer el azúcar, por favor?",
     "example_sentence_translation": "선생님, 설탕 좀 가져다주시겠어요?",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 28,
@@ -468,8 +441,7 @@
     ],
     "example_sentence_source": "¿Cómo te va?",
     "example_sentence_translation": "어떻게 지내?",
-    "category": "의문사/감탄사",
-    "stage": 1
+    "category": "의문사/감탄사"
   },
   {
     "rank": 29,
@@ -486,8 +458,7 @@
     ],
     "example_sentence_source": "Yo también acabo de llegar.",
     "example_sentence_translation": "나도 방금 도착했어.",
-    "category": "핵심 동사",
-    "stage": 1
+    "category": "핵심 동사"
   },
   {
     "rank": 30,
@@ -500,8 +471,7 @@
     ],
     "example_sentence_source": "¿Dónde hay una farmacia por aquí?",
     "example_sentence_translation": "이 근처에 약국이 어디 있나요?",
-    "category": "장소/방향",
-    "stage": 1
+    "category": "장소/방향"
   },
   {
     "rank": 31,
@@ -514,8 +484,7 @@
     ],
     "example_sentence_source": "¡Buena suerte en el examen!",
     "example_sentence_translation": "시험 잘 봐!",
-    "category": "학교/학습",
-    "stage": 1
+    "category": "학교/학습"
   },
   {
     "rank": 32,
@@ -529,8 +498,7 @@
     ],
     "example_sentence_source": "¿Dónde hay una farmacia por aquí?",
     "example_sentence_translation": "이 근처에 약국이 어디 있나요?",
-    "category": "의문사/감탄사",
-    "stage": 1
+    "category": "의문사/감탄사"
   },
   {
     "rank": 33,
@@ -546,8 +514,7 @@
     ],
     "example_sentence_source": "Pues, a comer.",
     "example_sentence_translation": "자, 먹자.",
-    "category": "음식/식사",
-    "stage": 1
+    "category": "음식/식사"
   },
   {
     "rank": 34,
@@ -562,8 +529,7 @@
     ],
     "example_sentence_source": "¿Cuánto tiempo hace que te duelen?",
     "example_sentence_translation": "아픈 지 얼마나 됐어?",
-    "category": "의문사/감탄사",
-    "stage": 1
+    "category": "의문사/감탄사"
   },
   {
     "rank": 35,
@@ -576,8 +542,7 @@
     ],
     "example_sentence_source": "¡Qué pena!",
     "example_sentence_translation": "정말 유감이다! (안됐다!)",
-    "category": "감정/상태",
-    "stage": 1
+    "category": "감정/상태"
   },
   {
     "rank": 36,
@@ -591,8 +556,7 @@
     ],
     "example_sentence_source": "Este país se encuentra en América Central.",
     "example_sentence_translation": "이 나라는 중앙아메리카에 위치해 있습니다.",
-    "category": "여행 및 문화",
-    "stage": 1
+    "category": "여행 및 문화"
   },
   {
     "rank": 37,
@@ -605,8 +569,7 @@
     ],
     "example_sentence_source": "Gracias, igualmente.",
     "example_sentence_translation": "고마워, 너도. (식사 맛있게 해.)",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 38,
@@ -619,8 +582,7 @@
     ],
     "example_sentence_source": "¡Hola! Te presento a mi amiga Sandra.",
     "example_sentence_translation": "안녕! 내 친구 Sandra를 너에게 소개할게.",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 39,
@@ -633,8 +595,7 @@
     ],
     "example_sentence_source": "¡Buen provecho!",
     "example_sentence_translation": "맛있게 드세요!",
-    "category": "음식/식사",
-    "stage": 1
+    "category": "음식/식사"
   },
   {
     "rank": 40,
@@ -648,8 +609,7 @@
     ],
     "example_sentence_source": "¿Sabes dónde está la ciudad de Tegucigalpa?",
     "example_sentence_translation": "테구시갈파 시가 어디 있는지 아니?",
-    "category": "장소/방향",
-    "stage": 1
+    "category": "장소/방향"
   },
   {
     "rank": 41,
@@ -663,8 +623,7 @@
     ],
     "example_sentence_source": "A veces. Voy cuando ponen películas divertidas.",
     "example_sentence_translation": "가끔. 재미있는 영화를 상영할 때 가.",
-    "category": "시간/날짜",
-    "stage": 1
+    "category": "시간/날짜"
   },
   {
     "rank": 42,
@@ -677,8 +636,7 @@
     ],
     "example_sentence_source": "¡Quedan dos semanas para las vacaciones!",
     "example_sentence_translation": "방학까지 2주 남았어!",
-    "category": "숫자",
-    "stage": 1
+    "category": "숫자"
   },
   {
     "rank": 43,
@@ -691,8 +649,7 @@
     ],
     "example_sentence_source": "De acuerdo. Nos vemos.",
     "example_sentence_translation": "알겠어. (동의해.) 그럼 보자.",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 44,
@@ -705,8 +662,7 @@
     ],
     "example_sentence_source": "¿Qué tal estás?",
     "example_sentence_translation": "어떻게 지내?",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 45,
@@ -723,8 +679,7 @@
     ],
     "example_sentence_source": "¿Cómo te llamas?",
     "example_sentence_translation": "네 이름이 뭐니?",
-    "category": "일상생활",
-    "stage": 1
+    "category": "일상생활"
   },
   {
     "rank": 46,
@@ -737,8 +692,7 @@
     ],
     "example_sentence_source": "Perdón por llegar tarde.",
     "example_sentence_translation": "늦어서 미안해.",
-    "category": "핵심 전치사",
-    "stage": 2
+    "category": "핵심 전치사"
   },
   {
     "rank": 47,
@@ -751,8 +705,7 @@
     ],
     "example_sentence_source": "No pasa nada.",
     "example_sentence_translation": "괜찮아. (아무 일도 없어.)",
-    "category": "일상생활",
-    "stage": 2
+    "category": "일상생활"
   },
   {
     "rank": 48,
@@ -768,8 +721,7 @@
     ],
     "example_sentence_source": "Es un pintor colombiano muy conocido.",
     "example_sentence_translation": "그는 매우 유명한 콜롬비아 화가이다.",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 49,
@@ -782,8 +734,7 @@
     ],
     "example_sentence_source": "Si leo unas páginas todos los días, podré acabarla en este año.",
     "example_sentence_translation": "만약 매일 몇 페이지씩 읽는다면, 올해 안에 그것을 끝낼 수 있을 거야.",
-    "category": "접속사/관사",
-    "stage": 2
+    "category": "접속사/관사"
   },
   {
     "rank": 50,
@@ -796,8 +747,7 @@
     ],
     "example_sentence_source": "Ahora son las siete menos diez.",
     "example_sentence_translation": "지금은 7시 10분 전이야.",
-    "category": "시간/날짜",
-    "stage": 2
+    "category": "시간/날짜"
   },
   {
     "rank": 51,
@@ -810,8 +760,7 @@
     ],
     "example_sentence_source": "Así es. Ya casi estamos en verano.",
     "example_sentence_translation": "맞아. 이제 거의 여름이네.",
-    "category": "일상생활",
-    "stage": 2
+    "category": "일상생활"
   },
   {
     "rank": 52,
@@ -827,8 +776,7 @@
     ],
     "example_sentence_source": "Todos los días puedo ver la salida del sol.",
     "example_sentence_translation": "매일 나는 해가 뜨는 것을 볼 수 있어.",
-    "category": "기본 형용사/부사",
-    "stage": 2
+    "category": "기본 형용사/부사"
   },
   {
     "rank": 53,
@@ -842,8 +790,7 @@
     ],
     "example_sentence_source": "¿Para cuántas personas?",
     "example_sentence_translation": "몇 명인가요?",
-    "category": "사람/관계",
-    "stage": 2
+    "category": "사람/관계"
   },
   {
     "rank": 54,
@@ -859,8 +806,7 @@
     ],
     "example_sentence_source": "Los jugadores tratan de meter un gol en la puerta del otro lado.",
     "example_sentence_translation": "선수들은 반대편 골문에 골을 넣으려고 노력한다.",
-    "category": "기본 형용사/부사",
-    "stage": 2
+    "category": "기본 형용사/부사"
   },
   {
     "rank": 55,
@@ -873,8 +819,7 @@
     ],
     "example_sentence_source": "«Pura vida» tiene mucho que ver con el modo de vivir de los costarricenses.",
     "example_sentence_translation": "«Pura vida»는 코스타리카 사람들의 삶의 방식과 많은 관련이 있다.",
-    "category": "여행 및 문화",
-    "stage": 2
+    "category": "여행 및 문화"
   },
   {
     "rank": 56,
@@ -887,8 +832,7 @@
     ],
     "example_sentence_source": "En mi familia nunca se le pone cebolla.",
     "example_sentence_translation": "우리 가족은 그것에 양파를 절대 넣지 않아.",
-    "category": "기본 형용사/부사",
-    "stage": 2
+    "category": "기본 형용사/부사"
   },
   {
     "rank": 57,
@@ -904,8 +848,7 @@
     ],
     "example_sentence_source": "¿Quieres tomar un café?",
     "example_sentence_translation": "커피 한 잔 할래?",
-    "category": "음식/식사",
-    "stage": 2
+    "category": "음식/식사"
   },
   {
     "rank": 58,
@@ -918,8 +861,7 @@
     ],
     "example_sentence_source": "Ya sabes, «muchos pocos hacen un mucho».",
     "example_sentence_translation": "너도 알잖아, «티끌 모아 태산»이라는 거.",
-    "category": "일상생활",
-    "stage": 2
+    "category": "일상생활"
   },
   {
     "rank": 59,
@@ -937,8 +879,7 @@
     ],
     "example_sentence_source": "¿Quieres venir conmigo de compras?",
     "example_sentence_translation": "나랑 쇼핑하러 가지 않을래?",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 60,
@@ -955,8 +896,7 @@
     ],
     "example_sentence_source": "No las encuentro.",
     "example_sentence_translation": "그것들을 못 찾겠어.",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 61,
@@ -972,8 +912,7 @@
     ],
     "example_sentence_source": "Creo que tengo gripe.",
     "example_sentence_translation": "나 감기 걸린 것 같아.",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 62,
@@ -990,8 +929,7 @@
     ],
     "example_sentence_source": "¿A qué hora sale el tren?",
     "example_sentence_translation": "기차가 몇 시에 출발하나요?",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 63,
@@ -1004,8 +942,7 @@
     ],
     "example_sentence_source": "¿A nombre de quién quiere la reserva?",
     "example_sentence_translation": "누구의 이름으로 예약하시겠습니까?",
-    "category": "일상생활",
-    "stage": 2
+    "category": "일상생활"
   },
   {
     "rank": 64,
@@ -1021,8 +958,7 @@
     ],
     "example_sentence_source": "¿Me da dos billetes, por favor?",
     "example_sentence_translation": "표 두 장 주시겠어요?",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 65,
@@ -1035,8 +971,7 @@
     ],
     "example_sentence_source": "¿Por qué dices eso?",
     "example_sentence_translation": "너 왜 그런 말을 하니?",
-    "category": "의문사/감탄사",
-    "stage": 2
+    "category": "의문사/감탄사"
   },
   {
     "rank": 66,
@@ -1052,8 +987,7 @@
     ],
     "example_sentence_source": "¿Me dejas la bicicleta?",
     "example_sentence_translation": "나에게 자전거 빌려줄래?",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 67,
@@ -1066,8 +1000,7 @@
     ],
     "example_sentence_source": "¿Para cuándo la quiere?",
     "example_sentence_translation": "언제로 원하십니까?",
-    "category": "의문사/감탄사",
-    "stage": 2
+    "category": "의문사/감탄사"
   },
   {
     "rank": 68,
@@ -1082,8 +1015,7 @@
     ],
     "example_sentence_source": "¡Le deseo un feliz año nuevo 2025!",
     "example_sentence_translation": "당신에게 2025년 새해 복 많이 받기를 바랍니다!",
-    "category": "기본 형용사/부사",
-    "stage": 2
+    "category": "기본 형용사/부사"
   },
   {
     "rank": 69,
@@ -1098,8 +1030,7 @@
     ],
     "example_sentence_source": "¡Ay! No entiendo estos ejercicios de matemáticas.",
     "example_sentence_translation": "아! 이 수학 문제들을 이해 못 하겠어.",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 70,
@@ -1114,8 +1045,7 @@
     ],
     "example_sentence_source": "Esta es mi hermana Margarita.",
     "example_sentence_translation": "이 사람은 내 여동생 마르가리타야.",
-    "category": "사람/관계",
-    "stage": 2
+    "category": "사람/관계"
   },
   {
     "rank": 71,
@@ -1128,8 +1058,7 @@
     ],
     "example_sentence_source": "Buen ambiente de trabajo.",
     "example_sentence_translation": "좋은 근무 환경.",
-    "category": "직업/활동",
-    "stage": 2
+    "category": "직업/활동"
   },
   {
     "rank": 72,
@@ -1143,8 +1072,7 @@
     ],
     "example_sentence_source": "Dos días libres seguidos por semana.",
     "example_sentence_translation": "주당 연속 이틀 휴무.",
-    "category": "시간/날짜",
-    "stage": 2
+    "category": "시간/날짜"
   },
   {
     "rank": 73,
@@ -1162,8 +1090,7 @@
     ],
     "example_sentence_source": "Siga todo recto y gire a la derecha.",
     "example_sentence_translation": "계속 직진하다가 오른쪽으로 도세요.",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 74,
@@ -1180,8 +1107,7 @@
     ],
     "example_sentence_source": "¿Me puede ayudar a bajarla, por favor?",
     "example_sentence_translation": "그것을 내리는 것을 도와주실 수 있나요?",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 75,
@@ -1195,8 +1121,7 @@
     ],
     "example_sentence_source": "Mis padres han organizado una fiesta.",
     "example_sentence_translation": "나의 부모님께서 파티를 준비하셨어.",
-    "category": "사람/관계",
-    "stage": 2
+    "category": "사람/관계"
   },
   {
     "rank": 76,
@@ -1210,8 +1135,7 @@
     ],
     "example_sentence_source": "Es el lugar más visitado de Barcelona.",
     "example_sentence_translation": "그곳은 바르셀로나에서 가장 많이 방문되는 장소이다.",
-    "category": "장소/방향",
-    "stage": 2
+    "category": "장소/방향"
   },
   {
     "rank": 77,
@@ -1225,8 +1149,7 @@
     ],
     "example_sentence_source": "Gire a la izquierda al final de la calle.",
     "example_sentence_translation": "길 끝에서 왼쪽으로 도세요.",
-    "category": "장소/방향",
-    "stage": 2
+    "category": "장소/방향"
   },
   {
     "rank": 78,
@@ -1239,8 +1162,7 @@
     ],
     "example_sentence_source": "Disculpe, ¿me puede traer un vaso de agua?",
     "example_sentence_translation": "실례합니다, 물 한 잔 가져다주시겠어요?",
-    "category": "음식/식사",
-    "stage": 2
+    "category": "음식/식사"
   },
   {
     "rank": 79,
@@ -1255,8 +1177,7 @@
     ],
     "example_sentence_source": "Cosas para comprar: 12 huevos.",
     "example_sentence_translation": "사야 할 것들: 달걀 12개.",
-    "category": "경제/쇼핑",
-    "stage": 2
+    "category": "경제/쇼핑"
   },
   {
     "rank": 80,
@@ -1271,8 +1192,7 @@
     ],
     "example_sentence_source": "A mí me gusta leer libros.",
     "example_sentence_translation": "나는 책 읽는 것을 좋아해.",
-    "category": "학교/학습",
-    "stage": 2
+    "category": "학교/학습"
   },
   {
     "rank": 81,
@@ -1287,8 +1207,7 @@
     ],
     "example_sentence_source": "¿Va a pagar con tarjeta?",
     "example_sentence_translation": "카드로 지불하시겠습니까?",
-    "category": "경제/쇼핑",
-    "stage": 2
+    "category": "경제/쇼핑"
   },
   {
     "rank": 82,
@@ -1304,8 +1223,7 @@
     ],
     "example_sentence_source": "¿A qué hora quedamos?",
     "example_sentence_translation": "우리 몇 시에 만날까?",
-    "category": "일상생활",
-    "stage": 2
+    "category": "일상생활"
   },
   {
     "rank": 83,
@@ -1318,8 +1236,7 @@
     ],
     "example_sentence_source": "La estación queda muy cerca.",
     "example_sentence_translation": "역은 매우 가까이에 있어.",
-    "category": "장소/방향",
-    "stage": 2
+    "category": "장소/방향"
   },
   {
     "rank": 84,
@@ -1332,8 +1249,7 @@
     ],
     "example_sentence_source": "¿Qué piensas hacer hoy?",
     "example_sentence_translation": "오늘 뭐 할 생각이니?",
-    "category": "시간/날짜",
-    "stage": 2
+    "category": "시간/날짜"
   },
   {
     "rank": 85,
@@ -1346,8 +1262,7 @@
     ],
     "example_sentence_source": "Este fin de semana.",
     "example_sentence_translation": "이번 주말.",
-    "category": "시간/날짜",
-    "stage": 2
+    "category": "시간/날짜"
   },
   {
     "rank": 86,
@@ -1362,8 +1277,7 @@
     ],
     "example_sentence_source": "Cuéntame, ¿qué haces los sábados?",
     "example_sentence_translation": "말해봐, 토요일에 뭐 해?",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 87,
@@ -1379,8 +1293,7 @@
     ],
     "example_sentence_source": "Vivir en la ciudad de Sevilla.",
     "example_sentence_translation": "세비야 시에 거주할 것.",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 88,
@@ -1393,8 +1306,7 @@
     ],
     "example_sentence_source": "Me duele la cabeza.",
     "example_sentence_translation": "나는 머리가 아프다.",
-    "category": "신체",
-    "stage": 2
+    "category": "신체"
   },
   {
     "rank": 89,
@@ -1407,8 +1319,7 @@
     ],
     "example_sentence_source": "No es nada difícil prepararlo.",
     "example_sentence_translation": "그것을 준비하는 것은 전혀 어렵지 않아.",
-    "category": "기본 형용사/부사",
-    "stage": 2
+    "category": "기본 형용사/부사"
   },
   {
     "rank": 90,
@@ -1424,8 +1335,7 @@
     ],
     "example_sentence_source": "¡Qué interesante!",
     "example_sentence_translation": "정말 흥미롭다!",
-    "category": "감정/상태",
-    "stage": 2
+    "category": "감정/상태"
   },
   {
     "rank": 91,
@@ -1439,8 +1349,7 @@
     ],
     "example_sentence_source": "Lo siento mucho.",
     "example_sentence_translation": "정말 미안해. (유감이야.)",
-    "category": "감정/상태",
-    "stage": 2
+    "category": "감정/상태"
   },
   {
     "rank": 92,
@@ -1453,8 +1362,7 @@
     ],
     "example_sentence_source": "Está al fondo a la derecha.",
     "example_sentence_translation": "오른쪽 안쪽에 있습니다.",
-    "category": "장소/방향",
-    "stage": 2
+    "category": "장소/방향"
   },
   {
     "rank": 93,
@@ -1469,8 +1377,7 @@
     ],
     "example_sentence_source": "¿Quién es ella?",
     "example_sentence_translation": "그녀는 누구니?",
-    "category": "의문사/감탄사",
-    "stage": 2
+    "category": "의문사/감탄사"
   },
   {
     "rank": 94,
@@ -1484,8 +1391,7 @@
     ],
     "example_sentence_source": "No, dicen que va a llover mucho.",
     "example_sentence_translation": "아니, 비가 많이 올 거라고 해.",
-    "category": "날씨",
-    "stage": 2
+    "category": "날씨"
   },
   {
     "rank": 95,
@@ -1499,8 +1405,7 @@
     ],
     "example_sentence_source": "Este servicio cuesta solo 100 pesos por mes.",
     "example_sentence_translation": "이 서비스는 월 100페소입니다.",
-    "category": "시간/날짜",
-    "stage": 2
+    "category": "시간/날짜"
   },
   {
     "rank": 96,
@@ -1513,8 +1418,7 @@
     ],
     "example_sentence_source": "Somos tres.",
     "example_sentence_translation": "우리는 세 명입니다.",
-    "category": "숫자",
-    "stage": 2
+    "category": "숫자"
   },
   {
     "rank": 97,
@@ -1530,8 +1434,7 @@
     ],
     "example_sentence_source": "He preparado tu plato favorito.",
     "example_sentence_translation": "네가 가장 좋아하는 요리를 준비했어.",
-    "category": "음식/식사",
-    "stage": 2
+    "category": "음식/식사"
   },
   {
     "rank": 98,
@@ -1547,8 +1450,7 @@
     ],
     "example_sentence_source": "Te llevo un año.",
     "example_sentence_translation": "내가 너보다 한 살 많아.",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 99,
@@ -1565,8 +1467,7 @@
     ],
     "example_sentence_source": "Hablar español e inglés.",
     "example_sentence_translation": "스페인어와 영어 가능.",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 100,
@@ -1580,8 +1481,7 @@
     ],
     "example_sentence_source": "¡Mamá! ¿Puedo salir a jugar?",
     "example_sentence_translation": "엄마! 나가서 놀아도 돼요?",
-    "category": "사람/관계",
-    "stage": 2
+    "category": "사람/관계"
   },
   {
     "rank": 101,
@@ -1596,8 +1496,7 @@
     ],
     "example_sentence_source": "Ana, hija, tengo que salir ahora.",
     "example_sentence_translation": "딸, 아나야, 나 지금 나가야 해.",
-    "category": "사람/관계",
-    "stage": 2
+    "category": "사람/관계"
   },
   {
     "rank": 102,
@@ -1611,8 +1510,7 @@
     ],
     "example_sentence_source": "¡Le deseo un feliz año nuevo 2025!",
     "example_sentence_translation": "당신에게 2025년 새해 복 많이 받기를 바랍니다!",
-    "category": "감정/상태",
-    "stage": 2
+    "category": "감정/상태"
   },
   {
     "rank": 103,
@@ -1628,8 +1526,7 @@
     ],
     "example_sentence_source": "Me duelen los dientes.",
     "example_sentence_translation": "나는 이가 아프다.",
-    "category": "신체",
-    "stage": 2
+    "category": "신체"
   },
   {
     "rank": 104,
@@ -1642,8 +1539,7 @@
     ],
     "example_sentence_source": "Como hace mucho sol, voy a ir a la playa.",
     "example_sentence_translation": "해가 많이 나서, 해변에 갈 거야.",
-    "category": "날씨",
-    "stage": 2
+    "category": "날씨"
   },
   {
     "rank": 105,
@@ -1656,8 +1552,7 @@
     ],
     "example_sentence_source": "Buena idea.",
     "example_sentence_translation": "좋은 생각이야.",
-    "category": "일상생활",
-    "stage": 2
+    "category": "일상생활"
   },
   {
     "rank": 106,
@@ -1670,8 +1565,7 @@
     ],
     "example_sentence_source": "Si, es verdad.",
     "example_sentence_translation": "응, 사실이야.",
-    "category": "일상생활",
-    "stage": 2
+    "category": "일상생활"
   },
   {
     "rank": 107,
@@ -1686,8 +1580,7 @@
     ],
     "example_sentence_source": "Es que me encuentro un poco mal.",
     "example_sentence_translation": "있잖아, 나 몸이 좀 안 좋아.",
-    "category": "감정/상태",
-    "stage": 2
+    "category": "감정/상태"
   },
   {
     "rank": 108,
@@ -1701,8 +1594,7 @@
     ],
     "example_sentence_source": "Como hace mucho sol, voy a ir a la playa.",
     "example_sentence_translation": "해가 많이 나서, 해변에 갈 거야.",
-    "category": "장소/방향",
-    "stage": 2
+    "category": "장소/방향"
   },
   {
     "rank": 109,
@@ -1715,8 +1607,7 @@
     ],
     "example_sentence_source": "¿A qué hora sale el tren?",
     "example_sentence_translation": "기차가 몇 시에 출발하나요?",
-    "category": "교통",
-    "stage": 2
+    "category": "교통"
   },
   {
     "rank": 110,
@@ -1733,8 +1624,7 @@
     ],
     "example_sentence_source": "El chico que está jugando con la pelota.",
     "example_sentence_translation": "공을 가지고 놀고 있는 저 아이.",
-    "category": "여가/취미",
-    "stage": 2
+    "category": "여가/취미"
   },
   {
     "rank": 111,
@@ -1749,8 +1639,7 @@
     ],
     "example_sentence_source": "Parece muy rico.",
     "example_sentence_translation": "매우 맛있어 보여.",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 112,
@@ -1766,8 +1655,7 @@
     ],
     "example_sentence_source": "Ponte el abrigo y los guantes.",
     "example_sentence_translation": "외투랑 장갑을 껴라.",
-    "category": "핵심 동사",
-    "stage": 2
+    "category": "핵심 동사"
   },
   {
     "rank": 113,
@@ -1782,8 +1670,7 @@
     ],
     "example_sentence_source": "Siga todo recto y gire a la derecha en la primera calle.",
     "example_sentence_translation": "계속 직진하다가 첫 번째 길에서 오른쪽으로 도세요.",
-    "category": "기본 형용사/부사",
-    "stage": 2
+    "category": "기본 형용사/부사"
   },
   {
     "rank": 114,
@@ -1796,8 +1683,7 @@
     ],
     "example_sentence_source": "Pero estoy contento.",
     "example_sentence_translation": "하지만 나는 만족해.",
-    "category": "감정/상태",
-    "stage": 2
+    "category": "감정/상태"
   },
   {
     "rank": 115,
@@ -1810,8 +1696,7 @@
     ],
     "example_sentence_source": "¡Qué calor hace!",
     "example_sentence_translation": "날씨 정말 덥다!",
-    "category": "날씨",
-    "stage": 2
+    "category": "날씨"
   },
   {
     "rank": 116,
@@ -1825,8 +1710,7 @@
     ],
     "example_sentence_source": "¡Qué frío!",
     "example_sentence_translation": "정말 춥다!",
-    "category": "날씨",
-    "stage": 2
+    "category": "날씨"
   },
   {
     "rank": 117,
@@ -1839,8 +1723,7 @@
     ],
     "example_sentence_source": "Son las cuatro y diez de la tarde.",
     "example_sentence_translation": "오후 4시 10분이야.",
-    "category": "시간/날짜",
-    "stage": 2
+    "category": "시간/날짜"
   },
   {
     "rank": 118,
@@ -1853,8 +1736,7 @@
     ],
     "example_sentence_source": "Solo voy a descansar un rato.",
     "example_sentence_translation": "그냥 잠시 쉴 거야.",
-    "category": "시간/날짜",
-    "stage": 2
+    "category": "시간/날짜"
   },
   {
     "rank": 119,
@@ -1867,8 +1749,7 @@
     ],
     "example_sentence_source": "Son las cuatro y diez de la tarde.",
     "example_sentence_translation": "오후 4시 10분이야.",
-    "category": "숫자",
-    "stage": 2
+    "category": "숫자"
   },
   {
     "rank": 120,
@@ -1882,7 +1763,6 @@
     ],
     "example_sentence_source": "El 19 de marzo por la noche, el último día de las fiestas, se queman los ninots.",
     "example_sentence_translation": "축제의 마지막 날인 3월 19일 밤에, 그 조형물들(ninots)을 태웁니다.",
-    "category": "시간/날짜",
-    "stage": 2
+    "category": "시간/날짜"
   }
 ]

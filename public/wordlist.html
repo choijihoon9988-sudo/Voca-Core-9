@@ -128,7 +128,7 @@
             z-index: 10; /* (v3.3) 스크롤 시 상단 고정 */
         }
         
-        /* (v3.3) 4열 기준 너비 재조정 */
+        /* (v3.4) 4열 기준 너비 재조정 - Stage 정보 제거 */
         th:first-child, td:first-child { /* 순번 */
             width: 10%;
             text-align: center;
@@ -143,7 +143,7 @@
             width: 35%;
             color: var(--dark-color);
         }
-        th:last-child, td:last-child { /* 주제 (v3.3) */
+        th:last-child, td:last-child { /* 주제 */
             width: 25%;
             color: var(--secondary-color);
             font-size: 0.9rem;
@@ -329,10 +329,10 @@
             <table>
                 <thead>
                     <tr>
-                        <th>순번 (S-Rank)</th>
+                        <th>순번 (Rank)</th>
                         <th>스페인어 (Lemma)</th>
                         <th>한국어 뜻</th>
-                        <th>주제 (v3.3)</th> </tr>
+                        <th>주제</th> </tr>
                 </thead>
                 <tbody id="word-table-body">
                     <tr>
@@ -358,8 +358,8 @@
             const tableBody = document.getElementById('word-table-body');
             const modalBackdrop = document.getElementById('word-modal-backdrop');
             const modalContent = document.getElementById('word-modal-content');
-            const totalWordCount = document.getElementById('total-word-count'); // (v3.2)
-            const categoryFilterGrid = document.getElementById('category-filter-grid'); // (v3.3)
+            const totalWordCount = document.getElementById('total-word-count'); 
+            const categoryFilterGrid = document.getElementById('category-filter-grid'); 
             
             let allWords = [];
 
@@ -388,7 +388,7 @@
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 allWords = await response.json();
 
-                // (v3.2) 총 단어 수 업데이트
+                // (v3.4) 총 단어 수 업데이트 (Stage 언급 제거)
                 totalWordCount.textContent = `총 ${allWords.length}개의 스페인어 단어 (빈출도 순서)`;
 
                 // (v3.3) 주제 필터 탭 생성
@@ -455,10 +455,6 @@
                         row.style.display = 'none';
                     }
                 }
-                
-                // (v3.3) 필터링 결과가 없을 때 메시지 표시 (선택 사항)
-                 // (이 로직은 renderWordTable이 이미 완료된 후에 실행되므로, 
-                 // 'loading-message' 셀을 동적으로 추가/제거해야 함)
             }
 
 
@@ -466,21 +462,21 @@
             function renderWordTable() {
                 tableBody.innerHTML = '';
                 if (allWords.length === 0) {
-                     tableBody.innerHTML = `<tr><td colspan="4" class="loading-message">표시할 단어가 없습니다.</td></tr>`; // (v3.3) colspan=4
+                     tableBody.innerHTML = `<tr><td colspan="4" class="loading-message">표시할 단어가 없습니다.</td></tr>`; 
                      return;
                 }
 
-                allWords.forEach((word) => { // (v3.2) index 대신 word.rank 사용
+                allWords.forEach((word) => { 
                     const tableRow = document.createElement('tr');
                     
                     // (v3.3) 행에 data-category 속성 추가
                     tableRow.dataset.category = word.category || '기타';
 
-                    // (v3.2) 순번 셀 (Stage + Rank)
+                    // (v3.4) 순번 셀: Stage 언급 제거
                     const rankCell = document.createElement('td');
-                    rankCell.textContent = `S${word.stage || '?'}-${word.rank}`; // (v3.2)
+                    rankCell.textContent = word.rank; 
                     rankCell.style.textAlign = 'center';
-                    rankCell.style.fontSize = '0.9rem'; // (v3.2)
+                    rankCell.style.fontSize = '0.9rem'; 
 
                     const lemmaCell = document.createElement('td');
                     lemmaCell.textContent = word.lemma;
@@ -496,7 +492,7 @@
                     tableRow.appendChild(rankCell);
                     tableRow.appendChild(lemmaCell);
                     tableRow.appendChild(meaningCell);
-                    tableRow.appendChild(categoryCell); // (v3.3)
+                    tableRow.appendChild(categoryCell); 
 
                     tableRow.addEventListener('click', (e) => {
                         e.stopPropagation(); 
