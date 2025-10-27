@@ -123,19 +123,33 @@
             text-align: center;
             text-decoration: none;
             transition: background-color 0.2s ease;
-            margin-top: 1rem;
+            /* (수정) margin-top은 .button-container의 gap으로 대체 */
         }
        .navigation-button:hover {
             background-color: #218838;
         }
+        
+        /* (추가) PDF 자료실 버튼용 스타일 */
+       .navigation-button.secondary {
+            background-color: var(--primary-color);
+       }
+       .navigation-button.secondary:hover {
+            background-color: #0056b3; /* --primary-color의 어두운 버전 */
+       }
 
        .loading-message {
            text-align: center;
            color: var(--secondary-color);
            padding: 2rem;
        }
+        
+       /* (수정) 버튼 컨테이너 스타일 */
        .button-container {
-           text-align: center;
+           display: flex;
+           flex-wrap: wrap;
+           justify-content: center;
+           gap: 1rem;
+           margin-top: 1.5rem; /* 버튼과 테이블 사이 간격 */
        }
 
     </style>
@@ -166,6 +180,7 @@
         </div>
 
         <div class="button-container">
+             <a href="pdf_library.html" class="navigation-button secondary">&larr; PDF 자료실 가기</a>
              <a href="index.html" class="navigation-button">Voca-Core 9 빈출 순서 학습 시작하기 &rarr;</a>
         </div>
     </div>

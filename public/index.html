@@ -59,17 +59,23 @@
             color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
-        /* --- 추가된 부분: wordlist.html로 돌아가는 링크 --- */
-        .back-to-list-link {
-            display: block;
-            text-align: center;
-            margin-bottom: 1rem; /* 헤더와의 간격 */
+        
+        /* --- (수정) 헤더 아래 네비게이션 링크 --- */
+        .navigation-links {
+            margin-top: 0.5rem; /* 헤더와의 간격 */
+            margin-bottom: 1rem; /* 진행률 컨테이너와의 간격 */
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem; /* 링크 사이 간격 */
+            flex-wrap: wrap;
+        }
+        .nav-link {
             font-size: 0.9rem;
             color: var(--secondary-color);
             text-decoration: none;
             font-weight: 500;
         }
-        .back-to-list-link:hover {
+        .nav-link:hover {
             color: var(--primary-color);
             text-decoration: underline;
         }
@@ -511,7 +517,11 @@
         <header>
             <h1>Voca-Core 9 (v3.0)</h1>
         </header>
-        <a href="wordlist.html" class="back-to-list-link">&larr; 전체 단어 목록 보기</a>
+        <div class="navigation-links">
+            <a href="wordlist.html" class="nav-link">&larr; 전체 단어 목록</a>
+            <a href="pdf_library.html" class="nav-link">PDF 자료실 &rarr;</a>
+        </div>
+        
         <section class="progress-container">
             <p class="progress-text" id="progress-text">단어 로딩 중...</p>
             <div class="progress-bar">
