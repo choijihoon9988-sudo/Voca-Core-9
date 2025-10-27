@@ -132,7 +132,7 @@
             background-color: #218838;
         }
         
-        /* (추가) PDF 자료실 버튼용 스타일 */
+       /* (추가) PDF 자료실 버튼용 스타일 */
        .navigation-button.secondary {
             background-color: var(--primary-color);
        }
@@ -154,6 +154,113 @@
            gap: 1rem;
            margin-top: 1.5rem; /* 버튼과 테이블 사이 간격 */
        }
+
+        /* --- (추가) 단어 상세 모달 스타일 --- */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 1rem;
+            cursor: pointer; /* 닫기 암시 */
+        }
+        .modal-content {
+            width: 100%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 2rem;
+            cursor: default; /* 모달 컨텐츠는 기본 커서 */
+        }
+        .hidden {
+            display: none !important;
+        }
+        
+        /* 카드 콘텐츠 스타일 (index.html에서 가져옴) */
+        .modal-content .card-header {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .modal-content .card-lemma {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .modal-content .card-pos {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--secondary-color);
+            width: 100%;
+            margin-bottom: 0.25rem;
+        }
+        .modal-content .card-content-section {
+            margin-top: 1.5rem;
+        }
+        .modal-content .card-content-section h3 {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-content .card-korean-meaning {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .modal-content .card-inflected {
+            font-size: 1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            line-height: 1.5;
+            word-break: break-all;
+        }
+       .modal-content .card-inflected span {
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+        .modal-content .card-example {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .modal-content .card-example-translation {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-top: 0.5rem;
+        }
+        .modal-content .tts-speaker-btn {
+            font-size: 1.5rem; /* 아이콘 크기 */
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0 0.5rem;
+            vertical-align: middle;
+            color: var(--secondary-color);
+            transition: color 0.2s ease;
+        }
+        .modal-content .tts-speaker-btn:hover {
+            color: var(--primary-color);
+        }
+        .modal-content .card-content-section h3 .tts-speaker-btn {
+            font-size: 1.2rem; /* 뒷면 아이콘은 조금 작게 */
+        }
+        /* --- 여기까지 --- */
 
     </style>
 </head>
@@ -188,10 +295,34 @@
         </div>
     </div>
 
+    <div id="word-modal-backdrop" class="modal-backdrop hidden">
+        <div id="word-modal-content" class="modal-content">
+            </div>
+    </div>
+
+
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const tableBody = document.getElementById('word-table-body');
+            // (추가) 모달 DOM 요소
+            const modalBackdrop = document.getElementById('word-modal-backdrop');
+            const modalContent = document.getElementById('word-modal-content');
+            
             let allWords = [];
+
+            // (추가) TTS 음성 출력 함수 (index.html에서 가져옴)
+            function speakText(text, lang = 'es-ES') {
+                if (!('speechSynthesis' in window)) {
+                    console.warn('Speech synthesis not supported.');
+                    return;
+                }
+                // 진행 중인 음성 출력이 있다면 취소
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            }
 
             try {
                 // 스페인어.txt 파일 로드
@@ -203,6 +334,13 @@
                 // allWords.sort((a, b) => a.rank - b.rank);
 
                 renderWordTable();
+
+                // (추가) 모달 닫기 이벤트 리스너
+                // 배경 클릭 시 닫기
+                modalBackdrop.addEventListener('click', hideWordModal);
+                // 모달 내부 클릭 시 이벤트 전파 중단 (배경 클릭으로 인식 방지)
+                modalContent.addEventListener('click', (e) => e.stopPropagation());
+
 
             } catch (error) {
                 console.error("단어 데이터 로딩 실패:", error);
@@ -235,18 +373,85 @@
                     tableRow.appendChild(lemmaCell);
                     tableRow.appendChild(meaningCell);
 
-                    // --- (수정) 행 클릭 이벤트 추가 ---
-                    tableRow.addEventListener('click', () => {
-                        // LocalStorage에 선택한 단어의 'rank' 저장
-                        localStorage.setItem('vocaCore9JumpToRank', word.rank);
-                        // 메인 학습 페이지로 이동
-                        window.location.href = 'index.html';
+                    // --- (수정) 행 클릭 이벤트 -> 모달 띄우기 ---
+                    tableRow.addEventListener('click', (e) => {
+                        e.stopPropagation(); // backdrop 클릭 이벤트 방지
+                        showWordModal(word);
                     });
                     // --- 여기까지 ---
 
                     tableBody.appendChild(tableRow);
                 });
             }
+
+            // (추가) 단어 모달을 표시하는 함수
+            function showWordModal(word) {
+                const inflectedFormsHTML = word.inflected_forms_found ? word.inflected_forms_found.join(', ') : 'N/A';
+                const categoryDisplayName = word.category || 'N/A';
+
+                // 모달에 표시될 HTML 컨텐츠 생성
+                const modalHTML = `
+                    <div class="card-header">
+                        <p class="card-pos">${word.part_of_speech} / ${categoryDisplayName}</p>
+                        <h2 class="card-lemma">${word.lemma}</h2>
+                        <button class="tts-speaker-btn" id="tts-lemma-btn-modal" title="단어 발음 듣기">🔊</button>
+                    </div>
+
+                    <div class="card-content-section">
+                        <h3>뜻</h3>
+                        <p class="card-korean-meaning">${word.korean_meaning}</p>
+                    </div>
+
+                    <div class="card-content-section">
+                        <h3>실제 기출 형태</h3>
+                        <p class="card-inflected"><span>[실제 기출 형태]</span> ${inflectedFormsHTML}</p>
+                    </div>
+
+                    <div class="card-content-section">
+                        <h3> <span>예문</span>
+                            <button class="tts-speaker-btn" id="tts-example-btn-modal" title="예문 발음 듣기">🔊</button>
+                        </h3>
+                        <p class="card-example">"${word.example_sentence_source || '예문 없음'}"</p>
+                        <p class="card-example-translation">${word.example_sentence_translation || '번역 없음'}</p>
+                    </div>
+                `;
+                
+                modalContent.innerHTML = modalHTML; // 생성된 HTML을 모달 컨텐츠 영역에 삽입
+
+                // 모달 내부의 TTS 버튼에 이벤트 리스너 연결
+                const ttsLemmaBtn = document.getElementById('tts-lemma-btn-modal');
+                const ttsExampleBtn = document.getElementById('tts-example-btn-modal');
+                
+                if (ttsLemmaBtn) {
+                    // 버튼 클릭 시 이벤트 전파 중단 (모달 닫힘 방지)
+                    ttsLemmaBtn.addEventListener('click', (e) => { 
+                        e.stopPropagation(); 
+                        speakText(word.lemma); 
+                    });
+                }
+                
+                if (ttsExampleBtn && word.example_sentence_source) {
+                    ttsExampleBtn.addEventListener('click', (e) => { 
+                        e.stopPropagation(); 
+                        speakText(word.example_sentence_source); 
+                    });
+                } else if (ttsExampleBtn) {
+                    // 예문이 없는 경우 버튼 비활성화
+                    ttsExampleBtn.disabled = true;
+                    ttsExampleBtn.style.opacity = 0.5;
+                }
+
+                // 모달 배경(backdrop)을 보이게 함
+                modalBackdrop.classList.remove('hidden');
+            }
+
+            // (추가) 단어 모달을 숨기는 함수
+            function hideWordModal() {
+                modalBackdrop.classList.add('hidden');
+                modalContent.innerHTML = ''; // 모달 내용을 비워 리소스 정리
+                window.speechSynthesis.cancel(); // 모달 닫을 때 음성 중지
+            }
+            
         });
     </script>
 
