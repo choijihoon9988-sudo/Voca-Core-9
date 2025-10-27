@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voca-Core 9: PDF 자료실</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --background-color: #f4f4f9;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--dark-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            min-height: 100vh;
+        }
+
+       .app-container {
+            width: 100%;
+            max-width: 900px; /* PDF 뷰어는 넓게 */
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+            background-color: var(--card-bg);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-size: 1.75rem;
+            color: var(--primary-color);
+        }
+
+       .navigation-links {
+           margin-top: 0.5rem;
+           display: flex;
+           justify-content: center;
+           gap: 1rem;
+           flex-wrap: wrap;
+       }
+       .navigation-links a {
+           font-size: 0.9rem;
+           color: var(--secondary-color);
+           text-decoration: none;
+           font-weight: 500;
+           padding: 0.25rem 0.5rem;
+           border-radius: 6px;
+           transition: all 0.2s ease;
+       }
+        .navigation-links a:hover {
+            color: var(--primary-color);
+            background-color: #e9ecef;
+        }
+
+
+       .tabs-container {
+            width: 100%;
+            background-color: #e9ecef;
+            border-radius: var(--border-radius);
+            padding: 5px;
+            margin-bottom: 1rem;
+       }
+
+       .tabs-grid {
+            display: flex;
+            flex-wrap: wrap; /* 좁은 화면에서 줄바꿈 */
+            gap: 5px;
+            justify-content: center; /* 탭 버튼 가운데 정렬 */
+       }
+
+       .tabs-grid button {
+            flex: 0 1 auto; /* 너비 자동, 늘어나지 않음 */
+            padding: 0.7rem 1rem; /* 좌우 패딩 늘림 */
+            border: none;
+            background-color: transparent;
+            color: var(--secondary-color);
+            font-size: 0.85rem; /* 글자 크기 살짝 줄임 */
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 9px;
+            transition: all 0.3s ease;
+            white-space: nowrap; /* 버튼 텍스트 줄바꿈 방지 */
+       }
+       .tabs-grid button:hover:not(.active) {
+            background-color: #dfe3e7;
+       }
+       .tabs-grid button.active {
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+       }
+
+       .pdf-viewer-container {
+            width: 100%;
+            height: 75vh; /* 화면 높이의 75% */
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            overflow: hidden; /* embed 태그가 넘치지 않도록 */
+            display: flex; /* 로딩 메시지 중앙 정렬 */
+            justify-content: center;
+            align-items: center;
+       }
+
+        #pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none; /* embed 테두리 제거 */
+        }
+       .loading-message {
+           color: var(--secondary-color);
+           font-style: italic;
+       }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>PDF 자료실</h1>
+            <div class="navigation-links">
+                <a href="wordlist.html">&larr; 전체 단어 목록</a>
+                <a href="index.html">빈출 순서 학습 &rarr;</a>
+            </div>
+        </header>
+
+        <nav class="tabs-container">
+            <div class="tabs-grid" id="pdf-tabs">
+                </div>
+        </nav>
+
+        <div class="pdf-viewer-container">
+            <p id="viewer-message" class="loading-message">PDF를 선택해주세요.</p>
+            <embed id="pdf-viewer" src="" type="application/pdf" style="display: none;">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabsContainer = document.getElementById('pdf-tabs');
+            const pdfViewer = document.getElementById('pdf-viewer');
+            const viewerMessage = document.getElementById('viewer-message');
+
+            // PDF 파일 정보 (탭 이름과 파일 경로)
+            // 연도/월/종류 순서대로 정렬 (09.pdf가 가장 오래된 23년 6월)
+            const pdfFiles = [
+                { name: "'23년 6월 모평", path: "09.pdf" },
+                { name: "'23년 9월 모평", path: "08.pdf" },
+                { name: "'23년 수능", path: "07.pdf" },
+                { name: "'24년 6월 모평", path: "06.pdf" },
+                { name: "'24년 9월 모평", path: "05.pdf" },
+                { name: "'24년 수능", path: "04.pdf" },
+                { name: "'25년 6월 모평", path: "03.pdf" },
+                { name: "'25년 9월 모평", path: "02.pdf" },
+                { name: "'25년 수능", path: "01.pdf" },
+            ];
+
+            // 탭 버튼 생성 및 이벤트 리스너 추가
+            pdfFiles.forEach((file, index) => {
+                const button = document.createElement('button');
+                button.textContent = file.name;
+                button.dataset.pdfSrc = file.path;
+                button.addEventListener('click', () => loadPdf(file.path, button));
+                tabsContainer.appendChild(button);
+
+                // 첫 번째 PDF를 기본으로 로드
+                if (index === pdfFiles.length - 1) { // 가장 최신 시험지('25년 수능')
+                    loadPdf(file.path, button);
+                }
+            });
+
+            // PDF 로드 함수
+            function loadPdf(pdfPath, clickedButton) {
+                // 메시지 숨기고 뷰어 표시
+                viewerMessage.style.display = 'none';
+                pdfViewer.style.display = 'block';
+
+                pdfViewer.setAttribute('src', pdfPath);
+
+                // 모든 버튼의 active 클래스 제거
+                document.querySelectorAll('#pdf-tabs button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                // 클릭된 버튼에 active 클래스 추가
+                clickedButton.classList.add('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
