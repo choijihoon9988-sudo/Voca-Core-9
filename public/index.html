@@ -567,6 +567,7 @@
 
             let lastQuizMode = 'grammar-quiz';
             let quizReturnIndex = 0;
+            let currentUtterance = null; // (v3.4) 모바일 TTS 재생을 위한 참조
 
             // --- UI 텍스트 매핑 ---
             const MODE_NAMES = {
@@ -592,17 +593,32 @@
             // stageFilterGrid 제거
 
 
-            // --- (F-09) TTS 음성 출력 함수 ---
+            // --- (F-09) TTS 음성 출력 함수 (v3.4 모바일 호환성 수정) ---
             function speakText(text, lang = 'es-ES') {
                 if (!('speechSynthesis' in window)) {
                     alert('죄송합니다. 이 브라우저는 음성 합성을 지원하지 않습니다.');
                     return;
                 }
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = lang;
-                utterance.rate = 0.9;
-                window.speechSynthesis.speak(utterance);
+                
+                // 이전 발음이 있다면 취소
+                window.speechSynthesis.cancel(); 
+
+                // 모바일(특히 iOS)에서 SpeechSynthesisUtterance 객체가 
+                // 가비지 컬렉션(GC)되어 발음이 중단되는 것을 방지하기 위해
+                // 참조를 유지합니다.
+                currentUtterance = new SpeechSynthesisUtterance(text);
+                currentUtterance.lang = lang;
+                currentUtterance.rate = 0.9;
+                
+                currentUtterance.onerror = (event) => {
+                    console.error('SpeechSynthesisUtterance.onerror', event);
+                    currentUtterance = null; // 오류 발생 시 참조 해제
+                };
+                currentUtterance.onend = () => {
+                    currentUtterance = null; // 발음 완료 시 참조 해제
+                };
+
+                window.speechSynthesis.speak(currentUtterance);
             }
 
             // --- 유틸리티 함수 ---

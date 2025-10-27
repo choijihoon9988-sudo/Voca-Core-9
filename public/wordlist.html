@@ -404,6 +404,7 @@
             const btnSavePdf = document.getElementById('btn-save-pdf'); // (v3.4) PDF 저장 버튼
             
             let allWords = [];
+            let currentUtterance = null; // (v3.4) 모바일 TTS 재생용 참조
 
             // (v3.3) 카테고리 이름 매핑 (축약)
              const CATEGORY_NAMES = {
@@ -412,16 +413,30 @@
                  '의문사/감탄사': '의문사/감탄'
              };
 
+            // (v3.4 모바일 호환성 수정)
             function speakText(text, lang = 'es-ES') {
                 if (!('speechSynthesis' in window)) {
                     console.warn('Speech synthesis not supported.');
                     return;
                 }
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = lang;
-                utterance.rate = 0.9;
-                window.speechSynthesis.speak(utterance);
+                
+                window.speechSynthesis.cancel(); // 이전 발음 취소
+
+                // 모바일(특히 iOS)에서 Utterance 객체가 가비지 컬렉션되어
+                // 발음이 중단되는 것을 방지하기 위해 참조를 유지합니다.
+                currentUtterance = new SpeechSynthesisUtterance(text);
+                currentUtterance.lang = lang;
+                currentUtterance.rate = 0.9;
+
+                currentUtterance.onerror = (event) => {
+                    console.error('SpeechSynthesisUtterance.onerror', event);
+                    currentUtterance = null;
+                };
+                currentUtterance.onend = () => {
+                    currentUtterance = null;
+                };
+                
+                window.speechSynthesis.speak(currentUtterance);
             }
 
             try {
