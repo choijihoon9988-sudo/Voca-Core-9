@@ -185,18 +185,44 @@
             transform: rotateY(180deg);
         }
 
+        /* --- (F-09) TTS 버튼 스타일 --- */
+       .tts-speaker-btn {
+            font-size: 1.5rem; /* 아이콘 크기 */
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0 0.5rem;
+            vertical-align: middle;
+            color: var(--secondary-color);
+            transition: color 0.2s ease;
+        }
+       .tts-speaker-btn:hover {
+            color: var(--primary-color);
+        }
+
         /* --- 카드 내부 콘텐츠 스타일 --- */
+        
+        /* (F-09) 카드 앞면 정렬용 */
+       .card-front-header {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap; /* 좁은 화면에서 줄바꿈 */
+       }
+
        .card-lemma {
             font-size: 2.5rem;
             font-weight: bold;
             color: var(--primary-color);
             margin-bottom: 0.5rem;
+            margin-right: 0.5rem; /* (F-09) 버튼과의 간격 */
         }
 
        .card-pos {
             font-size: 1rem;
             font-style: italic;
             color: var(--secondary-color);
+            width: 100%; /* (F-09) 정렬을 위해 */
+            margin-bottom: 0.25rem;
         }
 
        .card-content-section {
@@ -214,6 +240,15 @@
             border-bottom: 1px solid #eee;
             padding-bottom: 0.5rem;
             margin-bottom: 0.75rem;
+            
+            /* (F-09) TTS 버튼 정렬용 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+       .card-content-section h3 .tts-speaker-btn {
+            font-size: 1.2rem; /* 뒷면 아이콘은 조금 작게 */
         }
 
        .card-korean-meaning {
@@ -566,6 +601,21 @@
             const categoryButtons = document.querySelectorAll('.category-btn'); // (v3.0)
             const btnBackToQuiz = document.getElementById('btn-back-to-quiz');
             
+            // --- (F-09) TTS 음성 출력 함수 ---
+            function speakText(text, lang = 'es-ES') {
+                if (!'speechSynthesis' in window) {
+                    alert('죄송합니다. 이 브라우저는 음성 합성을 지원하지 않습니다.');
+                    return;
+                }
+                // 진행 중인 음성 중지 (연속 클릭 시)
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9; // 약간 느린 속도
+                window.speechSynthesis.speak(utterance);
+            }
+            
             // --- 유틸리티 함수 ---
             const shuffleArray = (array) => {
                 for (let i = array.length - 1; i > 0; i--) {
@@ -718,13 +768,14 @@
                 const word = filteredWords[currentIndex];
                 const inflectedFormsHTML = word.inflected_forms_found.join(', ');
 
+                // (F-09) HTML 구조 수정 (TTS 버튼 추가)
                 const cardHTML = `
                     <div class="card-container ${forceFlip ? 'is-flipped' : ''}" id="card-container">
                         <div class="card__inner">
                             <div class="card__face card__face--front">
-                                <div>
-                                    <p class="card-pos">${word.part_of_speech} / ${word.category}</p>
+                                <div class="card-front-header"> <p class="card-pos">${word.part_of_speech} / ${word.category}</p>
                                     <h2 class="card-lemma">${word.lemma}</h2>
+                                    <button class="tts-speaker-btn" id="tts-lemma-btn" title="단어 발음 듣기">🔊</button>
                                 </div>
                                 <div style="text-align:center; color: var(--secondary-color);">카드를 클릭하여 뜻 확인</div>
                             </div>
@@ -738,7 +789,9 @@
                                     <p class="card-inflected"><span>[실제 기출 형태]</span> ${inflectedFormsHTML}</p>
                                 </div>
                                 <div class="card-content-section">
-                                    <h3>예문</h3>
+                                    <h3> <span>예문</span>
+                                        <button class="tts-speaker-btn" id="tts-example-btn" title="예문 발음 듣기">🔊</button>
+                                    </h3>
                                     <p class="card-example">"${word.example_sentence_source}"</p>
                                     <p class="card-example-translation">${word.example_sentence_translation}</p>
                                 </div>
@@ -748,6 +801,25 @@
                 `;
                 mainContent.innerHTML = cardHTML;
                 
+                // (F-09) TTS 이벤트 리스너 추가
+                const ttsLemmaBtn = document.getElementById('tts-lemma-btn');
+                const ttsExampleBtn = document.getElementById('tts-example-btn');
+                
+                if (ttsLemmaBtn) {
+                    ttsLemmaBtn.addEventListener('click', (e) => {
+                        e.stopPropagation(); // 카드 뒤집기 방지
+                        speakText(word.lemma);
+                    });
+                }
+                
+                if (ttsExampleBtn) {
+                    ttsExampleBtn.addEventListener('click', (e) => {
+                        e.stopPropagation(); // 카드 뒤집기 방지
+                        speakText(word.example_sentence_source);
+                    });
+                }
+                
+                // 카드 뒤집기 리스너
                 document.getElementById('card-container').addEventListener('click', () => {
                     document.getElementById('card-container').classList.toggle('is-flipped');
                 });
