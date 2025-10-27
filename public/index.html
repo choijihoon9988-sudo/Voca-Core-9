@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voca-Core 9 (v3.0): 수능 스페인어</title>
+    <title>Voca-Core 9 (v4.0): 수능 스페인어</title>
     <style>
         /* --- CSS 변수 및 기본 스타일 --- */
         :root {
@@ -45,7 +45,7 @@
             max-width: 420px;
             display: flex;
             flex-direction: column;
-            gap: 1.25rem;
+            gap: 1rem; /* (v4.0) 탭이 사라져서 간격 살짝 줄임 */
         }
 
         header {
@@ -86,15 +86,45 @@
             transition: width 0.3s ease-in-out;
         }
         
-        /* --- (v3.0) 탭 공통 스타일 --- */
+        /* --- (v4.0) 드롭다운 모드 선택 --- */
+       .mode-selector-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: var(--card-bg);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+       }
+       .mode-selector-container label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+       }
+       #mode-select {
+            flex: 1;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 9px;
+            border: 2px solid #e0e0e0;
+            background-color: #fcfcfc;
+            color: var(--primary-color);
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='%23007bff' height='16' width='16'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+       }
+
+
+        /* --- (v3.0) 주제 필터 탭 스타일 --- */
        .tabs-container {
             width: 100%;
-            background-color: #e9ecef;
+            background-color: #E0E7FF; /* 주제 필터는 다른 색상 */
             border-radius: var(--border-radius);
             padding: 5px;
-        }
-       .tabs-container.category-filter {
-            background-color: #E0E7FF; /* 주제 필터는 다른 색상 */
        }
 
        .tabs-grid {
@@ -117,15 +147,12 @@
             transition: all 0.3s ease;
        }
        .tabs-grid button:hover:not(.active) {
-            background-color: #dfe3e7;
+            background-color: #d1d9ff;
        }
        .tabs-grid button.active {
             background-color: var(--card-bg);
-            color: var(--primary-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-       }
-       .category-filter .tabs-grid button.active {
             color: #3730A3; /* 주제 필터 활성 색상 */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
        }
        
        /* (v3.0) 현재 학습 현황 텍스트 */
@@ -504,7 +531,7 @@
 
     <div class="app-container">
         <header>
-            <h1>Voca-Core 9 (v3.0)</h1>
+            <h1>Voca-Core 9 (v4.0)</h1>
         </header>
 
         <section class="progress-container">
@@ -514,14 +541,15 @@
             </div>
         </section>
 
-        <nav class="tabs-container mode-tabs">
-            <div class="tabs-grid">
-                <button class="mode-btn active" data-mode="card">플래시카드</button>
-                <button class="mode-btn" data-mode="review">'몰라요' 복습</button>
-                <button class="mode-btn" data-mode="grammar-quiz">문법 퀴즈</button>
-                <button class="mode-btn" data-mode="cloze-quiz">예문 퀴즈</button>
-            </div>
-        </nav>
+        <section class="mode-selector-container">
+            <label for="mode-select">학습 모드:</label>
+            <select id="mode-select">
+                <option value="card">플래시카드</option>
+                <option value="review">'몰라요' 복습</option>
+                <option value="grammar-quiz">문법 퀴즈</option>
+                <option value="cloze-quiz">예문 퀴즈</option>
+            </select>
+        </section>
 
         <section class="tabs-container category-filter">
             <div class="tabs-grid" id="category-filter-grid">
@@ -583,6 +611,8 @@
                 '여행 및 문화': '여행/문화',
                 '학교 및 학습': '학교/학습',
                 '핵심 형용사': '핵심 형용사'
+                // (v4.0) '핵심 형용사/부사' 카테고리가 데이터에 있으므로 추가
+                '핵심 형용사/부사': '핵심 형용사/부사'
             };
 
 
@@ -597,11 +627,12 @@
             const btnNext = document.getElementById('btn-next');
             const btnKnown = document.getElementById('btn-known');
             const btnUnknown = document.getElementById('btn-unknown');
-            const modeButtons = document.querySelectorAll('.mode-btn');
+            const modeSelect = document.getElementById('mode-select'); // (v4.0)
             const categoryButtons = document.querySelectorAll('.category-btn'); // (v3.0)
             const btnBackToQuiz = document.getElementById('btn-back-to-quiz');
             
             // --- (F-09) TTS 음성 출력 함수 ---
+            // (v3.0 코드에 이미 존재함)
             function speakText(text, lang = 'es-ES') {
                 if (!'speechSynthesis' in window) {
                     alert('죄송합니다. 이 브라우저는 음성 합성을 지원하지 않습니다.');
@@ -641,7 +672,7 @@
 
                 } catch (error) {
                     console.error("단어 데이터 로딩 실패:", error);
-                    mainContent.innerHTML = `<div class="message-container"><p>단어 파일을 불러오는 데 실패했습니다.<br>스페인어.txt 파일이 같은 폴더에 있는지 확인해주세요.</p></div>`;
+                    mainContent.innerHTML = `<div class="message-container"><p>단어 파일을 불러오는 데 실패했습니다.<br>'스페인어.txt' 파일이 같은 폴더에 있는지 확인해주세요.</p></div>`;
                     progressText.textContent = '오류 발생';
                 }
             }
@@ -649,7 +680,8 @@
             // (v3.0) 카테고리별 단어 개수 UI에 표시
             function updateCategoryCounts() {
                 const categoryCounts = allWords.reduce((acc, word) => {
-                    acc[word.category] = (acc[word.category] || 0) + 1;
+                    const category = word.category || '기타'; // (v4.0) 카테고리 없는 경우 대비
+                    acc[category] = (acc[category] || 0) + 1;
                     return acc;
                 }, {});
 
@@ -658,11 +690,31 @@
                     if (category === 'all') {
                         btn.textContent = `전체 (${allWords.length})`;
                     } else if (categoryCounts[category]) {
-                        btn.textContent = `${CATEGORY_NAMES[category]} (${categoryCounts[category]})`;
+                        // (v4.0) CATEGORY_NAMES 맵 사용
+                        btn.textContent = `${CATEGORY_NAMES[category] || category} (${categoryCounts[category]})`;
                     } else {
-                        btn.classList.add('hidden'); // 데이터에 없는 카테고리면 숨김
+                        // (v4.0) 데이터에 없는 카테고리면 숨김 (예: 핵심 형용사)
+                         if (category !== '핵심 형용사/부사') { // 맵에 없는 카테고리명 버튼 숨기기
+                             const categoryExists = Object.keys(categoryCounts).includes(category);
+                             if (!categoryExists) btn.classList.add('hidden');
+                         }
                     }
                 });
+                
+                // (v4.0) 데이터에 '핵심 형용사/부사'가 있으므로, '핵심 형용사' 버튼은 숨김
+                const oldCategoryBtn = document.querySelector('button[data-category="핵심 형용사"]');
+                if (oldCategoryBtn && categoryCounts['핵심 형용사/부사']) {
+                    oldCategoryBtn.classList.add('hidden');
+                    // 대신 '핵심 형용사/부사' 버튼을 동적으로 추가 (혹은 HTML에 미리 추가)
+                    // 여기서는 간단하게, HTML에 이미 '핵심 형용사'가 있으니 맵핑만 확인
+                    // 아, HTML에 "핵심 형용사"만 있구나. 이걸 "핵심 형용사/부사"로 바꿔주자.
+                    if (oldCategoryBtn && categoryCounts['핵심 형용사/부사']) {
+                         oldCategoryBtn.classList.remove('hidden');
+                         oldCategoryBtn.dataset.category = '핵심 형용사/부사';
+                         oldCategoryBtn.textContent = `형용사/부사 (${categoryCounts['핵심 형용사/부사']})`;
+                         CATEGORY_NAMES['핵심 형용사/부사'] = '형용사/부사'; // 맵 업데이트
+                    }
+                }
             }
 
             // --- 로컬 스토리지 관리 ---
@@ -719,6 +771,7 @@
             }
             
             // --- 모드 및 카테고리 설정 ---
+            // (v4.0) setMode 수정
             function setMode(mode) {
                 currentMode = mode;
                 
@@ -727,10 +780,10 @@
                 btnPrev.classList.remove('hidden');
                 btnNext.classList.remove('hidden');
 
-                // 버튼 활성 상태 업데이트
-                modeButtons.forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.mode === mode);
-                });
+                // (v4.0) 드롭다운 값 업데이트 (외부에서 setMode 호출 시)
+                if (modeSelect.value !== mode) {
+                    modeSelect.value = mode;
+                }
                 
                 if (mode === 'grammar-quiz' || mode === 'cloze-quiz') {
                     lastQuizMode = mode;
@@ -773,7 +826,8 @@
                     <div class="card-container ${forceFlip ? 'is-flipped' : ''}" id="card-container">
                         <div class="card__inner">
                             <div class="card__face card__face--front">
-                                <div class="card-front-header"> <p class="card-pos">${word.part_of_speech} / ${word.category}</p>
+                                <div class="card-front-header">
+                                    <p class="card-pos">${word.part_of_speech} / ${CATEGORY_NAMES[word.category] || word.category}</p>
                                     <h2 class="card-lemma">${word.lemma}</h2>
                                     <button class="tts-speaker-btn" id="tts-lemma-btn" title="단어 발음 듣기">🔊</button>
                                 </div>
@@ -980,15 +1034,16 @@
             }
             
             // --- '즉시 복습' 점프 기능 (v2.1) ---
+            // (v4.0) 수정
             function jumpToReview(lemma) {
                 quizReturnIndex = currentIndex; // 퀴즈 위치 저장
 
                 const reviewIndex = allWords.findIndex(w => w.lemma === lemma);
                 if (reviewIndex === -1) return;
 
-                // (v3.0) '플래시카드' 모드로 강제 전환 (카테고리 필터는 유지됨)
+                // (v4.0) '플래시카드' 모드로 강제 전환 (카테고리 필터는 유지됨)
                 currentMode = 'card'; // 모드만 임시 변경
-                modeButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.mode === 'card'));
+                modeSelect.value = 'card'; // (v4.0) 드롭다운 값 변경
                 
                 knowledgeControls.classList.add('hidden');
                 
@@ -1025,7 +1080,8 @@
             // (v3.0) 현재 학습 현황 (필터 탭 하단)
             function updateContextText(categoryTotal) {
                 const modeName = MODE_NAMES[currentMode] || '알 수 없음';
-                const categoryName = CATEGORY_NAMES[currentCategory] || '알 수 없음';
+                // (v4.0) 카테고리 맵핑 수정
+                const categoryName = CATEGORY_NAMES[currentCategory] || currentCategory;
                 
                 let text = `모드: ${modeName} | 주제: ${categoryName}`;
                 
@@ -1088,7 +1144,13 @@
                     filteredWords.splice(currentIndex, 1);
                     setTimeout(() => { 
                         renderCard(); // 인덱스 증가 없이 다음 카드 렌더링
-                        updateContextText(filteredWords.length + 1); // (v3.0) 맥락 텍스트 업데이트
+                        // (v4.0) 복습 모드에서 카테고리 총 개수를 올바르게 참조
+                        let categoryTotal = allWords.length;
+                        if (currentCategory !== 'all') {
+                            categoryTotal = allWords.filter(w => w.category === currentCategory).length;
+                        }
+                        const reviewTotal = allWords.filter(w => !progress[w.lemma] && (currentCategory === 'all' || w.category === currentCategory)).length;
+                        updateContextText(reviewTotal + 1); // (v4.0) 맥락 텍스트 업데이트 (방금 1개 줄었으니 +1)
                     }, 200);
                 } else {
                     setTimeout(() => { handleNavigation(1); }, 200); 
@@ -1101,9 +1163,8 @@
             btnKnown.addEventListener('click', () => markWord(true));
             btnUnknown.addEventListener('click', () => markWord(false));
             
-            modeButtons.forEach(btn => {
-                btn.addEventListener('click', () => setMode(btn.dataset.mode));
-            });
+            // (v4.0) 탭 -> 드롭다운 리스너
+            modeSelect.addEventListener('change', (e) => setMode(e.target.value));
             
             // (v3.0)
             categoryButtons.forEach(btn => {
