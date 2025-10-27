@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voca-Core 9 (v2.0): 수능 스페인어</title>
+    <title>Voca-Core 9 (v2.1): 수능 스페인어</title>
     <style>
         /* --- CSS 변수 및 기본 스타일 --- */
         :root {
@@ -11,6 +11,7 @@
             --secondary-color: #6c757d;
             --success-color: #28a745;
             --danger-color: #dc3545;
+            --warning-color: #ffc107;
             --light-color: #f8f9fa;
             --dark-color: #343a40;
             --background-color: #f4f4f9;
@@ -44,7 +45,7 @@
             max-width: 420px;
             display: flex;
             flex-direction: column;
-            gap: 1.25rem; /* 1.5rem -> 1.25rem */
+            gap: 1.25rem;
         }
 
         header {
@@ -85,7 +86,7 @@
             transition: width 0.3s ease-in-out;
         }
         
-        /* --- (v2.0) 학습 모드 탭 --- */
+        /* --- 학습 모드 탭 --- */
        .mode-tabs {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -123,7 +124,7 @@
        .card-container {
             width: 100%;
             height: 450px;
-            perspective: 1000px; /* 3D 효과를 위한 원근감 설정 */
+            perspective: 1000px;
             cursor: pointer;
         }
 
@@ -132,18 +133,18 @@
             width: 100%;
             height: 100%;
             transition: transform 0.6s;
-            transform-style: preserve-3d; /* 자식 요소가 3D 공간에 있도록 설정 */
+            transform-style: preserve-3d;
         }
         
        .card-container.is-flipped .card__inner {
-            transform: rotateY(180deg); /* is-flipped 클래스가 추가되면 Y축으로 180도 회전 */
+            transform: rotateY(180deg);
         }
 
        .card__face {
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden; /* 카드의 뒷면은 보이지 않게 처리 */
+            backface-visibility: hidden;
             background-color: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
@@ -155,7 +156,7 @@
         }
 
        .card__face--back {
-            transform: rotateY(180deg); /* 뒷면은 미리 180도 회전시켜 놓음 */
+            transform: rotateY(180deg);
         }
 
         /* --- 카드 내부 콘텐츠 스타일 --- */
@@ -217,7 +218,7 @@
             color: var(--dark-color);
         }
         
-        /* --- (v2.0) 퀴즈 UI --- */
+        /* --- 퀴즈 UI --- */
        .quiz-container {
             width: 100%;
             height: 450px;
@@ -290,6 +291,53 @@
             color: white;
         }
         
+        /* --- (v2.1) 퀴즈 피드백 UI --- */
+       .quiz-feedback {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border-top: 1px solid #eee;
+            padding-top: 1.5rem;
+        }
+        
+       .quiz-feedback p {
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+        }
+       .quiz-feedback p.correct { color: var(--success-color); }
+       .quiz-feedback p.incorrect { color: var(--danger-color); }
+
+       .quiz-feedback button {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+       .btn-review-mistake {
+            background-color: transparent;
+            border: 2px solid var(--warning-color);
+            color: var(--warning-color);
+        }
+       .btn-review-mistake:hover {
+            background-color: var(--warning-color);
+            color: var(--dark-color);
+       }
+        
+       .btn-next-quiz {
+            background-color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            color: white;
+       }
+       .btn-next-quiz:hover {
+            opacity: 0.8;
+       }
+        
         /* --- 컨트롤 버튼 (알아요/몰라요) --- */
        .knowledge-controls {
             display: grid;
@@ -339,13 +387,25 @@
             background-color: var(--card-bg);
             color: var(--primary-color);
             border: none;
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 1rem;
             border-radius: var(--border-radius);
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 2px 6px rgba(0,0,0,0.08);
             transition: all 0.2s ease;
+            flex: 1; /* (v2.1) 버튼이 공간을 채우도록 */
         }
+       .navigation-controls button#btn-prev, 
+       .navigation-controls button#btn-next {
+            max-width: 48%; /* (v2.1) 이전/다음 버튼 크기 조절 */
+       }
+       
+       .navigation-controls button#btn-back-to-quiz {
+            background-color: var(--secondary-color); /* (v2.1) 퀴즈 복귀 버튼 */
+            color: white;
+            font-size: 0.9rem;
+       }
+        
        .navigation-controls button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.12);
@@ -383,7 +443,7 @@
 
     <div class="app-container">
         <header>
-            <h1>Voca-Core 9 (v2.0)</h1>
+            <h1>Voca-Core 9 (v2.1)</h1>
         </header>
 
         <section class="progress-container">
@@ -412,6 +472,7 @@
         </section>
 
         <footer class="navigation-controls" id="navigation-controls">
+            <button id="btn-back-to-quiz" class="hidden">◀ 퀴즈로 돌아가기</button>
             <button id="btn-prev">◀ 이전</button>
             <button id="btn-next">다음 ▶</button>
         </footer>
@@ -425,8 +486,12 @@
             let filteredWords = [];
             let currentIndex = 0;
             let progress = {};
-            let currentMode = 'card'; // v2.0: card, review, grammar-quiz, cloze-quiz
+            let currentMode = 'card';
             const LOCAL_STORAGE_KEY = 'vocaCore9Progress';
+            
+            // (v2.1) '즉시 복습'을 위한 상태 변수
+            let lastQuizMode = 'grammar-quiz'; // 퀴즈 모드 ('grammar-quiz' or 'cloze-quiz')
+            let quizReturnIndex = 0; // 퀴즈로 돌아갈 때 사용할 인덱스
 
             // --- DOM 요소 참조 ---
             const mainContent = document.getElementById('main-content');
@@ -439,6 +504,7 @@
             const btnKnown = document.getElementById('btn-known');
             const btnUnknown = document.getElementById('btn-unknown');
             const modeButtons = document.querySelectorAll('.mode-btn');
+            const btnBackToQuiz = document.getElementById('btn-back-to-quiz'); // (v2.1)
             
             // --- 유틸리티 함수 ---
             const shuffleArray = (array) => {
@@ -460,7 +526,7 @@
                     allWords.sort((a, b) => a.rank - b.rank);
                     
                     loadProgress();
-                    setMode('card'); // 기본 모드를 'card'로 설정
+                    setMode('card');
 
                 } catch (error) {
                     console.error("단어 데이터 로딩 실패:", error);
@@ -474,60 +540,54 @@
                 try {
                     const savedProgress = localStorage.getItem(LOCAL_STORAGE_KEY);
                     progress = savedProgress ? JSON.parse(savedProgress) : {};
-                } catch (e) {
-                    console.error("진행률 데이터 파싱 실패:", e);
-                    progress = {};
-                }
+                } catch (e) { console.error("진행률 파싱 실패:", e); progress = {}; }
             }
 
             function saveProgress() {
                 try {
                     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(progress));
-                } catch (e) {
-                    console.error("진행률 저장 실패:", e);
-                }
+                } catch (e) { console.error("진행률 저장 실패:", e); }
             }
             
-            // --- v2.0: 학습 모드 및 단어 필터링 ---
+            // --- 학습 모드 및 단어 필터링 ---
             function setMode(mode) {
                 currentMode = mode;
                 currentIndex = 0;
 
+                // (v2.1) 퀴즈 복귀 버튼 숨김 처리
+                btnBackToQuiz.classList.add('hidden');
+                btnPrev.classList.remove('hidden');
+                btnNext.classList.remove('hidden');
+
                 // 버튼 활성 상태 업데이트
                 modeButtons.forEach(btn => {
-                    if (btn.dataset.mode === mode) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
+                    btn.classList.toggle('active', btn.dataset.mode === mode);
                 });
 
                 // 모드에 따른 단어 목록 필터링
                 if (mode === 'review') {
                     filteredWords = allWords.filter(word => !progress[word.lemma]);
                 } else {
-                    filteredWords = [...allWords]; // 다른 모든 모드는 전체 단어 사용
+                    filteredWords = [...allWords];
                 }
 
-                // 퀴즈 모드일 경우 목록 섞기 (효율성)
+                // 퀴즈 모드일 경우
                 if (mode === 'grammar-quiz' || mode === 'cloze-quiz') {
+                    lastQuizMode = mode; // (v2.1) 마지막 퀴즈 모드 저장
                     filteredWords = shuffleArray(filteredWords);
-                }
-
-                // UI 렌더링
-                if (mode === 'card' || mode === 'review') {
-                    knowledgeControls.classList.remove('hidden');
-                    renderCard();
-                } else {
-                    knowledgeControls.classList.add('hidden');
+                    knowledgeControls.classList.add('hidden'); // '알아요' 버튼 숨김
                     renderQuiz();
+                } else {
+                // 플래시카드 모드일 경우
+                    knowledgeControls.classList.remove('hidden'); // '알아요' 버튼 표시
+                    renderCard();
                 }
                 
                 updateProgressUI();
             }
 
-            // --- UI 렌더링: 플래시카드 (v1.0) ---
-            function renderCard() {
+            // --- UI 렌더링: 플래시카드 ---
+            function renderCard(forceFlip = false) { // (v2.1) '즉시 복습'을 위해 뒷면 강제 표시
                 if (filteredWords.length === 0 || currentIndex >= filteredWords.length) {
                     const message = (currentMode === 'review') 
                         ? '복습할 단어가 없습니다! 🎉' 
@@ -544,7 +604,7 @@
                 const inflectedFormsHTML = word.inflected_forms_found.join(', ');
 
                 const cardHTML = `
-                    <div class="card-container" id="card-container">
+                    <div class="card-container ${forceFlip ? 'is-flipped' : ''}" id="card-container">
                         <div class="card__inner">
                             <div class="card__face card__face--front">
                                 <div>
@@ -580,13 +640,19 @@
                 updateNavigation();
             }
             
-            // --- v2.0: UI 렌더링: 퀴즈 ---
+            // --- UI 렌더링: 퀴즈 ---
             function renderQuiz() {
+                // (v2.1) 퀴즈 모드에서는 네비게이션 버튼 숨김
+                navigationControls.classList.add('hidden');
+                
                 if (filteredWords.length === 0 || currentIndex >= filteredWords.length) {
                     mainContent.innerHTML = `<div class="message-container"><p>모든 퀴즈를 완료했습니다! 🥳</p></div>`;
                     updateNavigation();
                     return;
                 }
+
+                // (v2.1) 퀴즈 렌더링 시 네비게이션 다시 표시 (숨겼었으므로)
+                navigationControls.classList.remove('hidden');
 
                 const word = filteredWords[currentIndex];
                 let quizHTML = '';
@@ -609,44 +675,24 @@
                 updateNavigation();
             }
 
-            // --- v2.0: 문법 퀴즈(F-05) 생성기 ---
+            // --- 문법 퀴즈(F-05) 생성기 ---
             function generateGrammarQuiz(word) {
-                // 1. 정답 찾기 (긴 단어부터 찾아야 부분 일치 오류 없음)
                 const sortedForms = [...word.inflected_forms_found].sort((a, b) => b.length - a.length);
                 let correctForm = sortedForms.find(form => word.example_sentence_source.includes(form));
-                
-                if (!correctForm) { // 혹시 예외 발생 시 표제어로 대체
-                    correctForm = word.lemma;
-                }
-
-                // 2. 문제 문장 생성
+                if (!correctForm) correctForm = word.lemma;
                 const questionSentence = word.example_sentence_source.replace(correctForm, "<strong>_____</strong>");
 
-                // 3. 보기 생성 (inflected_forms_found 활용)
                 let options = [...word.inflected_forms_found];
-                
-                // 보기가 4개 미만이면, 다른 단어의 inflected form으로 채우기 (더 똑똑하게)
                 while (options.length < 4 && allWords.length > 4) {
                     const randomWord = allWords[Math.floor(Math.random() * allWords.length)];
                     if (randomWord.lemma !== word.lemma) {
                         const randomForm = randomWord.inflected_forms_found[Math.floor(Math.random() * randomWord.inflected_forms_found.length)];
-                        if (!options.includes(randomForm)) {
-                            options.push(randomForm);
-                        }
+                        if (!options.includes(randomForm)) options.push(randomForm);
                     }
                 }
-                
-                // 4개가 넘으면, 정답을 포함하여 4개만 랜덤 선택
                 if (options.length > 4) {
-                    options = shuffleArray(options);
-                    let newOptions = [correctForm];
-                    while (newOptions.length < 4) {
-                        const form = options.pop();
-                        if (form !== correctForm && !newOptions.includes(form)) {
-                            newOptions.push(form);
-                        }
-                    }
-                    options = newOptions;
+                    options = shuffleArray(options.filter(opt => opt !== correctForm));
+                    options = [correctForm, ...options.slice(0, 3)];
                 }
                 
                 options = shuffleArray(options);
@@ -664,20 +710,20 @@
                         <div class="quiz-options">
                             ${optionsHTML}
                         </div>
+                        <div classid="quiz-feedback" class="quiz-feedback hidden">
+                            <p id="feedback-message"></p>
+                            <button id="btn-review-mistake" class="btn-review-mistake"></button>
+                            <button id="btn-next-quiz" class="btn-next-quiz">다음 문제로 ▶</button>
+                        </div>
                     </div>`;
             }
 
-            // --- v2.0: 예문 퀴즈(F-06) 생성기 ---
+            // --- 예문 퀴즈(F-06) 생성기 ---
             function generateClozeQuiz(word) {
-                // 1. 문제 문장 생성 (표제어를 빈칸으로)
-                // RegExp를 사용하여 대소문자 구분 없이, 전체 단어 일치(경계)로 찾기
                 const regex = new RegExp(`\\b${word.lemma}\\b`, 'gi');
                 const questionSentence = word.example_sentence_source.replace(regex, "<strong>_____</strong>");
-                
-                // 2. 힌트
                 const hint = `힌트: ${word.korean_meaning}`;
 
-                // 3. 보기 생성 (정답 1 + 오답 3)
                 let options = [word.lemma];
                 while (options.length < 4 && allWords.length > 4) {
                     const randomWord = allWords[Math.floor(Math.random() * allWords.length)];
@@ -685,7 +731,6 @@
                         options.push(randomWord.lemma);
                     }
                 }
-                
                 options = shuffleArray(options);
 
                 const optionsHTML = options.map(opt => 
@@ -701,54 +746,123 @@
                         <div class="quiz-options">
                             ${optionsHTML}
                         </div>
+                        <div id="quiz-feedback" class="quiz-feedback hidden">
+                            <p id="feedback-message"></p>
+                            <button id="btn-review-mistake" class="btn-review-mistake"></button>
+                            <button id="btn-next-quiz" class="btn-next-quiz">다음 문제로 ▶</button>
+                        </div>
                     </div>`;
             }
             
-            // --- v2.0: 퀴즈 정답 처리 ---
+            // --- (v2.1) 퀴즈 정답 처리 (핵심 수정) ---
             function handleQuizAnswer(selectedOption, correctOption, buttonElement) {
                 // 모든 버튼 비활성화
                 document.querySelectorAll('.option-btn').forEach(btn => btn.disabled = true);
                 
+                const feedbackContainer = document.getElementById('quiz-feedback');
+                const feedbackMessage = document.getElementById('feedback-message');
+                const btnReviewMistake = document.getElementById('btn-review-mistake');
+                const btnNextQuiz = document.getElementById('btn-next-quiz');
+                
+                feedbackContainer.classList.remove('hidden');
+
+                const currentWord = filteredWords[currentIndex];
                 let isCorrect = (selectedOption === correctOption);
                 
                 if (isCorrect) {
                     buttonElement.classList.add('correct');
-                    // '알아요'로 자동 기록
-                    const currentWord = filteredWords[currentIndex];
+                    feedbackMessage.textContent = "정답입니다! 🥳";
+                    feedbackMessage.className = 'correct';
+                    btnReviewMistake.classList.add('hidden'); // 정답이므로 복습 버튼 숨김
+                    
                     progress[currentWord.lemma] = true;
-                    saveProgress();
-                    updateProgressUI();
                 } else {
                     buttonElement.classList.add('incorrect');
-                    // 정답 버튼 하이라이트
                     document.querySelector(`.option-btn[data-option="${correctOption}"]`).classList.add('correct');
-                    // '몰라요'로 자동 기록
-                    const currentWord = filteredWords[currentIndex];
+                    
+                    feedbackMessage.textContent = "아쉽네요. 다시 확인해볼까요?";
+                    feedbackMessage.className = 'incorrect';
+                    
+                    // (v2.1) 어떤 단어를 복습할지 결정
+                    let wordToReviewLemma = '';
+                    if (currentMode === 'grammar-quiz') {
+                        // '문법 퀴즈'는 현재 문제의 '표제어'를 복습 (예: 'amigo' 카드)
+                        wordToReviewLemma = currentWord.lemma;
+                    } else {
+                        // '예문 퀴즈'는 내가 '선택한 오답'의 표제어를 복습 (예: 'viaje')
+                        wordToReviewLemma = selectedOption;
+                    }
+                    
+                    btnReviewMistake.textContent = `❔ '${wordToReviewLemma}' 복습하기`;
+                    btnReviewMistake.classList.remove('hidden');
+                    btnReviewMistake.onclick = () => jumpToReview(wordToReviewLemma);
+                    
                     progress[currentWord.lemma] = false;
-                    saveProgress();
-                    updateProgressUI();
                 }
+                
+                saveProgress();
+                updateProgressUI();
 
-                // 1.5초 후 자동으로 다음 문제로 이동
-                setTimeout(() => {
-                    handleNavigation(1);
-                }, 1500);
+                // '다음 문제로' 버튼에 이벤트 리스너 연결
+                btnNextQuiz.onclick = () => handleNavigation(1);
+            }
+            
+            // --- (v2.1) '즉시 복습' 점프 기능 ---
+            function jumpToReview(lemma) {
+                quizReturnIndex = currentIndex; // 퀴즈 위치 저장
+
+                // lemma로 allWords에서 인덱스 찾기
+                const reviewIndex = allWords.findIndex(w => w.lemma === lemma);
+                if (reviewIndex === -1) return; // 단어 못 찾으면 실행 안함
+
+                // '플래시카드' 모드로 강제 전환
+                currentMode = 'card';
+                modeButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.mode === 'card');
+                });
+                
+                // '몰라요' 버튼 숨김 (복습 중이므로)
+                knowledgeControls.classList.add('hidden');
+                
+                // 네비게이션 버튼을 '퀴즈로 돌아가기'로 변경
+                navigationControls.classList.remove('hidden');
+                btnBackToQuiz.classList.remove('hidden');
+                btnPrev.classList.add('hidden');
+                btnNext.classList.add('hidden');
+                
+                // 해당 단어의 플래시카드 뒷면을 바로 렌더링
+                currentIndex = reviewIndex;
+                filteredWords = allWords; // 필터 목록을 전체 단어로 복구
+                renderCard(true); // 'true'를 전달하여 뒷면을 강제로 보여줌
             }
 
             // --- UI 업데이트: 진행률 ---
             function updateProgressUI() {
                 const totalCount = allWords.length;
                 if (totalCount === 0) return;
-
                 const knownCount = Object.values(progress).filter(isKnown => isKnown).length;
                 const percentage = (knownCount / totalCount) * 100;
-
                 progressText.textContent = `총 ${totalCount}개 중 ${knownCount}개 학습 완료`;
                 progressBarInner.style.width = `${percentage}%`;
             }
             
             // --- UI 업데이트: 네비게이션 버튼 ---
             function updateNavigation() {
+                // '퀴즈로 돌아가기' 버튼이 활성화되면, 이전/다음 버튼은 비활성화
+                if (!btnBackToQuiz.classList.contains('hidden')) {
+                    btnPrev.disabled = true;
+                    btnNext.disabled = true;
+                    return;
+                }
+                
+                // 퀴즈 모드에서는 네비게이션 버튼 비활성화 (퀴즈 피드백 버튼이 처리하므로)
+                if (currentMode === 'grammar-quiz' || currentMode === 'cloze-quiz') {
+                    navigationControls.classList.add('hidden');
+                    return;
+                }
+
+                // 플래시카드 모드일 때
+                navigationControls.classList.remove('hidden');
                 btnPrev.disabled = currentIndex === 0;
                 btnNext.disabled = currentIndex >= filteredWords.length - 1 || filteredWords.length === 0;
             }
@@ -766,9 +880,9 @@
                 } else if (newIndex >= filteredWords.length) {
                     // 마지막 단어/퀴즈에서 '다음' 누르면 완료 메시지 표시
                      if (currentMode === 'card' || currentMode === 'review') {
-                        renderCard(); // renderCard가 완료 메시지 처리
+                        renderCard(); // 완료 메시지 처리
                     } else {
-                        renderQuiz(); // renderQuiz가 완료 메시지 처리
+                        renderQuiz(); // 완료 메시지 처리
                     }
                 }
             }
@@ -776,24 +890,16 @@
             // --- 이벤트 핸들러: 플래시카드 상태 저장 ---
             function markWord(isKnown) {
                 if (filteredWords.length === 0 || currentIndex >= filteredWords.length) return;
-
                 const currentWord = filteredWords[currentIndex];
                 progress[currentWord.lemma] = isKnown;
                 saveProgress();
                 updateProgressUI();
 
                 if (currentMode === 'review' && isKnown) {
-                    // '몰라요' 복습 중 '알아요' 누르면 실시간으로 목록에서 제거
                     filteredWords.splice(currentIndex, 1);
-                    
-                    setTimeout(() => {
-                        renderCard(); // 인덱스 증가 없이 다음 카드 렌더링
-                    }, 200);
-
+                    setTimeout(() => { renderCard(); }, 200);
                 } else {
-                    setTimeout(() => {
-                        handleNavigation(1); // 다음 단어로 이동
-                    }, 200); 
+                    setTimeout(() => { handleNavigation(1); }, 200); 
                 }
             }
             
@@ -805,6 +911,15 @@
             
             modeButtons.forEach(btn => {
                 btn.addEventListener('click', () => setMode(btn.dataset.mode));
+            });
+            
+            // (v2.1) '퀴즈로 돌아가기' 버튼 리스너
+            btnBackToQuiz.addEventListener('click', () => {
+                // 마지막 퀴즈 모드로 전환
+                setMode(lastQuizMode);
+                // 원래 풀던 퀴즈 인덱스로 이동
+                currentIndex = quizReturnIndex;
+                renderQuiz();
             });
 
             // --- 애플리케이션 시작 ---
