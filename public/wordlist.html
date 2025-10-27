@@ -126,26 +126,22 @@
             z-index: 10; 
         }
         
-        /* (v3.4) 4열 기준 너비 재조정 - Stage 정보 제거 */
+        /* (v3.5) 3열 기준으로 너비 재조정 - 주제 열 제거 */
         th:first-child, td:first-child { /* 순번 */
             width: 10%;
             text-align: center;
             color: var(--secondary-color);
         }
-        th:nth-child(2), td:nth-child(2) { /* 스페인어 */
-            width: 30%;
+        th:nth-child(2), td:nth-child(2) { /* 스페인어 (Lemma) */
+            width: 40%;
             color: var(--primary-color);
             font-weight: 500;
         }
         th:nth-child(3), td:nth-child(3) { /* 한국어 뜻 */
-            width: 35%;
+            width: 50%;
             color: var(--dark-color);
         }
-        th:last-child, td:last-child { /* 주제 */
-            width: 25%;
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-        }
+        /* th:last-child, td:last-child { (기존 '주제' 열 CSS 삭제) */
 
 
         /* (수정) 행 스타일 */
@@ -330,11 +326,11 @@
                         <th>순번 (Rank)</th>
                         <th>스페인어 (Lemma)</th>
                         <th>한국어 뜻</th>
-                        <th>주제</th> </tr>
+                        </tr>
                 </thead>
                 <tbody id="word-table-body">
                     <tr>
-                        <td colspan="4" class="loading-message">단어 목록 로딩 중...</td> </tr>
+                        <td colspan="3" class="loading-message">단어 목록 로딩 중...</td> </tr>
                 </tbody>
             </table>
         </div>
@@ -400,7 +396,8 @@
 
             } catch (error) {
                 console.error("단어 데이터 로딩 실패:", error);
-                tableBody.innerHTML = `<tr><td colspan="4" class="loading-message">단어 파일을 불러오는 데 실패했습니다.<br>'스페인어.txt' 파일이 같은 폴더에 있는지 확인해주세요.</td></tr>`; // (v3.3) colspan=4
+                // colspan을 3으로 변경
+                tableBody.innerHTML = `<tr><td colspan="3" class="loading-message">단어 파일을 불러오는 데 실패했습니다.<br>'스페인어.txt' 파일이 같은 폴더에 있는지 확인해주세요.</td></tr>`; 
                 categoryFilterGrid.innerHTML = `<button class="category-btn active" data-category="all">필터 로드 실패</button>`; // (v3.3)
             }
 
@@ -460,17 +457,18 @@
             function renderWordTable() {
                 tableBody.innerHTML = '';
                 if (allWords.length === 0) {
-                     tableBody.innerHTML = `<tr><td colspan="4" class="loading-message">표시할 단어가 없습니다.</td></tr>`; 
+                     // colspan을 3으로 변경
+                     tableBody.innerHTML = `<tr><td colspan="3" class="loading-message">표시할 단어가 없습니다.</td></tr>`; 
                      return;
                 }
 
                 allWords.forEach((word) => { 
                     const tableRow = document.createElement('tr');
                     
-                    // (v3.3) 행에 data-category 속성 추가
+                    // (v3.3) 필터링을 위해 행에 data-category 속성 유지
                     tableRow.dataset.category = word.category || '기타';
 
-                    // (v3.4) 순번 셀: Stage 언급 제거
+                    // (v3.4) 순번 셀
                     const rankCell = document.createElement('td');
                     rankCell.textContent = word.rank; 
                     rankCell.style.textAlign = 'center';
@@ -482,15 +480,11 @@
                     const meaningCell = document.createElement('td');
                     meaningCell.textContent = word.korean_meaning;
                     
-                    // (v3.3) 주제 셀 추가
-                    const categoryCell = document.createElement('td');
-                    const displayName = CATEGORY_NAMES[word.category] || word.category || '기타';
-                    categoryCell.textContent = displayName;
+                    // (v3.5) 주제 셀 생성 및 추가 로직 제거
 
                     tableRow.appendChild(rankCell);
                     tableRow.appendChild(lemmaCell);
                     tableRow.appendChild(meaningCell);
-                    tableRow.appendChild(categoryCell); 
 
                     tableRow.addEventListener('click', (e) => {
                         e.stopPropagation(); 
