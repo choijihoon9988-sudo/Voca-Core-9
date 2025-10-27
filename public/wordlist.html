@@ -182,6 +182,15 @@
        .navigation-button.secondary:hover {
             background-color: #0056b3; 
        }
+       
+       /* (v3.4) 새로 추가된 버튼 스타일 */
+       .navigation-button#btn-save-pdf {
+            background-color: #5A6A7E; /* 짙은 회색으로 구분 */
+       }
+       .navigation-button#btn-save-pdf:hover {
+            background-color: #4A5A6E; 
+       }
+
 
        .loading-message {
            text-align: center;
@@ -302,7 +311,45 @@
             font-size: 1.2rem; /* 뒷면 아이콘은 조금 작게 */
         }
         /* --- 여기까지 --- */
+        
+        /* --- PDF 저장(인쇄)용 스타일 --- */
+        @media print {
+            /* 모든 것을 기본적으로 숨김 */
+            body * {
+                visibility: hidden;
+            }
+            
+            /* 인쇄할 영역만 보이게 함 */
+            #wordlist-to-print, #wordlist-to-print * {
+                visibility: visible;
+                /* 테이블 관련 요소의 배경/스타일 조정 */
+                background-color: transparent !important;
+                color: black !important;
+            }
 
+            /* 인쇄 영역을 페이지에 맞춤 */
+           .app-container, .word-table-container, #wordlist-to-print {
+                width: 100% !important;
+                max-width: none !important;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                position: static;
+                /* 인쇄 용지 가장자리로 테이블이 확장되도록 */
+                transform: none; 
+            }
+            
+            /* 테이블 헤더 sticky 해제 (인쇄 시) */
+            th {
+                position: static; 
+                background-color: #f0f0f0 !important; /* 인쇄 시 헤더 배경색 */
+            }
+            
+            /* 테이블 테두리 강제 표시 */
+            th, td {
+                 border-color: #000 !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -319,24 +366,24 @@
             </div>
         </nav>
 
-        <div class="word-table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>순번 (Rank)</th>
-                        <th>스페인어 (Lemma)</th>
-                        <th>한국어 뜻</th>
-                        </tr>
-                </thead>
-                <tbody id="word-table-body">
-                    <tr>
-                        <td colspan="3" class="loading-message">단어 목록 로딩 중...</td> </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="button-container">
+        <div id="wordlist-to-print"> <div class="word-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>순번 (Rank)</th>
+                            <th>스페인어 (Lemma)</th>
+                            <th>한국어 뜻</th>
+                            </tr>
+                    </thead>
+                    <tbody id="word-table-body">
+                        <tr>
+                            <td colspan="3" class="loading-message">단어 목록 로딩 중...</td> </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> <div class="button-container">
              <a href="pdf_library.html" class="navigation-button secondary">&larr; PDF 자료실 가기</a>
+             <button id="btn-save-pdf" class="navigation-button" style="background-color: #007bff;">단어 목록 PDF 저장</button> 
              <a href="index.html" class="navigation-button">Voca-Core 9 빈출 순서 학습 시작하기 &rarr;</a>
         </div>
     </div>
@@ -354,6 +401,7 @@
             const modalContent = document.getElementById('word-modal-content');
             const totalWordCount = document.getElementById('total-word-count'); 
             const categoryFilterGrid = document.getElementById('category-filter-grid'); 
+            const btnSavePdf = document.getElementById('btn-save-pdf'); // (v3.4) PDF 저장 버튼
             
             let allWords = [];
 
@@ -392,6 +440,13 @@
 
                 modalBackdrop.addEventListener('click', hideWordModal);
                 modalContent.addEventListener('click', (e) => e.stopPropagation());
+                
+                // (v3.4) PDF 저장 기능 연결
+                if (btnSavePdf) {
+                    btnSavePdf.addEventListener('click', () => {
+                        window.print();
+                    });
+                }
 
 
             } catch (error) {
