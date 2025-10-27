@@ -725,9 +725,7 @@
     "example_sentence_translation": "네 이름이 뭐니?",
     "category": "일상생활",
     "stage": 1
-  }
-]
-[
+  },
   {
     "rank": 46,
     "lemma": "por",
