@@ -100,7 +100,10 @@
             color: var(--dark-color);
         }
 
-
+        /* (수정) 행 스타일 */
+         tbody tr {
+             cursor: pointer; /* 클릭 가능 표시 */
+         }
          tbody tr:nth-child(odd) {
              background-color: #f8f9fa;
          }
@@ -231,6 +234,15 @@
                     tableRow.appendChild(rankCell);
                     tableRow.appendChild(lemmaCell);
                     tableRow.appendChild(meaningCell);
+
+                    // --- (수정) 행 클릭 이벤트 추가 ---
+                    tableRow.addEventListener('click', () => {
+                        // LocalStorage에 선택한 단어의 'rank' 저장
+                        localStorage.setItem('vocaCore9JumpToRank', word.rank);
+                        // 메인 학습 페이지로 이동
+                        window.location.href = 'index.html';
+                    });
+                    // --- 여기까지 ---
 
                     tableBody.appendChild(tableRow);
                 });
