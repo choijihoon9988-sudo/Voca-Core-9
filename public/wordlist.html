@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voca-Core 9: 전체 단어 목록 (표 형식)</title>
+    <title>Voca-Core 9: 전체 단어 목록 (빈출 순)</title>
     <style>
         :root {
             --primary-color: #007bff;
@@ -35,7 +35,7 @@
 
        .app-container {
             width: 100%;
-            max-width: 700px; /* 표 형식은 조금 더 넓게 */
+            max-width: 700px;
             background-color: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
@@ -64,52 +64,55 @@
        .word-table-container {
             width: 100%;
             margin-bottom: 1.5rem;
-            /* max-height: 500px; */ /* 스크롤 필요 시 주석 해제 */
-            /* overflow-y: auto; */ /* 스크롤 필요 시 주석 해제 */
         }
 
         table {
             width: 100%;
-            border-collapse: collapse; /* 테두리 겹침 제거 */
+            border-collapse: collapse;
         }
 
         th, td {
-            border: 1px solid #dee2e6; /* 셀 테두리 */
+            border: 1px solid #dee2e6;
             padding: 0.75rem;
             text-align: left;
             font-size: 0.95rem;
+            vertical-align: top;
         }
 
         th {
             background-color: var(--light-color);
             font-weight: 600;
-            position: sticky; /* 헤더 고정 (스크롤 시) */
-            top: 0; /* 헤더 고정 (스크롤 시) */
+            position: sticky;
+            top: 0;
         }
-
-        td:first-child { /* 첫 번째 열 (스페인어) */
+        th:first-child, td:first-child {
+            width: 10%;
+            text-align: center;
+            color: var(--secondary-color);
+        }
+        th:nth-child(2), td:nth-child(2) {
+            width: 40%;
             color: var(--primary-color);
             font-weight: 500;
-            width: 40%; /* 너비 조정 */
         }
-         td:last-child { /* 두 번째 열 (한국어 뜻) */
-             color: var(--dark-color);
-             width: 60%; /* 너비 조정 */
-         }
+        th:last-child, td:last-child {
+            width: 50%;
+            color: var(--dark-color);
+        }
 
-         /* 홀수/짝수 행 배경색 */
+
          tbody tr:nth-child(odd) {
              background-color: #f8f9fa;
          }
          tbody tr:hover {
-             background-color: #e9ecef; /* 마우스 오버 효과 */
+             background-color: #e9ecef;
          }
 
 
        .navigation-button {
-            display: inline-block; /* 버튼 크기 내용에 맞게 */
-            width: auto; /* 버튼 크기 내용에 맞게 */
-            padding: 0.8rem 1.5rem; /* 버튼 패딩 조정 */
+            display: inline-block;
+            width: auto;
+            padding: 0.8rem 1.5rem;
             font-size: 1rem;
             font-weight: bold;
             color: white;
@@ -120,7 +123,7 @@
             text-align: center;
             text-decoration: none;
             transition: background-color 0.2s ease;
-            margin-top: 1rem; /* 위쪽 여백 */
+            margin-top: 1rem;
         }
        .navigation-button:hover {
             background-color: #218838;
@@ -131,7 +134,6 @@
            color: var(--secondary-color);
            padding: 2rem;
        }
-        /* 버튼 정렬용 컨테이너 */
        .button-container {
            text-align: center;
        }
@@ -142,21 +144,22 @@
 
     <div class="app-container">
         <header>
-            <h1>Voca-Core 9: 전체 단어 목록</h1>
-            <p>총 45개의 스페인어 단어입니다.</p>
+            <h1>Voca-Core 9: 전체 단어 목록 (빈출 순)</h1>
+            <p>총 45개의 스페인어 단어 (빈출도 순서)</p>
         </header>
 
         <div class="word-table-container">
             <table>
                 <thead>
                     <tr>
+                        <th>순번</th>
                         <th>스페인어 (Lemma)</th>
                         <th>한국어 뜻</th>
                     </tr>
                 </thead>
                 <tbody id="word-table-body">
                     <tr>
-                        <td colspan="2" class="loading-message">단어 목록 로딩 중...</td>
+                        <td colspan="3" class="loading-message">단어 목록 로딩 중...</td>
                     </tr>
                 </tbody>
             </table>
@@ -178,26 +181,31 @@
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 allWords = await response.json();
 
-                // 선택: 알파벳 순 정렬 (필요 없으면 이 줄 주석 처리)
-                allWords.sort((a, b) => a.lemma.localeCompare(b.lemma, 'es'));
+                // 데이터 자체가 rank 순서이므로 별도 정렬 불필요
+                // allWords.sort((a, b) => a.rank - b.rank);
 
                 renderWordTable();
 
             } catch (error) {
                 console.error("단어 데이터 로딩 실패:", error);
-                tableBody.innerHTML = `<tr><td colspan="2" class="loading-message">단어 파일을 불러오는 데 실패했습니다.<br>'스페인어.txt' 파일이 같은 폴더에 있는지 확인해주세요.</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="3" class="loading-message">단어 파일을 불러오는 데 실패했습니다.<br>'스페인어.txt' 파일이 같은 폴더에 있는지 확인해주세요.</td></tr>`;
             }
 
             // 단어 테이블을 화면에 렌더링하는 함수
             function renderWordTable() {
-                tableBody.innerHTML = ''; // 기존 내용 초기화
+                tableBody.innerHTML = '';
                 if (allWords.length === 0) {
-                     tableBody.innerHTML = `<tr><td colspan="2" class="loading-message">표시할 단어가 없습니다.</td></tr>`;
+                     tableBody.innerHTML = `<tr><td colspan="3" class="loading-message">표시할 단어가 없습니다.</td></tr>`;
                      return;
                 }
 
-                allWords.forEach(word => {
+                allWords.forEach((word, index) => { // index를 순번으로 사용
                     const tableRow = document.createElement('tr');
+
+                    // 순번 셀 추가
+                    const rankCell = document.createElement('td');
+                    rankCell.textContent = index + 1;
+                    rankCell.style.textAlign = 'center';
 
                     const lemmaCell = document.createElement('td');
                     lemmaCell.textContent = word.lemma;
@@ -205,6 +213,7 @@
                     const meaningCell = document.createElement('td');
                     meaningCell.textContent = word.korean_meaning;
 
+                    tableRow.appendChild(rankCell);
                     tableRow.appendChild(lemmaCell);
                     tableRow.appendChild(meaningCell);
 
