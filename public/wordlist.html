@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voca-Core 9: 전체 단어 목록</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --background-color: #f4f4f9;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--dark-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+        }
+
+       .app-container {
+            width: 100%;
+            max-width: 600px; /* 목록 페이지는 조금 더 넓게 */
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+
+        header h1 {
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+        header p {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+       .word-list-container {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+
+        ul#word-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul#word-list li {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        ul#word-list li:last-child {
+            border-bottom: none;
+        }
+        ul#word-list li:hover {
+            background-color: #f8f9fa;
+        }
+        ul#word-list li.selected {
+            background-color: #e0e7ff;
+            font-weight: bold;
+        }
+
+       .word-list-lemma {
+            color: var(--primary-color);
+            font-weight: 600;
+       }
+       .word-list-meaning {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            text-align: right;
+            margin-left: 1rem;
+       }
+
+
+       .details-container {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+            min-height: 150px; /* 상세 정보 표시 영역 확보 */
+        }
+       .details-container h2 {
+           font-size: 1.2rem;
+           margin-bottom: 1rem;
+           color: var(--primary-color);
+       }
+        #details-content p {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        #details-content p strong {
+            color: var(--secondary-color);
+            display: inline-block;
+            width: 100px; /* 레이블 너비 고정 */
+        }
+        #details-content .inflected-forms {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+        #details-content .example-sentence {
+            background-color: var(--light-color);
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+         #details-content .example-translation {
+             color: var(--secondary-color);
+             font-size: 0.85rem;
+             margin-top: -0.5rem; /* 예문과의 간격 조정 */
+         }
+
+
+       .navigation-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background-color: var(--success-color);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 1.5rem;
+            transition: background-color 0.2s ease;
+        }
+       .navigation-button:hover {
+            background-color: #218838;
+        }
+
+       .loading-message {
+           text-align: center;
+           color: var(--secondary-color);
+           padding: 2rem;
+       }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>Voca-Core 9: 전체 단어 목록</h1>
+            <p>단어를 클릭하면 상세 정보를 볼 수 있습니다.</p>
+        </header>
+
+        <div class="word-list-container">
+            <ul id="word-list">
+                <li class="loading-message">단어 목록 로딩 중...</li>
+            </ul>
+        </div>
+
+        <div class="details-container">
+            <h2>단어 상세 정보</h2>
+            <div id="details-content">
+                <p>목록에서 단어를 선택해주세요.</p>
+            </div>
+        </div>
+
+        <a href="index.html" class="navigation-button">Voca-Core 9 빈출 순서 학습 시작하기 &rarr;</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const wordListElement = document.getElementById('word-list');
+            const detailsContentElement = document.getElementById('details-content');
+            let allWords = [];
+            let currentSelectedListItem = null;
+
+            try {
+                // 스페인어.txt 파일 로드 (네가 제공한 최신 파일 기준)
+                const response = await fetch('스페인어.txt');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                allWords = await response.json();
+
+                // 단어 목록 생성 (예: 알파벳 순 정렬)
+                // allWords.sort((a, b) => a.lemma.localeCompare(b.lemma, 'es')); // 알파벳 순 정렬 원하면 주석 해제
+
+                renderWordList();
+
+            } catch (error) {
+                console.error("단어 데이터 로딩 실패:", error);
+                wordListElement.innerHTML = `<li class="loading-message">단어 파일을 불러오는 데 실패했습니다.<br>'스페인어.txt' 파일이 같은 폴더에 있는지 확인해주세요.</li>`;
+            }
+
+            // 단어 목록을 화면에 렌더링하는 함수
+            function renderWordList() {
+                wordListElement.innerHTML = ''; // 기존 목록 초기화
+                if (allWords.length === 0) {
+                     wordListElement.innerHTML = `<li class="loading-message">표시할 단어가 없습니다.</li>`;
+                     return;
+                }
+
+                allWords.forEach((word, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.dataset.index = index; // 각 항목에 데이터 인덱스 저장
+
+                    const lemmaSpan = document.createElement('span');
+                    lemmaSpan.classList.add('word-list-lemma');
+                    lemmaSpan.textContent = word.lemma;
+
+                    const meaningSpan = document.createElement('span');
+                    meaningSpan.classList.add('word-list-meaning');
+                    meaningSpan.textContent = word.korean_meaning;
+
+                    listItem.appendChild(lemmaSpan);
+                    listItem.appendChild(meaningSpan);
+
+                    listItem.addEventListener('click', () => {
+                        displayWordDetails(index);
+                        // 선택된 항목 스타일 업데이트
+                        if (currentSelectedListItem) {
+                            currentSelectedListItem.classList.remove('selected');
+                        }
+                        listItem.classList.add('selected');
+                        currentSelectedListItem = listItem;
+                    });
+                    wordListElement.appendChild(listItem);
+                });
+            }
+
+            // 선택된 단어의 상세 정보를 표시하는 함수
+            function displayWordDetails(index) {
+                const word = allWords[index];
+                if (!word) return;
+
+                const inflectedForms = word.inflected_forms_found.join(', ');
+
+                detailsContentElement.innerHTML = `
+                    <p><strong>단어:</strong> ${word.lemma}</p>
+                    <p><strong>품사:</strong> ${word.part_of_speech}</p>
+                    <p><strong>뜻:</strong> ${word.korean_meaning}</p>
+                    <p><strong>빈도수:</strong> ${word.frequency_count}</p>
+                    <p><strong>카테고리:</strong> ${word.category || 'N/A'}</p>
+                    <p><strong>발견된 형태:</strong> <span class="inflected-forms">${inflectedForms}</span></p>
+                    <p class="example-sentence"><strong>예문:</strong> "${word.example_sentence_source}"</p>
+                    <p class="example-translation"><strong>번역:</strong> ${word.example_sentence_translation}</p>
+                `;
+            }
+        });
+    </script>
+
+</body>
+</html>
