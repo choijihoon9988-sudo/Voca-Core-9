@@ -1,89 +1,545 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voca-Core 9: 수능 스페인어</title>
+    <style>
+        /* --- CSS 변수 및 기본 스타일 --- */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --background-color: #f4f4f9;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/12.4.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/12.4.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/12.4.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/12.4.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/12.4.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/12.4.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/12.4.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/12.4.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/12.4.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/12.4.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--dark-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        /* --- 애플리케이션 레이아웃 --- */
+       .app-container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- 학습 진행률 UI --- */
+       .progress-container {
+            width: 100%;
+        }
+
+       .progress-text {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+       .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+       .progress-bar-inner {
+            height: 100%;
+            width: 0%;
+            background-color: var(--success-color);
+            transition: width 0.3s ease-in-out;
+        }
+        
+        /* --- 학습 모드 토글 --- */
+       .mode-toggle {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: 4px;
+        }
+
+       .mode-toggle button {
+            flex: 1;
+            padding: 0.75rem 0;
+            border: none;
+            background-color: transparent;
+            color: var(--secondary-color);
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 9px;
+            transition: all 0.3s ease;
+        }
+
+       .mode-toggle button.active {
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* --- 플래시카드 3D 플립 애니메이션 --- */
+       .card-container {
+            width: 100%;
+            height: 450px;
+            perspective: 1000px; /* 3D 효과를 위한 원근감 설정 */
+            cursor: pointer;
+        }
+
+       .card__inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d; /* 자식 요소가 3D 공간에 있도록 설정 */
+        }
+        
+       .card-container.is-flipped .card__inner {
+            transform: rotateY(180deg); /* is-flipped 클래스가 추가되면 Y축으로 180도 회전 */
+        }
+
+       .card__face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* 카드의 뒷면은 보이지 않게 처리 */
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+       .card__face--back {
+            transform: rotateY(180deg); /* 뒷면은 미리 180도 회전시켜 놓음 */
+        }
+
+        /* --- 카드 내부 콘텐츠 스타일 --- */
+       .card-lemma {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+       .card-pos {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--secondary-color);
+        }
+
+       .card-content-section {
+            margin-bottom: 1.5rem;
+        }
+       .card-content-section:last-child {
+            margin-bottom: 0;
+        }
+
+       .card-content-section h3 {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+       .card-korean-meaning {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+       .card-example {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+       .card-example-translation {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-top: 0.5rem;
+        }
+
+       .card-inflected {
+            font-size: 1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            line-height: 1.5;
+            word-break: break-all;
+        }
+       .card-inflected span {
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+
+        /* --- 컨트롤 버튼 (알아요/몰라요) --- */
+       .knowledge-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            width: 100%;
+        }
+
+       .knowledge-controls button {
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 2px solid;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+       .btn-unknown {
+            background-color: transparent;
+            border-color: var(--danger-color);
+            color: var(--danger-color);
+        }
+       .btn-unknown:hover {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+       .btn-known {
+            background-color: transparent;
+            border-color: var(--success-color);
+            color: var(--success-color);
+        }
+       .btn-known:hover {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        /* --- 네비게이션 버튼 (이전/다음) --- */
+       .navigation-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+       .navigation-controls button {
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            transition: all 0.2s ease;
+        }
+       .navigation-controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+        }
+       .navigation-controls button:disabled {
+            background-color: #e9ecef;
+            color: #adb5bd;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* --- 로딩 및 에러 메시지 --- */
+       .message-container {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* --- 반응형 디자인 --- */
+        @media (min-width: 768px) {
+           .app-container {
+                max-width: 500px;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>Voca-Core 9</h1>
+        </header>
+
+        <section class="progress-container">
+            <p class="progress-text" id="progress-text">단어 로딩 중...</p>
+            <div class="progress-bar">
+                <div class="progress-bar-inner" id="progress-bar-inner"></div>
+            </div>
+        </section>
+
+        <nav class="mode-toggle">
+            <button id="mode-all" class="active">전체 학습</button>
+            <button id="mode-review">'몰라요'만 복습</button>
+        </nav>
+
+        <main id="main-content">
+            <div class="message-container">
+                <p>데이터를 불러오고 있습니다...</p>
+            </div>
+        </main>
+
+        <section class="knowledge-controls" id="knowledge-controls" style="display: none;">
+            <button class="btn-unknown" id="btn-unknown">❌ 몰라요</button>
+            <button class="btn-known" id="btn-known">✅ 알아요</button>
+        </section>
+
+        <footer class="navigation-controls" id="navigation-controls" style="display: none;">
+            <button id="btn-prev">◀ 이전 단어</button>
+            <button id="btn-next">다음 단어 ▶</button>
+        </footer>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 상태 관리 변수 ---
+            let allWords = [];
+            let filteredWords = [];
+            let currentIndex = 0;
+            let progress = {};
+            let currentMode = 'all';
+            const LOCAL_STORAGE_KEY = 'vocaCore9Progress';
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
+            // --- DOM 요소 참조 ---
+            const mainContent = document.getElementById('main-content');
+            const progressText = document.getElementById('progress-text');
+            const progressBarInner = document.getElementById('progress-bar-inner');
+            const knowledgeControls = document.getElementById('knowledge-controls');
+            const navigationControls = document.getElementById('navigation-controls');
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const btnKnown = document.getElementById('btn-known');
+            const btnUnknown = document.getElementById('btn-unknown');
+            const modeAllBtn = document.getElementById('mode-all');
+            const modeReviewBtn = document.getElementById('mode-review');
+            
+            // --- 데이터 로딩 및 초기화 ---
+            async function initializeApp() {
+                try {
+                    const response = await fetch('스페인어.txt');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    allWords = await response.json();
+                    allWords.sort((a, b) => a.rank - b.rank);
+                    
+                    loadProgress();
+                    setMode('all');
+                    
+                    knowledgeControls.style.display = 'grid';
+                    navigationControls.style.display = 'flex';
+
+                } catch (error) {
+                    console.error("단어 데이터 로딩 실패:", error);
+                    mainContent.innerHTML = `<div class="message-container"><p>단어 파일을 불러오는 데 실패했습니다.<br>스페인어.txt 파일이 같은 폴더에 있는지 확인해주세요.</p></div>`;
+                    progressText.textContent = '오류 발생';
+                }
+            }
+
+            // --- 로컬 스토리지 관리 ---
+            function loadProgress() {
+                try {
+                    const savedProgress = localStorage.getItem(LOCAL_STORAGE_KEY);
+                    progress = savedProgress ? JSON.parse(savedProgress) : {};
+                } catch (e) {
+                    console.error("진행률 데이터 파싱 실패:", e);
+                    progress = {};
+                }
+            }
+
+            function saveProgress() {
+                try {
+                    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(progress));
+                } catch (e) {
+                    console.error("진행률 저장 실패:", e);
+                }
+            }
+
+            // --- UI 렌더링 및 업데이트 ---
+            function renderCard() {
+                if (filteredWords.length === 0 || currentIndex >= filteredWords.length) {
+                    const message = currentMode === 'review' 
+                        ? '복습할 단어가 없습니다! 🎉' 
+                        : '모든 단어를 학습했습니다.';
+                    mainContent.innerHTML = `<div class="message-container"><p>${message}</p></div>`;
+                    knowledgeControls.style.display = 'none';
+                    updateNavigation();
+                    return;
+                }
+                
+                knowledgeControls.style.display = 'grid';
+
+                const word = filteredWords[currentIndex];
+                const inflectedFormsHTML = word.inflected_forms_found.join(', ');
+
+                const cardHTML = `
+                    <div class="card-container" id="card-container">
+                        <div class="card__inner">
+                            <div class="card__face card__face--front">
+                                <div>
+                                    <p class="card-pos">${word.part_of_speech}</p>
+                                    <h2 class="card-lemma">${word.lemma}</h2>
+                                </div>
+                                <div style="text-align:center; color: var(--secondary-color);">카드를 클릭하여 뜻 확인</div>
+                            </div>
+                            <div class="card__face card__face--back">
+                                <div class="card-content-section">
+                                    <h3>뜻</h3>
+                                    <p class="card-korean-meaning">${word.korean_meaning}</p>
+                                </div>
+                                <div class="card-content-section">
+                                    <h3>실제 기출 형태</h3>
+                                    <p class="card-inflected"><span>[실제 기출 형태]</span> ${inflectedFormsHTML}</p>
+                                </div>
+                                <div class="card-content-section">
+                                    <h3>예문</h3>
+                                    <p class="card-example">"${word.example_sentence_source}"</p>
+                                    <p class="card-example-translation">${word.example_sentence_translation}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                mainContent.innerHTML = cardHTML;
+                
+                document.getElementById('card-container').addEventListener('click', () => {
+                    document.getElementById('card-container').classList.toggle('is-flipped');
+                });
+                
+                updateNavigation();
+            }
+
+            function updateProgressUI() {
+                const totalCount = allWords.length;
+                if (totalCount === 0) return;
+
+                const knownCount = Object.values(progress).filter(isKnown => isKnown).length;
+                const percentage = (knownCount / totalCount) * 100;
+
+                progressText.textContent = `총 ${totalCount}개 중 ${knownCount}개 학습 완료`;
+                progressBarInner.style.width = `${percentage}%`;
+            }
+            
+            function updateNavigation() {
+                btnPrev.disabled = currentIndex === 0;
+                btnNext.disabled = currentIndex >= filteredWords.length - 1 || filteredWords.length === 0;
+            }
+
+            // --- 학습 모드 및 단어 필터링 ---
+            function setMode(mode) {
+                currentMode = mode;
+                currentIndex = 0;
+
+                if (mode === 'all') {
+                    filteredWords = allWords;
+                    modeAllBtn.classList.add('active');
+                    modeReviewBtn.classList.remove('active');
+                } else { // 'review' 모드
+                    filteredWords = allWords.filter(word => !progress[word.lemma]);
+                    modeAllBtn.classList.remove('active');
+                    modeReviewBtn.classList.add('active');
+                }
+                
+                renderCard();
+                updateProgressUI();
+            }
+
+            // --- 이벤트 핸들러 ---
+            function handleNavigation(direction) {
+                const newIndex = currentIndex + direction;
+                if (newIndex >= 0 && newIndex < filteredWords.length) {
+                    currentIndex = newIndex;
+                    renderCard();
+                }
+            }
+
+            // [*** 개선안 적용 ***]
+            function markWord(isKnown) {
+                if (filteredWords.length === 0 || currentIndex >= filteredWords.length) {
+                    return; // 표시할 단어가 없으면 아무것도 안 함
+                }
+
+                const currentWord = filteredWords[currentIndex];
+                progress[currentWord.lemma] = isKnown;
+                saveProgress();
+                updateProgressUI();
+
+                // [개선된 로직]
+                // '복습' 모드이고 '알아요'를 눌렀다면, 현재 목록(filteredWords)에서 바로 제거
+                if (currentMode === 'review' && isKnown) {
+                    // 현재 인덱스의 단어를 배열에서 제거
+                    filteredWords.splice(currentIndex, 1);
+                    
+                    // 인덱스를 증가시키지 않고, 같은 인덱스에서 renderCard()를 다시 호출
+                    // (배열이 줄었으므로 현재 인덱스는 다음 단어를 가리키거나, 마지막 단어였다면 범위를 벗어남)
+                    setTimeout(() => {
+                        renderCard(); // renderCard()가 알아서 다음 카드를 그리거나 "복습 완료" 메시지를 표시함
+                    }, 200);
+
+                } else {
+                    // '전체 학습' 모드이거나 '몰라요'를 누른 경우, 그냥 다음 단어로 이동
+                    setTimeout(() => {
+                        handleNavigation(1);
+                    }, 200); // 0.2초 딜레이
+                }
+            }
+            
+            // --- 이벤트 리스너 연결 ---
+            btnPrev.addEventListener('click', () => handleNavigation(-1));
+            btnNext.addEventListener('click', () => handleNavigation(1));
+            btnKnown.addEventListener('click', () => markWord(true));
+            btnUnknown.addEventListener('click', () => markWord(false));
+            modeAllBtn.addEventListener('click', () => setMode('all'));
+            modeReviewBtn.addEventListener('click', () => setMode('review'));
+
+            // --- 애플리케이션 시작 ---
+            initializeApp();
+        });
     </script>
-  </body>
+</body>
 </html>
