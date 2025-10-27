@@ -129,7 +129,6 @@
             transform-style: preserve-3d; /* 자식 요소가 3D 공간에 있도록 설정 */
         }
         
-        /* is-flipped 클래스가 .card-container에 적용되므로 .card__inner를 직접 참조하지 않도록 수정 */
        .card-container.is-flipped .card__inner {
             transform: rotateY(180deg); /* is-flipped 클래스가 추가되면 Y축으로 180도 회전 */
         }
@@ -336,15 +335,14 @@
     </div>
 
     <script>
-        // DOMContentLoaded: HTML 문서가 완전히 로드되고 파싱되었을 때 스크립트 실행
         document.addEventListener('DOMContentLoaded', () => {
             
             // --- 상태 관리 변수 ---
-            let allWords = []; // [오류 1 수정] 스페인어.txt에서 로드한 모든 단어 배열
-            let filteredWords = []; // [오류 2 수정] 현재 학습 모드에 따라 필터링된 단어 배열
-            let currentIndex = 0; // filteredWords 내 현재 단어 인덱스
-            let progress = {}; // 로컬 스토리지에서 불러온 학습 진행률 객체
-            let currentMode = 'all'; // 현재 학습 모드 ('all' 또는 'review')
+            let allWords = [];
+            let filteredWords = [];
+            let currentIndex = 0;
+            let progress = {};
+            let currentMode = 'all';
             const LOCAL_STORAGE_KEY = 'vocaCore9Progress';
 
             // --- DOM 요소 참조 ---
@@ -363,16 +361,15 @@
             // --- 데이터 로딩 및 초기화 ---
             async function initializeApp() {
                 try {
-                    // fetch API를 사용해 비동기적으로 단어 데이터 로드
                     const response = await fetch('스페인어.txt');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
-                    allWords = await response.json(); // 응답을 JSON으로 파싱
-                    allWords.sort((a, b) => a.rank - b.rank); // rank 순으로 정렬 보장
+                    allWords = await response.json();
+                    allWords.sort((a, b) => a.rank - b.rank);
                     
-                    loadProgress(); // 로컬 스토리지에서 진행률 로드
-                    setMode('all'); // 초기 모드를 '전체 학습'으로 설정
+                    loadProgress();
+                    setMode('all');
                     
                     knowledgeControls.style.display = 'grid';
                     navigationControls.style.display = 'flex';
@@ -391,7 +388,7 @@
                     progress = savedProgress ? JSON.parse(savedProgress) : {};
                 } catch (e) {
                     console.error("진행률 데이터 파싱 실패:", e);
-                    progress = {}; // 파싱 실패 시 초기화
+                    progress = {};
                 }
             }
 
@@ -405,18 +402,17 @@
 
             // --- UI 렌더링 및 업데이트 ---
             function renderCard() {
-                // 현재 보여줄 단어가 없으면 메시지 표시
-                if (filteredWords.length === 0 || currentIndex >= filteredWords.length) { // [오류 3 수정]
+                if (filteredWords.length === 0 || currentIndex >= filteredWords.length) {
                     const message = currentMode === 'review' 
                         ? '복습할 단어가 없습니다! 🎉' 
                         : '모든 단어를 학습했습니다.';
                     mainContent.innerHTML = `<div class="message-container"><p>${message}</p></div>`;
-                    knowledgeControls.style.display = 'none'; // 컨트롤 버튼 숨김
+                    knowledgeControls.style.display = 'none';
                     updateNavigation();
                     return;
                 }
                 
-                knowledgeControls.style.display = 'grid'; // 컨트롤 버튼 표시
+                knowledgeControls.style.display = 'grid';
 
                 const word = filteredWords[currentIndex];
                 const inflectedFormsHTML = word.inflected_forms_found.join(', ');
@@ -451,7 +447,6 @@
                 `;
                 mainContent.innerHTML = cardHTML;
                 
-                // 카드 클릭 시 뒤집기 이벤트 리스너 추가
                 document.getElementById('card-container').addEventListener('click', () => {
                     document.getElementById('card-container').classList.toggle('is-flipped');
                 });
@@ -472,7 +467,7 @@
             
             function updateNavigation() {
                 btnPrev.disabled = currentIndex === 0;
-                btnNext.disabled = currentIndex >= filteredWords.length - 1 || filteredWords.length === 0; // [오류 4 수정]
+                btnNext.disabled = currentIndex >= filteredWords.length - 1 || filteredWords.length === 0;
             }
 
             // --- 학습 모드 및 단어 필터링 ---
@@ -481,11 +476,11 @@
                 currentIndex = 0;
 
                 if (mode === 'all') {
-                    filteredWords = allWords; // [오류 5 수정]
+                    filteredWords = allWords;
                     modeAllBtn.classList.add('active');
                     modeReviewBtn.classList.remove('active');
                 } else { // 'review' 모드
-                    filteredWords = allWords.filter(word => !progress[word.lemma]); // '알아요(true)'가 아닌 단어만 필터링
+                    filteredWords = allWords.filter(word => !progress[word.lemma]);
                     modeAllBtn.classList.remove('active');
                     modeReviewBtn.classList.add('active');
                 }
@@ -503,14 +498,31 @@
                 }
             }
 
+            // [*** 개선안 적용 ***]
             function markWord(isKnown) {
-                if (filteredWords.length > 0 && currentIndex < filteredWords.length) {
-                    const currentWord = filteredWords[currentIndex];
-                    progress[currentWord.lemma] = isKnown; // [오류 6 수정] (논리 오류)
-                    saveProgress();
-                    updateProgressUI();
+                if (filteredWords.length === 0 || currentIndex >= filteredWords.length) {
+                    return; // 표시할 단어가 없으면 아무것도 안 함
+                }
+
+                const currentWord = filteredWords[currentIndex];
+                progress[currentWord.lemma] = isKnown;
+                saveProgress();
+                updateProgressUI();
+
+                // [개선된 로직]
+                // '복습' 모드이고 '알아요'를 눌렀다면, 현재 목록(filteredWords)에서 바로 제거
+                if (currentMode === 'review' && isKnown) {
+                    // 현재 인덱스의 단어를 배열에서 제거
+                    filteredWords.splice(currentIndex, 1);
                     
-                    // '알아요' 또는 '몰라요' 버튼 클릭 후 자동으로 다음 단어로 이동
+                    // 인덱스를 증가시키지 않고, 같은 인덱스에서 renderCard()를 다시 호출
+                    // (배열이 줄었으므로 현재 인덱스는 다음 단어를 가리키거나, 마지막 단어였다면 범위를 벗어남)
+                    setTimeout(() => {
+                        renderCard(); // renderCard()가 알아서 다음 카드를 그리거나 "복습 완료" 메시지를 표시함
+                    }, 200);
+
+                } else {
+                    // '전체 학습' 모드이거나 '몰라요'를 누른 경우, 그냥 다음 단어로 이동
                     setTimeout(() => {
                         handleNavigation(1);
                     }, 200); // 0.2초 딜레이
