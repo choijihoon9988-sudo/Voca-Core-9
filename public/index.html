@@ -495,6 +495,21 @@
        .hidden {
             display: none !important;
         }
+
+        /* --- (신규) 푸터 스타일 --- */
+       .app-footer {
+            width: 100%;
+            max-width: 420px; /* app-container와 동일하게 */
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+       .app-footer p {
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -540,6 +555,12 @@
             <button id="btn-back-to-quiz" class="hidden">◀ 퀴즈로 돌아가기</button>
             </footer>
     </div>
+
+    <footer class="app-footer">
+        <p>본 웹사이트는 이상한마케팅 '콘텐츠 마케터(PM)' 직무 지원을 위해 제작되었습니다.</p>
+        <p>지후를 가장 응원하는 최재영</p>
+        <p>© 2025 Choi Jae Young. All Rights Reserved.</p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
