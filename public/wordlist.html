@@ -8,6 +8,7 @@
         :root {
             --primary-color: #007bff;
             --secondary-color: #6c757d;
+            --success-color: #28a745; /* (v3.3) 버튼용 */
             --light-color: #f8f9fa;
             --dark-color: #343a40;
             --background-color: #f4f4f9;
@@ -35,7 +36,7 @@
 
        .app-container {
             width: 100%;
-            max-width: 700px;
+            max-width: 900px; /* (v3.3) 좀 더 넓게 */
             background-color: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
@@ -45,7 +46,7 @@
 
         header {
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem; /* (v3.3) 필터와의 간격 */
             border-bottom: 1px solid #eee;
             padding-bottom: 1rem;
         }
@@ -60,10 +61,50 @@
              font-size: 0.9rem;
          }
 
+        /* --- (v3.3) 주제 필터 탭 스타일 (index.html에서 복사) --- */
+       .tabs-container {
+            width: 100%;
+            background-color: #E0E7FF; /* index.html의 category-filter 색상 */
+            border-radius: var(--border-radius);
+            padding: 5px;
+            margin-bottom: 1.5rem; /* 테이블과의 간격 */
+       }
+       .tabs-grid {
+            display: flex;
+            flex-wrap: wrap; /* 좁은 화면 대응 */
+            gap: 5px;
+            justify-content: center; /* 버튼 중앙 정렬 */
+       }
+       .tabs-grid button {
+            flex: 1 1 auto;
+            min-width: 80px;
+            padding: 0.7rem 0.5rem;
+            border: none;
+            background-color: transparent;
+            color: var(--secondary-color);
+            font-size: 0.85rem; /* (v3.3) 버튼이 많으므로 폰트 축소 */
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 9px;
+            transition: all 0.3s ease;
+       }
+       .tabs-grid button:hover:not(.active) {
+            background-color: #d1d9ff;
+       }
+       .tabs-grid button.active {
+            background-color: var(--card-bg);
+            color: #3730A3; /* index.html의 활성 색상 */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+       }
+       /* --- 여기까지 --- */
+
+
         /* 표 스타일 */
        .word-table-container {
             width: 100%;
             margin-bottom: 1.5rem;
+            max-height: 60vh; /* (v3.3) 테이블 최대 높이 제한 */
+            overflow-y: auto; /* (v3.3) 테이블 스크롤 */
         }
 
         table {
@@ -84,21 +125,30 @@
             font-weight: 600;
             position: sticky;
             top: 0;
+            z-index: 10; /* (v3.3) 스크롤 시 상단 고정 */
         }
-        th:first-child, td:first-child {
+        
+        /* (v3.3) 4열 기준 너비 재조정 */
+        th:first-child, td:first-child { /* 순번 */
             width: 10%;
             text-align: center;
             color: var(--secondary-color);
         }
-        th:nth-child(2), td:nth-child(2) {
-            width: 40%;
+        th:nth-child(2), td:nth-child(2) { /* 스페인어 */
+            width: 30%;
             color: var(--primary-color);
             font-weight: 500;
         }
-        th:last-child, td:last-child {
-            width: 50%;
+        th:nth-child(3), td:nth-child(3) { /* 한국어 뜻 */
+            width: 35%;
             color: var(--dark-color);
         }
+        th:last-child, td:last-child { /* 주제 (v3.3) */
+            width: 25%;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
 
         /* (수정) 행 스타일 */
          tbody tr {
@@ -126,18 +176,17 @@
             text-align: center;
             text-decoration: none;
             transition: background-color 0.2s ease;
-            /* (수정) margin-top은 .button-container의 gap으로 대체 */
         }
        .navigation-button:hover {
             background-color: #218838;
         }
         
-       /* (추가) PDF 자료실 버튼용 스타일 */
+       /* PDF 자료실 버튼용 스타일 */
        .navigation-button.secondary {
             background-color: var(--primary-color);
        }
        .navigation-button.secondary:hover {
-            background-color: #0056b3; /* --primary-color의 어두운 버전 */
+            background-color: #0056b3; 
        }
 
        .loading-message {
@@ -146,16 +195,15 @@
            padding: 2rem;
        }
         
-       /* (수정) 버튼 컨테이너 스타일 */
        .button-container {
            display: flex;
            flex-wrap: wrap;
            justify-content: center;
            gap: 1rem;
-           margin-top: 1.5rem; /* 버튼과 테이블 사이 간격 */
+           margin-top: 1.5rem; /* 테이블 사이 간격 */
        }
 
-        /* --- (추가) 단어 상세 모달 스타일 --- */
+        /* --- 단어 상세 모달 스타일 --- */
         .modal-backdrop {
             position: fixed;
             top: 0;
@@ -185,7 +233,6 @@
             display: none !important;
         }
         
-        /* 카드 콘텐츠 스타일 (index.html에서 가져옴) */
         .modal-content .card-header {
             display: flex;
             align-items: center;
@@ -269,22 +316,27 @@
     <div class="app-container">
         <header>
             <h1>Voca-Core 9: 전체 단어 목록 (빈출 순)</h1>
-            <p>총 45개의 스페인어 단어 (빈출도 순서)</p>
+            <p id="total-word-count">총 0개의 스페인어 단어 (빈출도 순서)</p>
         </header>
+
+        <nav class="tabs-container category-filter">
+            <div class="tabs-grid" id="category-filter-grid">
+                <button class="category-btn active" data-category="all">로딩 중...</button>
+            </div>
+        </nav>
 
         <div class="word-table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>순번</th>
+                        <th>순번 (S-Rank)</th>
                         <th>스페인어 (Lemma)</th>
                         <th>한국어 뜻</th>
-                    </tr>
+                        <th>주제 (v3.3)</th> </tr>
                 </thead>
                 <tbody id="word-table-body">
                     <tr>
-                        <td colspan="3" class="loading-message">단어 목록 로딩 중...</td>
-                    </tr>
+                        <td colspan="4" class="loading-message">단어 목록 로딩 중...</td> </tr>
                 </tbody>
             </table>
         </div>
@@ -304,19 +356,25 @@
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const tableBody = document.getElementById('word-table-body');
-            // (추가) 모달 DOM 요소
             const modalBackdrop = document.getElementById('word-modal-backdrop');
             const modalContent = document.getElementById('word-modal-content');
+            const totalWordCount = document.getElementById('total-word-count'); // (v3.2)
+            const categoryFilterGrid = document.getElementById('category-filter-grid'); // (v3.3)
             
             let allWords = [];
 
-            // (추가) TTS 음성 출력 함수 (index.html에서 가져옴)
+            // (v3.3) 카테고리 이름 매핑 (축약)
+             const CATEGORY_NAMES = {
+                 'all': '전체',
+                 '기본 형용사/부사': '형용사/부사',
+                 '의문사/감탄사': '의문사/감탄'
+             };
+
             function speakText(text, lang = 'es-ES') {
                 if (!('speechSynthesis' in window)) {
                     console.warn('Speech synthesis not supported.');
                     return;
                 }
-                // 진행 중인 음성 출력이 있다면 취소
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = lang;
@@ -330,64 +388,130 @@
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 allWords = await response.json();
 
-                // 데이터 자체가 rank 순서이므로 별도 정렬 불필요
-                // allWords.sort((a, b) => a.rank - b.rank);
+                // (v3.2) 총 단어 수 업데이트
+                totalWordCount.textContent = `총 ${allWords.length}개의 스페인어 단어 (빈출도 순서)`;
+
+                // (v3.3) 주제 필터 탭 생성
+                initializeCategoryFilters(allWords);
 
                 renderWordTable();
 
-                // (추가) 모달 닫기 이벤트 리스너
-                // 배경 클릭 시 닫기
                 modalBackdrop.addEventListener('click', hideWordModal);
-                // 모달 내부 클릭 시 이벤트 전파 중단 (배경 클릭으로 인식 방지)
                 modalContent.addEventListener('click', (e) => e.stopPropagation());
 
 
             } catch (error) {
                 console.error("단어 데이터 로딩 실패:", error);
-                tableBody.innerHTML = `<tr><td colspan="3" class="loading-message">단어 파일을 불러오는 데 실패했습니다.<br>'스페인어.txt' 파일이 같은 폴더에 있는지 확인해주세요.</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="4" class="loading-message">단어 파일을 불러오는 데 실패했습니다.<br>'스페인어.txt' 파일이 같은 폴더에 있는지 확인해주세요.</td></tr>`; // (v3.3) colspan=4
+                categoryFilterGrid.innerHTML = `<button class="category-btn active" data-category="all">필터 로드 실패</button>`; // (v3.3)
             }
+
+            // (v3.3) 주제 필터 탭을 동적으로 생성하는 함수
+            function initializeCategoryFilters(words) {
+                 const categoryCounts = words.reduce((acc, word) => {
+                     const category = word.category || '기타'; // (v3.3) '기타' 카테고리 처리
+                     acc[category] = (acc[category] || 0) + 1;
+                     return acc;
+                 }, {});
+
+                 categoryFilterGrid.innerHTML = ''; // 기존 버튼 초기화
+
+                 // '전체' 버튼 추가
+                 const allButton = document.createElement('button');
+                 allButton.classList.add('category-btn', 'active');
+                 allButton.dataset.category = 'all';
+                 allButton.textContent = `전체 (${words.length})`;
+                 allButton.addEventListener('click', (e) => filterWordTable('all', e.currentTarget));
+                 categoryFilterGrid.appendChild(allButton);
+
+                 // 데이터에 있는 카테고리 버튼 추가 (정렬된 순서로)
+                 Object.keys(categoryCounts).sort().forEach(category => {
+                     const button = document.createElement('button');
+                     button.classList.add('category-btn');
+                     button.dataset.category = category;
+                     const displayName = CATEGORY_NAMES[category] || category; // 맵핑된 이름 사용
+                     button.textContent = `${displayName} (${categoryCounts[category]})`;
+                     button.addEventListener('click', (e) => filterWordTable(category, e.currentTarget));
+                     categoryFilterGrid.appendChild(button);
+                 });
+            }
+
+            // (v3.3) 테이블을 필터링하는 함수
+            function filterWordTable(category, clickedButton) {
+                // 탭 활성 상태 업데이트
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                clickedButton.classList.add('active');
+
+                // 테이블 행 필터링
+                const tableRows = tableBody.getElementsByTagName('tr');
+                let visibleCount = 0;
+                for (const row of tableRows) {
+                    if (category === 'all' || row.dataset.category === category) {
+                        row.style.display = ''; // 'tr'의 기본 표시 (table-row)
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+                
+                // (v3.3) 필터링 결과가 없을 때 메시지 표시 (선택 사항)
+                 // (이 로직은 renderWordTable이 이미 완료된 후에 실행되므로, 
+                 // 'loading-message' 셀을 동적으로 추가/제거해야 함)
+            }
+
 
             // 단어 테이블을 화면에 렌더링하는 함수
             function renderWordTable() {
                 tableBody.innerHTML = '';
                 if (allWords.length === 0) {
-                     tableBody.innerHTML = `<tr><td colspan="3" class="loading-message">표시할 단어가 없습니다.</td></tr>`;
+                     tableBody.innerHTML = `<tr><td colspan="4" class="loading-message">표시할 단어가 없습니다.</td></tr>`; // (v3.3) colspan=4
                      return;
                 }
 
-                allWords.forEach((word, index) => { // index를 순번으로 사용
+                allWords.forEach((word) => { // (v3.2) index 대신 word.rank 사용
                     const tableRow = document.createElement('tr');
+                    
+                    // (v3.3) 행에 data-category 속성 추가
+                    tableRow.dataset.category = word.category || '기타';
 
-                    // 순번 셀 추가
+                    // (v3.2) 순번 셀 (Stage + Rank)
                     const rankCell = document.createElement('td');
-                    rankCell.textContent = index + 1;
+                    rankCell.textContent = `S${word.stage || '?'}-${word.rank}`; // (v3.2)
                     rankCell.style.textAlign = 'center';
+                    rankCell.style.fontSize = '0.9rem'; // (v3.2)
 
                     const lemmaCell = document.createElement('td');
                     lemmaCell.textContent = word.lemma;
 
                     const meaningCell = document.createElement('td');
                     meaningCell.textContent = word.korean_meaning;
+                    
+                    // (v3.3) 주제 셀 추가
+                    const categoryCell = document.createElement('td');
+                    const displayName = CATEGORY_NAMES[word.category] || word.category || '기타';
+                    categoryCell.textContent = displayName;
 
                     tableRow.appendChild(rankCell);
                     tableRow.appendChild(lemmaCell);
                     tableRow.appendChild(meaningCell);
+                    tableRow.appendChild(categoryCell); // (v3.3)
 
-                    // --- (수정) 행 클릭 이벤트 -> 모달 띄우기 ---
                     tableRow.addEventListener('click', (e) => {
-                        e.stopPropagation(); // backdrop 클릭 이벤트 방지
+                        e.stopPropagation(); 
                         showWordModal(word);
                     });
-                    // --- 여기까지 ---
 
                     tableBody.appendChild(tableRow);
                 });
             }
 
-            // (추가) 단어 모달을 표시하는 함수
+            // (수정) 단어 모달을 표시하는 함수
             function showWordModal(word) {
                 const inflectedFormsHTML = word.inflected_forms_found ? word.inflected_forms_found.join(', ') : 'N/A';
-                const categoryDisplayName = word.category || 'N/A';
+                // (v3.3) 카테고리 표시
+                const categoryDisplayName = CATEGORY_NAMES[word.category] || word.category || 'N/A';
 
                 // 모달에 표시될 HTML 컨텐츠 생성
                 const modalHTML = `
@@ -416,14 +540,12 @@
                     </div>
                 `;
                 
-                modalContent.innerHTML = modalHTML; // 생성된 HTML을 모달 컨텐츠 영역에 삽입
+                modalContent.innerHTML = modalHTML; 
 
-                // 모달 내부의 TTS 버튼에 이벤트 리스너 연결
                 const ttsLemmaBtn = document.getElementById('tts-lemma-btn-modal');
                 const ttsExampleBtn = document.getElementById('tts-example-btn-modal');
                 
                 if (ttsLemmaBtn) {
-                    // 버튼 클릭 시 이벤트 전파 중단 (모달 닫힘 방지)
                     ttsLemmaBtn.addEventListener('click', (e) => { 
                         e.stopPropagation(); 
                         speakText(word.lemma); 
@@ -436,12 +558,10 @@
                         speakText(word.example_sentence_source); 
                     });
                 } else if (ttsExampleBtn) {
-                    // 예문이 없는 경우 버튼 비활성화
                     ttsExampleBtn.disabled = true;
                     ttsExampleBtn.style.opacity = 0.5;
                 }
 
-                // 모달 배경(backdrop)을 보이게 함
                 modalBackdrop.classList.remove('hidden');
             }
 
